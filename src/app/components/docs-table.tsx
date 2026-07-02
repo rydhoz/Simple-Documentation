@@ -39,9 +39,9 @@ function Section({
         {title}
       </h2>
       <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm">
-        {/* Header tabel */}
+        {/* Header tabel - hanya terlihat di md ke atas */}
         <div
-          className="grid border-b border-gray-200 dark:border-gray-800"
+          className="hidden md:grid border-b border-gray-200 dark:border-gray-800"
           style={{ gridTemplateColumns: "20% 25% 30% 25%" }}
         >
           {headers.map((header, i) => (
@@ -59,7 +59,7 @@ function Section({
   );
 }
 
-function TableRow({ name, desc, example, output }: DocsProps) {
+function TableRow({ name, desc, example, output, headers }: DocsProps & { headers: string[] }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -74,21 +74,55 @@ function TableRow({ name, desc, example, output }: DocsProps) {
 
   return (
     <div
-      className="grid border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-      style={{ gridTemplateColumns: "20% 25% 30% 25%" }}
+      className="grid md:grid-cols-[20%_25%_30%_25%] border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
     >
-      {/* Nama */}
-      <div className="p-3">
+      {/* ========== VERSI MOBILE ========== */}
+      <div className="md:hidden p-3 space-y-2">
+        <div className="flex items-center justify-between">
+          <code className="text-sm font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-2 py-0.5 rounded-md break-all">
+            {name}
+          </code>
+          <button
+            onClick={handleCopy}
+            className="p-1.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 active:scale-95 transition-all"
+            title="Salin contoh"
+          >
+            {copied ? (
+              <Check className="h-4 w-4 text-emerald-500" />
+            ) : (
+              <Copy className="h-4 w-4" />
+            )}
+          </button>
+        </div>
+        <div>
+          <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{headers[1]}: </span>
+          <span className="text-sm text-gray-600 dark:text-gray-300">{desc}</span>
+        </div>
+        <div>
+          <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{headers[2]}: </span>
+          <pre className="mt-1 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md text-xs text-gray-700 dark:text-gray-300 font-mono overflow-x-auto whitespace-pre-wrap break-all">
+            {example}
+          </pre>
+        </div>
+        <div>
+          <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{headers[3]}: </span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-semibold font-mono text-sm break-all">
+            {output}
+          </span>
+        </div>
+      </div>
+
+      {/* ========== VERSI DESKTOP ========== */}
+      {/* Kolom 1: Name */}
+      <div className="hidden md:block p-3">
         <code className="text-sm font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-2 py-0.5 rounded-md break-all">
           {name}
         </code>
       </div>
-
-      {/* Deskripsi */}
-      <div className="p-3 text-sm text-gray-600 dark:text-gray-300">{desc}</div>
-
-      {/* Contoh + tombol copy */}
-      <div className="p-3 relative">
+      {/* Kolom 2: Deskripsi */}
+      <div className="hidden md:block p-3 text-sm text-gray-600 dark:text-gray-300">{desc}</div>
+      {/* Kolom 3: Contoh + tombol copy */}
+      <div className="hidden md:block p-3 relative">
         <pre className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md text-xs text-gray-700 dark:text-gray-300 font-mono overflow-x-auto whitespace-normal break-all pr-12">
           {example}
         </pre>
@@ -104,9 +138,8 @@ function TableRow({ name, desc, example, output }: DocsProps) {
           )}
         </button>
       </div>
-
-      {/* Output */}
-      <div className="p-3">
+      {/* Kolom 4: Output */}
+      <div className="hidden md:block p-3">
         <span className="text-emerald-600 dark:text-emerald-400 font-semibold font-mono text-sm break-all">
           {output}
         </span>
@@ -138,7 +171,7 @@ export default function DocsTable({
   return (
     <>
       {/* Search */}
-      <div className="flex justify-center mb-12">
+      <div className="flex justify-center mb-8 md:mb-12">
         <input
           type="text"
           value={search}
@@ -156,7 +189,7 @@ export default function DocsTable({
         return (
           <Section key={title} title={title} headers={headers}>
             {filtered.map((item, index) => (
-              <TableRow key={index} {...item} />
+              <TableRow key={index} {...item} headers={headers} />
             ))}
           </Section>
         );
