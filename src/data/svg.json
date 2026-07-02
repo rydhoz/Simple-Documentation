@@ -1,0 +1,408 @@
+{
+  "svg-introduction": [
+    {
+      "name": "<svg> root element",
+      "desc": "Elemen root untuk semua konten SVG. Mendefinisikan viewport dan namespace.",
+      "example": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" width=\"100\" height=\"100\">...</svg>",
+      "output": "Area gambar 100x100 unit"
+    },
+    {
+      "name": "viewBox",
+      "desc": "Sistem koordinat internal SVG (min-x min-y width height). Tidak bergantung pada piksel.",
+      "example": "viewBox=\"0 0 200 150\"",
+      "output": "Canvas 200x150, origin (0,0)"
+    },
+    {
+      "name": "width / height",
+      "desc": "Lebar dan tinggi elemen SVG dalam CSS (piksel, persen, dll). Bisa berbeda dengan viewBox.",
+      "example": "width=\"400\" height=\"300\"",
+      "output": "Ukuran tampilan di halaman"
+    },
+    {
+      "name": "xmlns",
+      "desc": "Namespace XML untuk SVG. Wajib jika SVG digunakan di HTML5.",
+      "example": "xmlns=\"http://www.w3.org/2000/svg\"",
+      "output": "Browser mengenali sebagai SVG"
+    }
+  ],
+  "basic-shapes": [
+    {
+      "name": "<rect>",
+      "desc": "Persegi panjang. Atribut: x, y, width, height, rx, ry.",
+      "example": "<rect x=\"10\" y=\"10\" width=\"80\" height=\"60\" rx=\"10\" fill=\"blue\" />",
+      "output": "Persegi panjang biru dengan sudut melengkung"
+    },
+    {
+      "name": "<circle>",
+      "desc": "Lingkaran. Atribut: cx, cy, r.",
+      "example": "<circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"red\" />",
+      "output": "Lingkaran merah di tengah"
+    },
+    {
+      "name": "<ellipse>",
+      "desc": "Elips. Atribut: cx, cy, rx, ry.",
+      "example": "<ellipse cx=\"50\" cy=\"30\" rx=\"40\" ry=\"20\" fill=\"green\" />",
+      "output": "Elips horizontal hijau"
+    },
+    {
+      "name": "<line>",
+      "desc": "Garis lurus. Atribut: x1, y1, x2, y2, stroke.",
+      "example": "<line x1=\"0\" y1=\"0\" x2=\"100\" y2=\"100\" stroke=\"black\" stroke-width=\"2\" />",
+      "output": "Garis diagonal hitam"
+    },
+    {
+      "name": "<polyline>",
+      "desc": "Garis terhubung (buka). Atribut: points (daftar koordinat).",
+      "example": "<polyline points=\"10,10 50,60 90,10\" fill=\"none\" stroke=\"blue\" />",
+      "output": "Segitiga terbuka"
+    },
+    {
+      "name": "<polygon>",
+      "desc": "Poligon tertutup. Atribut: points.",
+      "example": "<polygon points=\"50,5 95,90 5,90\" fill=\"yellow\" stroke=\"black\" />",
+      "output": "Segitiga kuning penuh"
+    }
+  ],
+  "path-commands": [
+    {
+      "name": "<path>",
+      "desc": "Elemen paling fleksibel. Atribut d (data path) berisi perintah.",
+      "example": "<path d=\"M10 10 L50 60 L90 10 Z\" fill=\"purple\" />",
+      "output": "Segitiga ungu"
+    },
+    {
+      "name": "M (moveto)",
+      "desc": "Memindahkan pena ke koordinat (x, y) tanpa menggambar.",
+      "example": "M 20 20",
+      "output": "Mulai di (20,20)"
+    },
+    {
+      "name": "L (lineto)",
+      "desc": "Menggambar garis dari posisi saat ini ke koordinat (x, y).",
+      "example": "L 80 80",
+      "output": "Garis ke (80,80)"
+    },
+    {
+      "name": "H / V (horizontal/vertical lineto)",
+      "desc": "Garis horizontal (H) atau vertikal (V) dari posisi saat ini.",
+      "example": "H 100 (horizontal)\nV 50 (vertical)",
+      "output": "Garis lurus sepanjang sumbu"
+    },
+    {
+      "name": "C (cubic bezier)",
+      "desc": "Kurva Bézier kubik. C (cx1, cy1, cx2, cy2, x, y).",
+      "example": "C 20 40, 80 40, 100 20",
+      "output": "Kurva dengan dua titik kontrol"
+    },
+    {
+      "name": "S (smooth cubic bezier)",
+      "desc": "Lanjutan C, titik kontrol pertama adalah refleksi dari sebelumnya.",
+      "example": "S 80 40, 100 20",
+      "output": "Kurva mulus"
+    },
+    {
+      "name": "Q (quadratic bezier)",
+      "desc": "Kurva Bézier kuadrat. Q (cx, cy, x, y).",
+      "example": "Q 50 0, 100 50",
+      "output": "Lengkungan sederhana"
+    },
+    {
+      "name": "T (smooth quadratic bezier)",
+      "desc": "Lanjutan Q, titik kontrol refleksi.",
+      "example": "T 100 100",
+      "output": "Lengkungan mulus lanjutan"
+    },
+    {
+      "name": "A (elliptical arc)",
+      "desc": "Busur elips. A (rx ry x-axis-rotation large-arc-flag sweep-flag x y).",
+      "example": "A 30 30 0 0 1 60 60",
+      "output": "Busur melengkung"
+    },
+    {
+      "name": "Z (closepath)",
+      "desc": "Menutup path kembali ke titik awal.",
+      "example": "Z",
+      "output": "Path tertutup"
+    }
+  ],
+  "text": [
+    {
+      "name": "<text>",
+      "desc": "Menampilkan teks. Atribut: x, y, font-family, font-size, fill, text-anchor.",
+      "example": "<text x=\"10\" y=\"40\" font-family=\"Arial\" font-size=\"20\" fill=\"#333\">Hello SVG</text>",
+      "output": "Teks 'Hello SVG' di posisi (10,40)"
+    },
+    {
+      "name": "<tspan>",
+      "desc": "Sub-elemen untuk memformat bagian dari <text> (warna, posisi, gaya berbeda).",
+      "example": "<text><tspan fill=\"red\">Merah</tspan> dan <tspan font-weight=\"bold\">tebal</tspan></text>",
+      "output": "Teks dengan dua gaya"
+    },
+    {
+      "name": "<textPath>",
+      "desc": "Menempatkan teks mengikuti jalur yang didefinisikan oleh elemen <path>.",
+      "example": "<defs><path id=\"myPath\" d=\"M10,80 Q50,10 90,80\" /></defs><text><textPath href=\"#myPath\">Teks melengkung</textPath></text>",
+      "output": "Teks mengikuti lengkungan"
+    }
+  ],
+  "grouping": [
+    {
+      "name": "<g>",
+      "desc": "Mengelompokkan elemen SVG untuk menerapkan atribut/gaya/transformasi bersama.",
+      "example": "<g fill=\"blue\" stroke=\"black\" stroke-width=\"2\"><circle cx=\"20\" cy=\"20\" r=\"10\" /><rect x=\"40\" y=\"10\" width=\"20\" height=\"20\" /></g>",
+      "output": "Lingkaran dan kotak dengan gaya sama"
+    },
+    {
+      "name": "<use>",
+      "desc": "Menggandakan elemen yang sudah ada (di dalam <defs> atau di dokumen).",
+      "example": "<defs><circle id=\"myCircle\" cx=\"10\" cy=\"10\" r=\"10\" fill=\"red\" /></defs><use href=\"#myCircle\" x=\"20\" y=\"0\" />",
+      "output": "Lingkaran merah di dua tempat"
+    },
+    {
+      "name": "<defs>",
+      "desc": "Menyimpan elemen yang tidak ditampilkan secara langsung (template, gradien, filter).",
+      "example": "<defs><linearGradient id=\"grad\">...</linearGradient></defs>",
+      "output": "Gradien disimpan"
+    },
+    {
+      "name": "<symbol>",
+      "desc": "Template yang dapat digunakan ulang dengan viewBox sendiri, diakses dengan <use>.",
+      "example": "<symbol id=\"icon\" viewBox=\"0 0 24 24\"><path d=\"...\"/></symbol><use href=\"#icon\" width=\"24\" height=\"24\"/>",
+      "output": "Ikon reusable"
+    }
+  ],
+  "styling": [
+    {
+      "name": "fill",
+      "desc": "Warna atau pola isi bentuk. Bisa menggunakan warna CSS, gradien, pola.",
+      "example": "fill=\"#ff0000\" atau fill=\"url(#gradient)\"",
+      "output": "Isi merah"
+    },
+    {
+      "name": "stroke",
+      "desc": "Warna garis tepi.",
+      "example": "stroke=\"black\"",
+      "output": "Garis tepi hitam"
+    },
+    {
+      "name": "stroke-width",
+      "desc": "Ketebalan garis.",
+      "example": "stroke-width=\"2\"",
+      "output": "Garis 2 unit"
+    },
+    {
+      "name": "stroke-dasharray",
+      "desc": "Membuat garis putus-putus. Format: panjang-isi, panjang-gap, ...",
+      "example": "stroke-dasharray=\"5,3\"",
+      "output": "Garis putus-putus"
+    },
+    {
+      "name": "opacity",
+      "desc": "Transparansi elemen secara keseluruhan (0-1).",
+      "example": "opacity=\"0.5\"",
+      "output": "50% transparan"
+    },
+    {
+      "name": "CSS via <style>",
+      "desc": "Mendefinisikan gaya dengan CSS di dalam SVG.",
+      "example": "<style>.my-circle { fill: blue; }</style><circle class=\"my-circle\" ... />",
+      "output": "Gaya dari class CSS"
+    },
+    {
+      "name": "Inline style",
+      "desc": "Atribut style=\"...\" langsung pada elemen.",
+      "example": "style=\"fill: pink; stroke: purple;\"",
+      "output": "Gaya langsung"
+    }
+  ],
+  "transformations": [
+    {
+      "name": "transform",
+      "desc": "Menerapkan transformasi geometri pada elemen atau grup.",
+      "example": "transform=\"translate(10, 20) rotate(45) scale(1.5)\"",
+      "output": "Elemen bergeser, berputar, diperbesar"
+    },
+    {
+      "name": "translate(x, y)",
+      "desc": "Menggeser elemen.",
+      "example": "transform=\"translate(30, 10)\"",
+      "output": "Bergeser 30px ke kanan, 10px ke bawah"
+    },
+    {
+      "name": "rotate(angle, cx, cy)",
+      "desc": "Memutar elemen sekitar titik tertentu (opsional).",
+      "example": "transform=\"rotate(45, 50, 50)\"",
+      "output": "Berputar 45° di sekitar (50,50)"
+    },
+    {
+      "name": "scale(sx, sy)",
+      "desc": "Memperbesar/memperkecil elemen.",
+      "example": "transform=\"scale(2, 0.5)\"",
+      "output": "Lebar dua kali lipat, tinggi setengah"
+    },
+    {
+      "name": "skewX / skewY",
+      "desc": "Miringkan elemen sepanjang sumbu X atau Y.",
+      "example": "transform=\"skewX(10)\"",
+      "output": "Miring horizontal"
+    }
+  ],
+  "gradients-patterns": [
+    {
+      "name": "<linearGradient>",
+      "desc": "Gradien warna sepanjang garis lurus. Arah dengan x1,y1,x2,y2.",
+      "example": "<linearGradient id=\"grad1\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"red\"/><stop offset=\"100%\" stop-color=\"blue\"/></linearGradient>",
+      "output": "Gradien merah ke biru horizontal"
+    },
+    {
+      "name": "<radialGradient>",
+      "desc": "Gradien melingkar dari dalam ke luar.",
+      "example": "<radialGradient id=\"grad2\"><stop offset=\"0%\" stop-color=\"white\"/><stop offset=\"100%\" stop-color=\"black\"/></radialGradient>",
+      "output": "Lingkaran putih ke hitam"
+    },
+    {
+      "name": "<pattern>",
+      "desc": "Mengisi bentuk dengan pola berulang (gambar atau bentuk).",
+      "example": "<pattern id=\"dots\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><circle cx=\"5\" cy=\"5\" r=\"3\" fill=\"#333\"/></pattern>",
+      "output": "Pola titik-titik"
+    }
+  ],
+  "filters": [
+    {
+      "name": "<filter>",
+      "desc": "Wadah untuk efek filter seperti blur, shadow, lighting.",
+      "example": "<filter id=\"blur\"><feGaussianBlur stdDeviation=\"3\" /></filter><circle filter=\"url(#blur)\" ... />",
+      "output": "Lingkaran kabur"
+    },
+    {
+      "name": "feGaussianBlur",
+      "desc": "Efek blur Gaussian.",
+      "example": "stdDeviation=\"5\"",
+      "output": "Blur radius 5"
+    },
+    {
+      "name": "feDropShadow",
+      "desc": "Bayangan jatuh (mirip CSS box-shadow).",
+      "example": "dx=\"2\" dy=\"2\" stdDeviation=\"3\" flood-color=\"black\" flood-opacity=\"0.5\"",
+      "output": "Bayangan"
+    },
+    {
+      "name": "feColorMatrix",
+      "desc": "Memanipulasi warna piksel (misal, grayscale).",
+      "example": "type=\"matrix\" values=\"0.33 0.33 0.33 0 0 ...\"",
+      "output": "Efek warna kustom"
+    }
+  ],
+  "animation": [
+    {
+      "name": "<animate>",
+      "desc": "Animasi nilai atribut dari waktu ke waktu.",
+      "example": "<circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"green\"><animate attributeName=\"cx\" from=\"10\" to=\"90\" dur=\"2s\" repeatCount=\"indefinite\" /></circle>",
+      "output": "Lingkaran bergerak horizontal"
+    },
+    {
+      "name": "<animateTransform>",
+      "desc": "Animasi transformasi (translate, rotate, scale).",
+      "example": "<rect ...><animateTransform attributeName=\"transform\" type=\"rotate\" from=\"0 50 50\" to=\"360 50 50\" dur=\"5s\" repeatCount=\"indefinite\" /></rect>",
+      "output": "Kotak berputar"
+    },
+    {
+      "name": "<animateMotion>",
+      "desc": "Menggerakkan elemen sepanjang jalur.",
+      "example": "<animateMotion dur=\"3s\" repeatCount=\"indefinite\"><mpath href=\"#path\"/></animateMotion>",
+      "output": "Elemen mengikuti path"
+    }
+  ],
+  "interactivity": [
+    {
+      "name": "<a>",
+      "desc": "Membuat hyperlink di dalam SVG. Atribut target, href.",
+      "example": "<a href=\"https://example.com\"><circle cx=\"50\" cy=\"50\" r=\"30\" fill=\"blue\" /></a>",
+      "output": "Lingkaran yang dapat diklik"
+    },
+    {
+      "name": "event handlers",
+      "desc": "Menambahkan event JavaScript pada elemen SVG (onclick, onmouseover, dll).",
+      "example": "<circle onclick=\"alert('Klik')\" ... />",
+      "output": "Elemen interaktif"
+    },
+    {
+      "name": "CSS :hover/:focus",
+      "desc": "Mengubah gaya dengan pseudo-class CSS.",
+      "example": "circle:hover { fill: red; }",
+      "output": "Warna berubah saat hover"
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "<title>",
+      "desc": "Judul singkat untuk elemen SVG (dibacakan screen reader).",
+      "example": "<svg><title>Logo Perusahaan</title>...</svg>",
+      "output": "Deskripsi singkat"
+    },
+    {
+      "name": "<desc>",
+      "desc": "Deskripsi lebih panjang dari konten SVG.",
+      "example": "<svg><desc>Grafik penjualan 2024 dengan batang biru</desc>...</svg>",
+      "output": "Deskripsi panjang"
+    },
+    {
+      "name": "role=\"img\" dan aria-label",
+      "desc": "Memberi tahu assistive technology bahwa SVG adalah gambar dan memberikan label.",
+      "example": "<svg role=\"img\" aria-label=\"Grafik penjualan\">...</svg>",
+      "output": "Aksesibel untuk screen reader"
+    }
+  ],
+  "integration": [
+    {
+      "name": "Inline SVG dalam HTML",
+      "desc": "Langsung menuliskan elemen <svg> di dalam HTML5.",
+      "example": "<div><svg ...>...</svg></div>",
+      "output": "SVG sebagai bagian DOM"
+    },
+    {
+      "name": "External SVG via <img>",
+      "desc": "Menggunakan SVG sebagai gambar (tidak interaktif).",
+      "example": "<img src=\"icon.svg\" alt=\"Ikon\" />",
+      "output": "Gambar SVG"
+    },
+    {
+      "name": "External SVG via <object>",
+      "desc": "Menyertakan SVG eksternal dengan interaktivitas terbatas.",
+      "example": "<object type=\"image/svg+xml\" data=\"file.svg\"></object>",
+      "output": "SVG mandiri"
+    },
+    {
+      "name": "SVG sebagai CSS background",
+      "desc": "Menggunakan URL data atau file SVG sebagai background-image.",
+      "example": "background-image: url('data:image/svg+xml,...');",
+      "output": "Background vektor"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Minifikasi SVG",
+      "desc": "Hapus whitespace, komentar, dan metadata tidak perlu menggunakan alat seperti SVGO.",
+      "example": "svgo icon.svg -o icon.min.svg",
+      "output": "Ukuran file berkurang"
+    },
+    {
+      "name": "Gunakan viewBox untuk responsivitas",
+      "desc": "viewBox memungkinkan SVG menyesuaikan dengan container tanpa kehilangan proporsi.",
+      "example": "<svg viewBox=\"0 0 200 200\" ...>",
+      "output": "Skalabel tanpa distorsi"
+    },
+    {
+      "name": "Hindari terlalu banyak node path",
+      "desc": "Sederhanakan path untuk performa rendering yang lebih baik.",
+      "example": "Gunakan editor vektor untuk menyederhanakan kurva.",
+      "output": "Rendering lebih cepat"
+    },
+    {
+      "name": "Sediakan fallback PNG untuk browser lama",
+      "desc": "Di dalam <object> atau sebagai gambar cadangan.",
+      "example": "<img src=\"chart.svg\" onerror=\"this.src='chart.png'\">",
+      "output": "Tampilan di browser kuno"
+    }
+  ]
+}

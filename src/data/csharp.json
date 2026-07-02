@@ -1,0 +1,236 @@
+{
+  "dasar-dasar": [
+    {
+      "name": "Struktur Program (Top-level statements)",
+      "desc": "Mulai C# 9, Anda bisa langsung menulis kode tanpa boilerplate namespace dan class Main.",
+      "example": "Console.WriteLine(\"Halo Dunia\");",
+      "output": "Halo Dunia"
+    },
+    {
+      "name": "Namespace & using",
+      "desc": "Mengorganisasi kode dan mengimpor pustaka. global using di C# 10 untuk using yang sering dipakai.",
+      "example": "using System;\nusing System.Collections.Generic;",
+      "output": "Akses ke Console, List<T>, dll."
+    },
+    {
+      "name": "Komentar & Dokumentasi",
+      "desc": "Komentar baris (//), blok (/* */), dan dokumentasi XML (///) untuk menghasilkan doc otomatis.",
+      "example": "/// <summary>Menghitung pajak</summary>\n/// <param name=\"amount\">Jumlah</param>\n/// <returns>Nilai pajak</returns>",
+      "output": "Dokumentasi API siap di-generate."
+    }
+  ],
+  "tipe-data": [
+    {
+      "name": "Built-in Value Types (int, long, float, double, decimal, bool, char)",
+      "desc": "Tipe nilai disimpan di stack. decimal untuk keuangan, double untuk saintifik.",
+      "example": "int umur = 25;\ndecimal harga = 19.99m;\nbool aktif = true;",
+      "output": "Variabel berisi nilai langsung."
+    },
+    {
+      "name": "Reference Types (string, object, dynamic, class, array, delegate, interface)",
+      "desc": "Tipe referensi menyimpan alamat di heap. string immutable, object adalah base semua tipe.",
+      "example": "string nama = \"Ridho\";\nobject obj = 123; // boxing",
+      "output": "Variabel menyimpan referensi ke data."
+    },
+    {
+      "name": "Nullable Value Types (int?, double?, bool?)",
+      "desc": "Memungkinkan tipe nilai menerima null.",
+      "example": "int? usia = null;\nif (usia.HasValue) Console.WriteLine(usia.Value);\nelse Console.WriteLine(\"Tidak diketahui\");",
+      "output": "Tidak diketahui"
+    },
+    {
+      "name": "var (Implicit Typing)",
+      "desc": "Kompiler menentukan tipe dari ekspresi kanan. Wajib diinisialisasi.",
+      "example": "var pesan = \"Halo\";\nvar angka = 10;\nvar data = new List<string>();",
+      "output": "pesan: string, angka: int, data: List<string>"
+    },
+    {
+      "name": "String Interpolation ($) & Verbatim (@)",
+      "desc": "Menyisipkan ekspresi dalam string dengan $@ untuk string literal multi-baris.",
+      "example": "string nama = \"Ridho\";\nstring path = @\"C:\\Users\\Ridho\\Docs\";\nConsole.WriteLine($\"Halo, {nama}! Path: {path}\");",
+      "output": "Halo, Ridho! Path: C:\\Users\\Ridho\\Docs"
+    }
+  ],
+  "kontrol-alur": [
+    {
+      "name": "if-else if-else",
+      "desc": "Percabangan berdasarkan kondisi boolean.",
+      "example": "if (skor >= 90) Console.WriteLine(\"A\");\nelse if (skor >= 80) Console.WriteLine(\"B\");\nelse Console.WriteLine(\"C\");",
+      "output": "A, B, atau C"
+    },
+    {
+      "name": "switch statement & switch expression (C# 8+)",
+      "desc": "Percabangan multi-kasus. Ekspresi switch lebih ringkas.",
+      "example": "string hari = \"Senin\";\nstring hasil = hari switch {\n    \"Senin\" => \"Awal pekan\",\n    \"Sabtu\" or \"Minggu\" => \"Akhir pekan\",\n    _ => \"Hari biasa\"\n};",
+      "output": "Awal pekan"
+    },
+    {
+      "name": "for, while, do-while",
+      "desc": "Perulangan dengan counter, kondisi di awal, atau kondisi di akhir.",
+      "example": "for (int i=0; i<3; i++) Console.Write(i); // 012\nwhile (x < 3) { x++; }\ndo { x++; } while (x < 3);",
+      "output": "012"
+    },
+    {
+      "name": "foreach",
+      "desc": "Iterasi pada koleksi yang mengimplementasikan IEnumerable atau IEnumerable<T>.",
+      "example": "var buah = new[] {\"Apel\", \"Jeruk\"};\nforeach (var b in buah) Console.WriteLine(b);",
+      "output": "Apel\nJeruk"
+    }
+  ],
+  "oop": [
+    {
+      "name": "Class, Object, Constructor",
+      "desc": "Blueprint (class) dan instance (object) dengan new. Constructor untuk inisialisasi.",
+      "example": "class Mobil {\n    public string Warna;\n    public Mobil(string warna) { Warna = warna; }\n    public void Klakson() => Console.WriteLine(\"Beep!\");\n}\n\nvar m = new Mobil(\"Merah\"); m.Klakson();",
+      "output": "Beep!"
+    },
+    {
+      "name": "Properties (get; set; init;)",
+      "desc": "Enkapsulasi field dengan properti. init hanya bisa diset saat inisialisasi.",
+      "example": "class User {\n    public string Name { get; set; }\n    public DateTime Created { get; init; } = DateTime.Now;\n}",
+      "output": "Name dapat diubah, Created hanya saat new."
+    },
+    {
+      "name": "Inheritance & base",
+      "desc": "Mewarisi anggota dari kelas dasar. base untuk memanggil constructor dasar.",
+      "example": "class Kendaraan { public int Kecepatan; }\nclass Motor : Kendaraan {\n    public Motor(int kec) { Kecepatan = kec; }\n    public string Tipe { get; set; }\n}",
+      "output": "Motor memiliki Kecepatan dan Tipe."
+    },
+    {
+      "name": "Polymorphism (virtual, override, sealed)",
+      "desc": "Method di kelas dasar dapat diganti di kelas turunan. sealed mencegah override lebih lanjut.",
+      "example": "class Hewan { public virtual void Suara() => Console.WriteLine(\"Bunyi\"); }\nclass Kucing : Hewan { public override void Suara() => Console.WriteLine(\"Meong\"); }",
+      "output": "Meong"
+    },
+    {
+      "name": "Abstract Class & Abstract Method",
+      "desc": "Kelas yang tidak dapat diinstansiasi. Method abstrak wajib di-override.",
+      "example": "abstract class Bentuk { public abstract double Luas(); }\nclass Persegi : Bentuk { double sisi; public override double Luas() => sisi*sisi; }",
+      "output": "Hanya bisa new Persegi()."
+    },
+    {
+      "name": "Interface (C# 8+ default implementation)",
+      "desc": "Kontrak method. Sejak C# 8 bisa memiliki implementasi default.",
+      "example": "interface ILogger { void Log(string msg) => Console.WriteLine(msg); }\nclass ConsoleLogger : ILogger { }",
+      "output": "ConsoleLogger bisa langsung pakai Log."
+    },
+    {
+      "name": "Record (C# 9+) & Record struct (C# 10+)",
+      "desc": "Tipe referensi immutable dengan value equality. with expression untuk membuat salinan.",
+      "example": "record Person(string Name, int Age);\nvar p1 = new Person(\"Ridho\", 25);\nvar p2 = p1 with { Age = 26 };",
+      "output": "p2 adalah salinan dengan Age 26, p1 tetap 25."
+    }
+  ],
+  "koleksi": [
+    {
+      "name": "List<T>",
+      "desc": "Koleksi dinamis generik. Method: Add, Remove, Insert, Count, Find.",
+      "example": "var angka = new List<int> { 1, 2, 3 };\nangka.Add(4);\nConsole.WriteLine(angka.Count); // 4",
+      "output": "4"
+    },
+    {
+      "name": "Dictionary<TKey, TValue>",
+      "desc": "Pasangan kunci-nilai. Kunci harus unik.",
+      "example": "var kamus = new Dictionary<string, int> { [\"satu\"] = 1, [\"dua\"] = 2 };\nConsole.WriteLine(kamus[\"satu\"]);",
+      "output": "1"
+    },
+    {
+      "name": "HashSet<T>",
+      "desc": "Koleksi nilai unik tanpa urutan.",
+      "example": "var set = new HashSet<int> { 1, 2, 2, 3 };\nConsole.WriteLine(set.Count); // 3",
+      "output": "3"
+    },
+    {
+      "name": "Queue<T> / Stack<T>",
+      "desc": "FIFO / LIFO.",
+      "example": "var q = new Queue<int>(); q.Enqueue(1); q.Dequeue();\nvar s = new Stack<int>(); s.Push(1); s.Pop();",
+      "output": "1"
+    }
+  ],
+  "linq": [
+    {
+      "name": "Query Syntax (from ... in ... where ... orderby ... select)",
+      "desc": "Menulis query LINQ seperti SQL.",
+      "example": "var data = new[] { 1, 2, 3, 4 };\nvar genap = from n in data where n % 2 == 0 orderby n descending select n;",
+      "output": "4, 2"
+    },
+    {
+      "name": "Method Syntax (.Where, .Select, .OrderBy, .GroupBy, .Join, .Aggregate)",
+      "desc": "Menggunakan extension methods dan lambda expression.",
+      "example": "var hasil = data.Where(n => n > 2).Select(n => n * 10);",
+      "output": "30, 40"
+    },
+    {
+      "name": "Deferred Execution & Immediate Execution",
+      "desc": "Query LINQ dieksekusi saat diiterasi (deferred) atau saat memanggil .ToList() / .Count().",
+      "example": "var query = data.Where(n => n > 2); // deferred\nvar list = query.ToList(); // immediate",
+      "output": "list = [3,4]"
+    }
+  ],
+  "async-programming": [
+    {
+      "name": "async / await",
+      "desc": "Menulis kode asinkron yang mudah dibaca. Mengembalikan Task, Task<T>, atau void (hanya event).",
+      "example": "async Task<string> DownloadAsync() {\n    using HttpClient client = new();\n    string hasil = await client.GetStringAsync(\"https://example.com\");\n    return hasil;\n}",
+      "output": "Menunggu tanpa memblokir thread."
+    },
+    {
+      "name": "Task.Run & Task.WhenAll / WhenAny",
+      "desc": "Menjalankan pekerjaan di thread pool, menjalankan banyak task paralel.",
+      "example": "var task1 = Task.Run(() => DoWork());\nvar task2 = Task.Run(() => DoOtherWork());\nawait Task.WhenAll(task1, task2);",
+      "output": "Keduanya selesai baru lanjut."
+    },
+    {
+      "name": "CancellationToken",
+      "desc": "Membatalkan operasi asinkron.",
+      "example": "var cts = new CancellationTokenSource();\nvar task = DownloadAsync(cts.Token);\ncts.Cancel(); // batalkan",
+      "output": "Task berhenti dengan OperationCanceledException."
+    }
+  ],
+  "error-handling": [
+    {
+      "name": "try-catch-finally",
+      "desc": "Menangani exception. finally selalu dijalankan.",
+      "example": "try { int x = 0; int y = 5 / x; }\ncatch (DivideByZeroException ex) { Console.WriteLine(ex.Message); }\nfinally { Console.WriteLine(\"Selesai\"); }",
+      "output": "Attempted to divide by zero.\nSelesai"
+    },
+    {
+      "name": "Exception Filters (when)",
+      "desc": "Menambahkan kondisi pada catch.",
+      "example": "catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound) { ... }",
+      "output": "Hanya menangkap 404."
+    },
+    {
+      "name": "Custom Exception",
+      "desc": "Membuat exception sendiri.",
+      "example": "class MyException : Exception {\n    public MyException(string msg) : base(msg) { }\n}\nthrow new MyException(\"Pesan kustom\");",
+      "output": "Exception dilempar dengan pesan kustom."
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Dependency Injection (DI)",
+      "desc": "Gunakan interface dan constructor injection untuk decoupling. Daftarkan di ServiceCollection.",
+      "example": "services.AddScoped<IMyService, MyService>();\nclass Consumer { public Consumer(IMyService svc) { } }",
+      "output": "Komponen mudah diganti dan diuji."
+    },
+    {
+      "name": "Gunakan IHttpClientFactory",
+      "desc": "Menghindari socket exhaustion dan pengelolaan koneksi HttpClient.",
+      "example": "services.AddHttpClient();\nclass Service { public Service(HttpClient client) { } }",
+      "output": "HttpClient dikelola dengan baik."
+    },
+    {
+      "name": "Gunakan nameof() dan nameof(Class.Property)",
+      "desc": "Refactor-safe, menghindari string literal.",
+      "example": "Console.WriteLine(nameof(user.Name));\nthrow new ArgumentNullException(nameof(param));",
+      "output": "\"Name\", \"param\""
+    },
+    {
+      "name": "Nullable Reference Types (NRT) - enable di .csproj",
+      "desc": "Mencegah NullReferenceException dengan compile-time warnings.",
+      "example": "<Nullable>enable</Nullable>\nstring? mungkinNull = null;\nstring pasti = mungkinNull ?? \"default\";",
+      "output": "Kode lebih aman dari null."
+    }
+  ]
+}

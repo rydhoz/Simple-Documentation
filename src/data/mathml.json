@@ -1,0 +1,332 @@
+{
+  "mathml-introduction": [
+    {
+      "name": "MathML Namespace",
+      "desc": "Deklarasi namespace MathML yang harus ada pada elemen <math>.",
+      "example": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\">...</math>",
+      "output": "Browser mengenali sebagai MathML"
+    },
+    {
+      "name": "Presentation MathML",
+      "desc": "Markup untuk menampilkan notasi matematika (fokus pada tampilan, bukan makna semantik).",
+      "example": "<math><mi>x</mi><mo>+</mo><mn>2</mn></math>",
+      "output": "x + 2"
+    },
+    {
+      "name": "Content MathML",
+      "desc": "Markup yang merepresentasikan makna matematika, bukan tampilan. Digunakan untuk komputasi.",
+      "example": "<math><apply><plus/><ci>x</ci><cn>2</cn></apply></math>",
+      "output": "x + 2 (dengan semantik)"
+    }
+  ],
+  "presentation-elements": [
+    {
+      "name": "<mi> – Identifier",
+      "desc": "Menampilkan variabel atau nama fungsi (huruf miring secara default).",
+      "example": "<mi>x</mi>",
+      "output": "x (italic)"
+    },
+    {
+      "name": "<mn> – Number",
+      "desc": "Menampilkan angka (tegak secara default).",
+      "example": "<mn>123</mn>",
+      "output": "123"
+    },
+    {
+      "name": "<mo> – Operator",
+      "desc": "Menampilkan operator (+, −, ×, =, dll). Spasi otomatis disesuaikan.",
+      "example": "<mo>=</mo>",
+      "output": "="
+    },
+    {
+      "name": "<mtext> – Text",
+      "desc": "Menampilkan teks biasa di dalam ekspresi.",
+      "example": "<mtext>sehingga</mtext>",
+      "output": "sehingga"
+    },
+    {
+      "name": "<mrow> – Row",
+      "desc": "Mengelompokkan beberapa elemen secara horizontal.",
+      "example": "<mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow>",
+      "output": "x + 1"
+    },
+    {
+      "name": "<msup> – Superscript",
+      "desc": "Menempatkan elemen sebagai tika atas (pangkat).",
+      "example": "<msup><mi>x</mi><mn>2</mn></msup>",
+      "output": "x²"
+    },
+    {
+      "name": "<msub> – Subscript",
+      "desc": "Menempatkan elemen sebagai tika bawah (indeks).",
+      "example": "<msub><mi>x</mi><mn>1</mn></msub>",
+      "output": "x₁"
+    },
+    {
+      "name": "<msubsup> – Subscript & Superscript",
+      "desc": "Gabungan subscript dan superscript.",
+      "example": "<msubsup><mi>∫</mi><mn>0</mn><mn>1</mn></msubsup>",
+      "output": "Integral dengan batas bawah 0 dan atas 1"
+    },
+    {
+      "name": "<mfrac> – Fraction",
+      "desc": "Menampilkan pecahan. Anak pertama pembilang, kedua penyebut.",
+      "example": "<mfrac><mn>1</mn><mn>2</mn></mfrac>",
+      "output": "½"
+    },
+    {
+      "name": "<msqrt> – Square Root",
+      "desc": "Akar kuadrat.",
+      "example": "<msqrt><mn>9</mn></msqrt>",
+      "output": "√9"
+    },
+    {
+      "name": "<mroot> – Root dengan indeks",
+      "desc": "Akar dengan indeks tertentu.",
+      "example": "<mroot><mn>27</mn><mn>3</mn></mroot>",
+      "output": "∛27"
+    },
+    {
+      "name": "<mfenced> (deprecated)",
+      "desc": "Tanda kurung otomatis. Gunakan <mrow> dengan <mo>(</mo>...<mo>)</mo>.",
+      "example": "<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>",
+      "output": "(x)"
+    },
+    {
+      "name": "<mtable> – Table",
+      "desc": "Membuat tabel atau matriks.",
+      "example": "<mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd></mtr></mtable>",
+      "output": "Matriks 1×2"
+    },
+    {
+      "name": "<mtr> – Table Row",
+      "desc": "Baris dalam <mtable>.",
+      "example": "<mtr><mtd><mn>1</mn></mtd></mtr>",
+      "output": "Baris tabel"
+    },
+    {
+      "name": "<mtd> – Table Data",
+      "desc": "Sel dalam <mtable>.",
+      "example": "<mtd><mn>42</mn></mtd>",
+      "output": "Sel berisi 42"
+    },
+    {
+      "name": "<mover> – Overscript",
+      "desc": "Menempatkan elemen di atas (contoh: vektor, garis).",
+      "example": "<mover><mi>x</mi><mo>→</mo></mover>",
+      "output": "x dengan panah di atas"
+    },
+    {
+      "name": "<munder> – Underscript",
+      "desc": "Menempatkan elemen di bawah (contoh: limit).",
+      "example": "<munder><mo>lim</mo><mrow><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder>",
+      "output": "limit x→0"
+    },
+    {
+      "name": "<munderover> – Under & Over",
+      "desc": "Gabungan underscript dan overscript.",
+      "example": "<munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover>",
+      "output": "Sigma i=1 sampai n"
+    },
+    {
+      "name": "<mspace> – Space",
+      "desc": "Menambahkan spasi dengan lebar tertentu.",
+      "example": "<mspace width=\"10px\"/>",
+      "output": "Spasi 10px"
+    },
+    {
+      "name": "<mpadded> – Padding/Adjustment",
+      "desc": "Menyesuaikan ukuran dan posisi elemen.",
+      "example": "<mpadded width=\"+20px\"><mi>x</mi></mpadded>",
+      "output": "x dengan padding 20px"
+    },
+    {
+      "name": "<mphantom> – Phantom",
+      "desc": "Elemen tidak terlihat tetapi tetap memakan ruang.",
+      "example": "<mphantom><mi>x</mi></mphantom>",
+      "output": "Ruang kosong seukuran x"
+    },
+    {
+      "name": "<menclose> – Enclose",
+      "desc": "Menggambar notasi di sekeliling (lingkaran, kotak, coret, dll).",
+      "example": "<menclose notation=\"circle\"><mi>x</mi></menclose>",
+      "output": "x dilingkari"
+    },
+    {
+      "name": "<maction> – Action",
+      "desc": "Menambahkan interaktivitas (toggle, tooltip, statusline).",
+      "example": "<maction actiontype=\"toggle\"><mi>X</mi><mtext>Terpilih</mtext></maction>",
+      "output": "Klik X berubah teks"
+    }
+  ],
+  "content-elements": [
+    {
+      "name": "<apply>",
+      "desc": "Menerapkan operator atau fungsi ke argumen.",
+      "example": "<apply><plus/><ci>x</ci><cn>2</cn></apply>",
+      "output": "x + 2"
+    },
+    {
+      "name": "<plus/>",
+      "desc": "Operator penjumlahan.",
+      "example": "<plus/>",
+      "output": "+"
+    },
+    {
+      "name": "<minus/>",
+      "desc": "Operator pengurangan.",
+      "example": "<minus/>",
+      "output": "−"
+    },
+    {
+      "name": "<times/>",
+      "desc": "Operator perkalian.",
+      "example": "<times/>",
+      "output": "×"
+    },
+    {
+      "name": "<divide/>",
+      "desc": "Operator pembagian.",
+      "example": "<divide/>",
+      "output": "÷"
+    },
+    {
+      "name": "<power/>",
+      "desc": "Operator pangkat.",
+      "example": "<apply><power/><ci>x</ci><cn>2</cn></apply>",
+      "output": "x^2"
+    },
+    {
+      "name": "<root/>",
+      "desc": "Akar dengan indeks opsional.",
+      "example": "<apply><root/><degree><cn>3</cn></degree><cn>27</cn></apply>",
+      "output": "∛27"
+    },
+    {
+      "name": "<ci> – Content Identifier",
+      "desc": "Variabel dalam Content MathML.",
+      "example": "<ci>x</ci>",
+      "output": "x (semantik)"
+    },
+    {
+      "name": "<cn> – Content Number",
+      "desc": "Angka dalam Content MathML.",
+      "example": "<cn>42</cn>",
+      "output": "42 (semantik)"
+    },
+    {
+      "name": "<eq/>",
+      "desc": "Operator sama dengan.",
+      "example": "<apply><eq/><ci>x</ci><cn>0</cn></apply>",
+      "output": "x = 0"
+    },
+    {
+      "name": "<sin/>, <cos/>, <tan/>",
+      "desc": "Fungsi trigonometri.",
+      "example": "<apply><sin/><ci>x</ci></apply>",
+      "output": "sin(x)"
+    },
+    {
+      "name": "<log/>",
+      "desc": "Fungsi logaritma.",
+      "example": "<apply><log/><ci>x</ci></apply>",
+      "output": "log(x)"
+    },
+    {
+      "name": "<int/>",
+      "desc": "Integral.",
+      "example": "<apply><int/><bvar><ci>x</ci></bvar><cn>0</cn><cn>1</cn></apply>",
+      "output": "∫₀¹ x dx"
+    },
+    {
+      "name": "<sum/>",
+      "desc": "Sigma (penjumlahan berulang).",
+      "example": "<apply><sum/><bvar><ci>i</ci></bvar><cn>1</cn><ci>n</ci><ci>i</ci></apply>",
+      "output": "∑ᵢ₌₁ⁿ i"
+    }
+  ],
+  "mathml-attributes": [
+    {
+      "name": "mathvariant",
+      "desc": "Gaya varian huruf (normal, bold, italic, double-struck, script, fraktur, sans-serif, monospace).",
+      "example": "<mi mathvariant=\"bold\">x</mi>",
+      "output": "x tebal"
+    },
+    {
+      "name": "displaystyle",
+      "desc": "Tampilan penuh (true) atau inline (false).",
+      "example": "<mstyle displaystyle=\"true\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle>",
+      "output": "Pecahan besar"
+    },
+    {
+      "name": "scriptlevel",
+      "desc": "Menentukan tingkat script untuk sub/superscript.",
+      "example": "<mstyle scriptlevel=\"1\">...</mstyle>",
+      "output": "Lebih kecil"
+    },
+    {
+      "name": "mathsize",
+      "desc": "Ukuran font (small, normal, big, atau nilai numerik).",
+      "example": "<mi mathsize=\"big\">A</mi>",
+      "output": "A besar"
+    },
+    {
+      "name": "mathcolor",
+      "desc": "Warna elemen.",
+      "example": "<mi mathcolor=\"red\">x</mi>",
+      "output": "x merah"
+    },
+    {
+      "name": "mathbackground",
+      "desc": "Warna latar belakang elemen.",
+      "example": "<mi mathbackground=\"yellow\">x</mi>",
+      "output": "Latar kuning"
+    },
+    {
+      "name": "linethickness",
+      "desc": "Ketebalan garis pecahan (dalam <mfrac>).",
+      "example": "<mfrac linethickness=\"2px\"><mn>1</mn><mn>2</mn></mfrac>",
+      "output": "Garis tebal"
+    }
+  ],
+  "accessibility-mathml": [
+    {
+      "name": "alttext",
+      "desc": "Teks alternatif untuk ekspresi MathML (accessibility).",
+      "example": "<math alttext=\"x squared plus y squared equals z squared\"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>z</mi><mn>2</mn></msup></math>",
+      "output": "Dibacakan screen reader"
+    },
+    {
+      "name": "Semantic enrichment",
+      "desc": "Menggabungkan Presentation dan Content MathML untuk aksesibilitas dan komputasi.",
+      "example": "<semantics><mrow>...</mrow><annotation-xml encoding=\"MathML-Content\"><apply>...</apply></annotation-xml></semantics>",
+      "output": "Dua representasi"
+    },
+    {
+      "name": "role=\"math\"",
+      "desc": "Atribut ARIA untuk memberi tahu bahwa elemen adalah matematika.",
+      "example": "<div role=\"math\" aria-label=\"x squared\"><math>...</math></div>",
+      "output": "Peran matematika"
+    }
+  ],
+  "integrating-html": [
+    {
+      "name": "Langsung di HTML5",
+      "desc": "Elemen <math> dapat langsung digunakan dalam HTML5 tanpa plugin.",
+      "example": "<!DOCTYPE html><html><body><math xmlns=\"...\"><mi>x</mi></math></body></html>",
+      "output": "Render di browser"
+    },
+    {
+      "name": "MathJax",
+      "desc": "Library JavaScript untuk rendering MathML dan LaTeX di semua browser.",
+      "example": "<script src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>",
+      "output": "MathML/LaTeX dirender indah"
+    },
+    {
+      "name": "KaTeX",
+      "desc": "Library rendering cepat untuk LaTeX, mendukung subset MathML.",
+      "example": "<link rel=\"stylesheet\" href=\"katex.min.css\"><script src=\"katex.min.js\"></script>",
+      "output": "Render LaTeX cepat"
+    }
+  ]
+}

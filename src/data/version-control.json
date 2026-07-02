@@ -1,0 +1,394 @@
+{
+  "fundamental": [
+    {
+      "name": "Apa itu Version Control?",
+      "desc": "Sistem yang merekam perubahan pada file dari waktu ke waktu sehingga Anda dapat memanggil kembali versi tertentu nanti.",
+      "example": "Menyimpan setiap perubahan kode sebagai 'commit' sehingga bisa kembali ke versi sebelumnya jika terjadi bug.",
+      "output": "Sejarah proyek terlacak sepenuhnya."
+    },
+    {
+      "name": "Manfaat Version Control",
+      "desc": "Kolaborasi tim, lacak perubahan, eksperimen aman (branch), backup, dan audit trail.",
+      "example": "Dua developer mengerjakan fitur berbeda di branch masing-masing lalu digabungkan tanpa saling menimpa.",
+      "output": "Proses pengembangan paralel yang aman."
+    },
+    {
+      "name": "Centralized vs Distributed",
+      "desc": "Centralized (CVS, SVN): satu server pusat. Distributed (Git): setiap klien memiliki salinan repositori penuh.",
+      "example": "Git memungkinkan bekerja offline dan commit lokal sebelum push ke remote.",
+      "output": "Lebih cepat, offline-capable, dan aman karena setiap klien adalah backup."
+    },
+    {
+      "name": "Git Tiga Status",
+      "desc": "Modified (working directory) → Staged (staging area) → Committed (local repository).",
+      "example": "git add memindahkan perubahan dari working directory ke staging area. git commit memindahkan dari staging ke repository.",
+      "output": "Alur kerja dua langkah yang fleksibel."
+    }
+  ],
+  "setup-konfigurasi": [
+    {
+      "name": "git config --global user.name",
+      "desc": "Mengatur nama pengguna yang akan digunakan pada setiap commit di semua repositori.",
+      "example": "git config --global user.name \"Ridho Akbar\"",
+      "output": "Nama tersimpan di ~/.gitconfig"
+    },
+    {
+      "name": "git config --global user.email",
+      "desc": "Mengatur email pengguna untuk commit.",
+      "example": "git config --global user.email \"ridho@example.com\"",
+      "output": "Email tersimpan, digunakan untuk identifikasi commit."
+    },
+    {
+      "name": "git config --global core.editor",
+      "desc": "Menentukan editor teks default untuk menulis pesan commit (misal VS Code).",
+      "example": "git config --global core.editor \"code --wait\"",
+      "output": "Editor terbuka saat git commit tanpa -m."
+    },
+    {
+      "name": "git config --global init.defaultBranch",
+      "desc": "Mengatur nama branch default saat git init (misal 'main' sebagai ganti 'master').",
+      "example": "git config --global init.defaultBranch main",
+      "output": "Repo baru akan langsung menggunakan branch 'main'."
+    },
+    {
+      "name": "git init",
+      "desc": "Membuat repositori Git baru di direktori yang ada. Membuat folder .git tersembunyi.",
+      "example": "git init my-project",
+      "output": "Initialized empty Git repository in my-project/.git/"
+    },
+    {
+      "name": "git clone <url>",
+      "desc": "Menduplikasi repositori remote (GitHub, GitLab) ke lokal beserta seluruh sejarah commit.",
+      "example": "git clone https://github.com/user/repo.git",
+      "output": "Folder repo lengkap dengan riwayat commit."
+    },
+    {
+      "name": "git clone --branch <name> <url>",
+      "desc": "Clone langsung ke branch tertentu.",
+      "example": "git clone --branch develop https://github.com/user/repo.git",
+      "output": "Branch develop yang ter-checkout, bukan main."
+    }
+  ],
+  "dasar-perubahan": [
+    {
+      "name": "git status",
+      "desc": "Menampilkan status working directory dan staging area: file mana yang berubah, baru, atau siap di-commit.",
+      "example": "git status",
+      "output": "On branch main\nChanges not staged for commit:\n  modified: index.js"
+    },
+    {
+      "name": "git add <file>",
+      "desc": "Menambahkan perubahan pada file tertentu ke staging area (index).",
+      "example": "git add index.html style.css",
+      "output": "File siap di-commit."
+    },
+    {
+      "name": "git add .",
+      "desc": "Menambahkan semua perubahan (modifikasi, file baru, penghapusan) di direktori saat ini dan subdirektori ke staging.",
+      "example": "git add .",
+      "output": "Semua perubahan masuk staging."
+    },
+    {
+      "name": "git add -p",
+      "desc": "Menambahkan perubahan secara interaktif (patch) – memilih bagian (hunk) mana yang akan di-stage.",
+      "example": "git add -p",
+      "output": "Prompt untuk setiap hunk: Stage this hunk [y,n,q,a,d,e,?]?"
+    },
+    {
+      "name": "git commit -m \"<pesan>\"",
+      "desc": "Merekam perubahan yang sudah di-staging ke repositori lokal dengan pesan singkat.",
+      "example": "git commit -m \"feat: tambahkan halaman login\"",
+      "output": "[main a1b2c3d] feat: tambahkan halaman login"
+    },
+    {
+      "name": "git commit -am \"<pesan>\"",
+      "desc": "Langsung menambahkan perubahan yang sudah terlacak (modified) ke staging dan melakukan commit. Tidak untuk file baru.",
+      "example": "git commit -am \"fix: perbaiki typo\"",
+      "output": "Commit dengan add otomatis untuk file yang sudah ada."
+    },
+    {
+      "name": "git diff",
+      "desc": "Menunjukkan perbedaan antara working directory dan staging area (perubahan yang belum di-add).",
+      "example": "git diff",
+      "output": "diff --git a/index.js b/index.js\n--- a/index.js\n+++ b/index.js\n@@ -1,4 +1,4 @@\n-  console.log('lama')\n+  console.log('baru')"
+    },
+    {
+      "name": "git diff --staged",
+      "desc": "Menunjukkan perbedaan antara staging area dan commit terakhir (apa yang akan di-commit).",
+      "example": "git diff --staged",
+      "output": "Perubahan yang sudah di-add akan ditampilkan."
+    },
+    {
+      "name": "git log",
+      "desc": "Menampilkan riwayat commit di branch saat ini.",
+      "example": "git log --oneline --graph --all",
+      "output": "* a1b2c3d feat: halaman login\n* e5f6g7h fix: bug navbar"
+    }
+  ],
+  "branch-penggabungan": [
+    {
+      "name": "git branch",
+      "desc": "Menampilkan daftar branch lokal. Tanda * menunjukkan branch yang sedang aktif.",
+      "example": "git branch",
+      "output": "* main\n  feature-login"
+    },
+    {
+      "name": "git branch <nama>",
+      "desc": "Membuat branch baru berdasarkan commit terakhir branch saat ini.",
+      "example": "git branch feature/keranjang",
+      "output": "Branch baru dibuat, tetapi Anda tetap di branch sebelumnya."
+    },
+    {
+      "name": "git switch <nama>",
+      "desc": "Berpindah ke branch yang sudah ada (perintah modern, lebih intuitif).",
+      "example": "git switch feature/keranjang",
+      "output": "Switched to branch 'feature/keranjang'"
+    },
+    {
+      "name": "git switch -c <nama>",
+      "desc": "Membuat branch baru dan langsung berpindah ke branch tersebut.",
+      "example": "git switch -c feature/pencarian",
+      "output": "Switched to a new branch 'feature/pencarian'"
+    },
+    {
+      "name": "git checkout <nama>",
+      "desc": "Cara lama untuk pindah branch atau membuat branch baru dengan -b.",
+      "example": "git checkout -b feature/baru",
+      "output": "Switched to a new branch 'feature/baru'"
+    },
+    {
+      "name": "git merge <branch>",
+      "desc": "Menggabungkan branch lain ke branch saat ini. Buat merge commit baru jika tidak fast-forward.",
+      "example": "git merge feature/login",
+      "output": "Merge made by the 'ort' strategy."
+    },
+    {
+      "name": "git rebase <branch>",
+      "desc": "Memindahkan seluruh commit branch saat ini ke ujung branch lain, menghasilkan sejarah linear.",
+      "example": "git switch feature\n git rebase main",
+      "output": "Sejarah menjadi bersih, seolah feature dimulai dari ujung main."
+    },
+    {
+      "name": "git branch -d <nama>",
+      "desc": "Menghapus branch yang sudah di-merge dengan aman.",
+      "example": "git branch -d feature/lama",
+      "output": "Deleted branch feature/lama (was a1b2c3d)."
+    },
+    {
+      "name": "git branch -D <nama>",
+      "desc": "Memaksa menghapus branch meskipun belum di-merge (hati-hati!).",
+      "example": "git branch -D eksperimen-gagal",
+      "output": "Deleted branch eksperimen-gagal."
+    }
+  ],
+  "remote-kolaborasi": [
+    {
+      "name": "git remote -v",
+      "desc": "Menampilkan daftar remote repository beserta URL fetch dan push.",
+      "example": "git remote -v",
+      "output": "origin  https://github.com/user/repo.git (fetch)\norigin  https://github.com/user/repo.git (push)"
+    },
+    {
+      "name": "git push origin <branch>",
+      "desc": "Mengirim commit lokal ke branch remote yang sesuai di server.",
+      "example": "git push origin main",
+      "output": "Commit terkirim ke GitHub/GitLab."
+    },
+    {
+      "name": "git push -u origin <branch>",
+      "desc": "Mengirim branch dan menetapkan upstream sehingga ke depan cukup git push.",
+      "example": "git push -u origin feature/login",
+      "output": "Branch 'feature/login' set up to track 'origin/feature/login'."
+    },
+    {
+      "name": "git fetch",
+      "desc": "Mengambil commit dan branch dari remote tanpa langsung menggabungkannya ke working directory.",
+      "example": "git fetch origin",
+      "output": "Remote-tracking branches diperbarui (origin/main, origin/feature, dll)."
+    },
+    {
+      "name": "git pull",
+      "desc": "Mengambil perubahan dari remote (fetch) lalu langsung menggabungkannya (merge) ke branch lokal.",
+      "example": "git pull origin main",
+      "output": "Perubahan dari remote masuk ke branch lokal (merge commit mungkin dibuat)."
+    },
+    {
+      "name": "git pull --rebase",
+      "desc": "Alternatif pull dengan rebase agar sejarah linear, tidak membuat merge commit yang tidak perlu.",
+      "example": "git pull --rebase origin main",
+      "output": "Commit lokal diapply ulang di atas commit remote."
+    },
+    {
+      "name": "git push --force-with-lease",
+      "desc": "Push paksa yang lebih aman: hanya menimpa remote jika tidak ada commit baru yang belum Anda fetch.",
+      "example": "git push --force-with-lease origin feature/login",
+      "output": "Remote branch ditimpa hanya jika tidak ada pekerjaan orang lain."
+    }
+  ],
+  "undo": [
+    {
+      "name": "git reset HEAD <file>",
+      "desc": "Menghapus file dari staging area (unstage), tetapi perubahan tetap di working directory.",
+      "example": "git reset HEAD index.html",
+      "output": "Unstaged changes after reset: M index.html"
+    },
+    {
+      "name": "git reset --soft HEAD~1",
+      "desc": "Membatalkan commit terakhir dan menyimpan perubahannya di staging area.",
+      "example": "git reset --soft HEAD~1",
+      "output": "Commit terakhir hilang, perubahan siap di-commit ulang."
+    },
+    {
+      "name": "git reset --mixed HEAD~1",
+      "desc": "Membatalkan commit terakhir dan mengembalikan perubahannya ke working directory (default).",
+      "example": "git reset HEAD~1",
+      "output": "Commit terakhir hilang, perubahan masih ada sebagai modified."
+    },
+    {
+      "name": "git reset --hard HEAD~1",
+      "desc": "Membatalkan commit terakhir dan menghapus perubahannya secara permanen. Gunakan dengan hati-hati!",
+      "example": "git reset --hard HEAD~1",
+      "output": "Commit dan perubahan hilang total."
+    },
+    {
+      "name": "git revert <commit-hash>",
+      "desc": "Membuat commit baru yang membalikkan perubahan dari commit tertentu. Aman untuk branch yang sudah di-push.",
+      "example": "git revert a1b2c3d",
+      "output": "Commit revert baru dibuat, sejarah tetap aman."
+    },
+    {
+      "name": "git checkout -- <file>",
+      "desc": "Mengembalikan file di working directory ke versi commit terakhir (buang perubahan lokal).",
+      "example": "git checkout -- index.html",
+      "output": "Semua modifikasi yang belum di-add hilang."
+    },
+    {
+      "name": "git reflog",
+      "desc": "Menampilkan log semua pergerakan HEAD (penyelamat commit yang 'hilang' setelah reset).",
+      "example": "git reflog",
+      "output": "a1b2c3d HEAD@{0}: commit: pesan\n...\nAnda bisa checkout ke HEAD@{n} untuk mengembalikan."
+    }
+  ],
+  "stash": [
+    {
+      "name": "git stash",
+      "desc": "Menyimpan perubahan yang belum di-commit ke dalam tumpukan sementara, membersihkan working directory.",
+      "example": "git stash",
+      "output": "Saved working directory and index state WIP on main: a1b2c3d ..."
+    },
+    {
+      "name": "git stash pop",
+      "desc": "Menerapkan stash terakhir dan menghapusnya dari tumpukan.",
+      "example": "git stash pop",
+      "output": "Perubahan kembali, stash terhapus."
+    },
+    {
+      "name": "git stash list",
+      "desc": "Menampilkan daftar stash yang tersimpan.",
+      "example": "git stash list",
+      "output": "stash@{0}: WIP on main: a1b2c3d ...\nstash@{1}: WIP on feature: ..."
+    },
+    {
+      "name": "git stash apply stash@{n}",
+      "desc": "Menerapkan stash tertentu tanpa menghapusnya dari tumpukan.",
+      "example": "git stash apply stash@{1}",
+      "output": "Perubahan dari stash ke-1 diterapkan, stash tetap ada."
+    },
+    {
+      "name": "git stash drop stash@{n}",
+      "desc": "Menghapus stash tertentu dari tumpukan.",
+      "example": "git stash drop stash@{0}",
+      "output": "Dropped stash@{0}..."
+    }
+  ],
+  "tag": [
+    {
+      "name": "git tag",
+      "desc": "Menampilkan daftar tag yang ada (biasanya untuk menandai rilis).",
+      "example": "git tag",
+      "output": "v1.0.0\nv1.1.0"
+    },
+    {
+      "name": "git tag -a <nama> -m \"pesan\"",
+      "desc": "Membuat annotated tag (disarankan) yang menyimpan metadata pembuat, tanggal, dan pesan.",
+      "example": "git tag -a v2.0.0 -m \"Rilis versi 2.0.0 dengan fitur X\"",
+      "output": "Tag v2.0.0 tersimpan lengkap dengan informasi."
+    },
+    {
+      "name": "git push origin <tagname>",
+      "desc": "Mengirim tag tertentu ke remote repository.",
+      "example": "git push origin v2.0.0",
+      "output": "Tag muncul di GitHub/GitLab."
+    },
+    {
+      "name": "git push --tags",
+      "desc": "Mengirim semua tag lokal ke remote sekaligus.",
+      "example": "git push --tags",
+      "output": "Semua tag lokal terkirim."
+    }
+  ],
+  "github-gitlab": [
+    {
+      "name": "Pull Request (PR) / Merge Request (MR)",
+      "desc": "Permintaan untuk menggabungkan branch ke branch utama. Tempat code review dan diskusi sebelum merge.",
+      "example": "Buka GitHub → Pull requests → New pull request → pilih branch → Create pull request.",
+      "output": "PR tersedia untuk direview oleh tim."
+    },
+    {
+      "name": "Issues",
+      "desc": "Fitur untuk melacak tugas, bug, atau permintaan fitur. Bisa dikaitkan dengan commit dan PR.",
+      "example": "Klik Issues → New issue → tulis judul dan deskripsi bug/fitur.",
+      "output": "Issue #45: Perbaiki validasi email"
+    },
+    {
+      "name": "GitHub Actions (CI/CD)",
+      "desc": "Fitur otomatisasi yang berjalan di cloud GitHub, dikonfigurasi dengan file YAML di .github/workflows.",
+      "example": "name: CI\non: push\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npm test",
+      "output": "Setiap push menjalankan test otomatis."
+    },
+    {
+      "name": "Fork & Clone",
+      "desc": "Fork menyalin repositori orang lain ke akun GitHub Anda; lalu clone untuk mengerjakannya secara lokal.",
+      "example": "Klik Fork di GitHub → git clone https://github.com/username-anda/repo.git",
+      "output": "Repositori siap dimodifikasi dan bisa di-PR-kan kembali."
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Conventional Commits",
+      "desc": "Format penamaan commit: <type>(<scope>): <description>. Contoh: feat(auth): add login.",
+      "example": "feat: tambah fitur pencarian\nfix: perbaiki bug pagination\nchore: update dependensi",
+      "output": "Riwayat commit terstruktur, mudah membuat changelog otomatis."
+    },
+    {
+      "name": "Git Flow / Trunk-Based Development",
+      "desc": "Git Flow: branch main, develop, feature/*, hotfix/*. Trunk-Based: langsung ke main dengan feature flag.",
+      "example": "Git Flow: buat branch feature/login dari develop, merge kembali ke develop.\nTrunk-Based: commit langsung ke main di balik feature flag.",
+      "output": "Strategi branching sesuai skala tim dan frekuensi rilis."
+    },
+    {
+      "name": "Pull Request Kecil & Sering",
+      "desc": "Setiap PR sebaiknya hanya berisi 1 perubahan logis (fitur, perbaikan) agar mudah direview.",
+      "example": "PR #1: Tambah model User. PR #2: Tambah endpoint register.",
+      "output": "Proses review cepat, risiko konflik rendah."
+    },
+    {
+      "name": "Periksa Sebelum Push (Pre-commit Hooks)",
+      "desc": "Gunakan Husky atau pre-commit untuk menjalankan linter dan formatter sebelum commit.",
+      "example": "npx husky add .husky/pre-commit \"npm run lint && npm run format\"",
+      "output": "Kode selalu rapi dan sesuai standar sebelum dikirim."
+    },
+    {
+      "name": "Commit yang Atomik",
+      "desc": "Satu commit hanya mengerjakan satu hal. Jangan campur aduk perbaikan bug dan penambahan fitur.",
+      "example": "Commit 1: perbaiki bug validasi\nCommit 2: tambahkan field baru pada form",
+      "output": "Memudahkan revert, review, dan pemahaman riwayat."
+    },
+    {
+      "name": "README dan Dokumentasi",
+      "desc": "Setiap repositori sebaiknya memiliki README.md yang menjelaskan cara setup, penggunaan, dan kontribusi.",
+      "example": "README berisi judul proyek, badge CI, instruksi instalasi, contoh penggunaan, lisensi.",
+      "output": "Orang baru langsung bisa menjalankan proyek."
+    }
+  ]
+}

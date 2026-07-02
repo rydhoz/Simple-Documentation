@@ -1,0 +1,334 @@
+{
+  "video-element": [
+    {
+      "name": "<video>",
+      "desc": "Elemen HTML5 untuk menampilkan video secara native.",
+      "example": "<video src=\"video.mp4\" controls width=\"640\"></video>",
+      "output": "Pemutar video native"
+    },
+    {
+      "name": "controls",
+      "desc": "Menampilkan kontrol pemutaran (play, pause, volume, dll.).",
+      "example": "<video src=\"video.mp4\" controls></video>",
+      "output": "Kontrol default browser"
+    },
+    {
+      "name": "autoplay",
+      "desc": "Memulai pemutaran otomatis (sering kali harus disertai muted).",
+      "example": "<video src=\"video.mp4\" autoplay muted playsinline></video>",
+      "output": "Video langsung berjalan tanpa suara"
+    },
+    {
+      "name": "muted",
+      "desc": "Mematikan suara video.",
+      "example": "<video src=\"video.mp4\" muted></video>",
+      "output": "Tidak ada suara"
+    },
+    {
+      "name": "loop",
+      "desc": "Mengulang video setelah selesai.",
+      "example": "<video src=\"video.mp4\" loop></video>",
+      "output": "Video berulang"
+    },
+    {
+      "name": "poster",
+      "desc": "Gambar pratinjau yang muncul sebelum video diputar.",
+      "example": "<video src=\"video.mp4\" poster=\"thumbnail.jpg\"></video>",
+      "output": "Gambar poster"
+    },
+    {
+      "name": "playsinline",
+      "desc": "Memungkinkan video diputar di dalam halaman pada perangkat mobile (tidak fullscreen paksa).",
+      "example": "<video src=\"video.mp4\" playsinline></video>",
+      "output": "Tetap dalam halaman di iOS"
+    },
+    {
+      "name": "width / height",
+      "desc": "Menentukan lebar dan tinggi pemutar video.",
+      "example": "<video src=\"video.mp4\" width=\"640\" height=\"360\"></video>",
+      "output": "Ukuran eksplisit"
+    }
+  ],
+  "audio-element": [
+    {
+      "name": "<audio>",
+      "desc": "Elemen HTML5 untuk memutar audio.",
+      "example": "<audio src=\"lagu.mp3\" controls></audio>",
+      "output": "Pemutar audio native"
+    },
+    {
+      "name": "controls",
+      "desc": "Menampilkan kontrol pemutaran (play, pause, volume).",
+      "example": "<audio src=\"lagu.mp3\" controls></audio>",
+      "output": "Kontrol audio"
+    },
+    {
+      "name": "autoplay",
+      "desc": "Memulai pemutaran otomatis (sering diblokir tanpa interaksi pengguna).",
+      "example": "<audio src=\"lagu.mp3\" autoplay></audio>",
+      "output": "Otomatis (jika diizinkan)"
+    },
+    {
+      "name": "loop",
+      "desc": "Mengulang audio setelah selesai.",
+      "example": "<audio src=\"lagu.mp3\" loop></audio>",
+      "output": "Audio berulang"
+    },
+    {
+      "name": "muted",
+      "desc": "Mematikan audio.",
+      "example": "<audio src=\"lagu.mp3\" muted></audio>",
+      "output": "Sunyi"
+    },
+    {
+      "name": "preload",
+      "desc": "Petunjuk ke browser seberapa banyak data audio harus diunduh. Nilai: auto, metadata, none.",
+      "example": "<audio src=\"lagu.mp3\" preload=\"metadata\"></audio>",
+      "output": "Hanya metadata yang diambil"
+    }
+  ],
+  "source-element": [
+    {
+      "name": "<source>",
+      "desc": "Menyediakan beberapa sumber media untuk kompatibilitas codec.",
+      "example": "<video controls>\n  <source src=\"video.webm\" type=\"video/webm\">\n  <source src=\"video.mp4\" type=\"video/mp4\">\n</video>",
+      "output": "Browser memilih source yang didukung"
+    },
+    {
+      "name": "src",
+      "desc": "URL ke file media.",
+      "example": "<source src=\"video.mp4\">",
+      "output": "Sumber video"
+    },
+    {
+      "name": "type",
+      "desc": "MIME type file media, membantu browser memilih format yang didukung.",
+      "example": "type=\"video/mp4\"",
+      "output": "MIME video/mp4"
+    },
+    {
+      "name": "media",
+      "desc": "Media query untuk memilih sumber responsif (misal resolusi atau orientasi).",
+      "example": "<source src=\"video-hd.webm\" media=\"(min-width: 1200px)\">",
+      "output": "Hanya dipilih pada layar lebar"
+    }
+  ],
+  "track-element": [
+    {
+      "name": "<track>",
+      "desc": "Menambahkan teks seperti subtitle, caption, chapter, atau description.",
+      "example": "<track src=\"subtitles-en.vtt\" kind=\"subtitles\" srclang=\"en\" label=\"English\">",
+      "output": "Teks ditampilkan"
+    },
+    {
+      "name": "kind",
+      "desc": "Jenis track: subtitles, captions, descriptions, chapters, metadata.",
+      "example": "kind=\"captions\"",
+      "output": "Teks untuk tuna rungu"
+    },
+    {
+      "name": "src",
+      "desc": "URL ke file WebVTT (vtt).",
+      "example": "src=\"captions.vtt\"",
+      "output": "File subtitle"
+    },
+    {
+      "name": "srclang",
+      "desc": "Kode bahasa track (en, id, dll).",
+      "example": "srclang=\"id\"",
+      "output": "Bahasa Indonesia"
+    },
+    {
+      "name": "label",
+      "desc": "Nama tampilan untuk track (di menu subtitle).",
+      "example": "label=\"Indonesia\"",
+      "output": "Tampil di menu"
+    },
+    {
+      "name": "default",
+      "desc": "Track yang diaktifkan secara default.",
+      "example": "default",
+      "output": "Subtitle langsung muncul"
+    }
+  ],
+  "media-api": [
+    {
+      "name": "HTMLMediaElement.play()",
+      "desc": "Memulai pemutaran media (mengembalikan Promise).",
+      "example": "const video = document.querySelector('video')\nawait video.play()",
+      "output": "Video diputar"
+    },
+    {
+      "name": "HTMLMediaElement.pause()",
+      "desc": "Menghentikan pemutaran.",
+      "example": "video.pause()",
+      "output": "Video berhenti"
+    },
+    {
+      "name": "HTMLMediaElement.currentTime",
+      "desc": "Mendapatkan atau mengatur posisi pemutaran dalam detik.",
+      "example": "video.currentTime = 30",
+      "output": "Lompat ke detik 30"
+    },
+    {
+      "name": "HTMLMediaElement.duration",
+      "desc": "Durasi total media dalam detik (read-only).",
+      "example": "console.log(video.duration)",
+      "output": "120.5"
+    },
+    {
+      "name": "HTMLMediaElement.volume",
+      "desc": "Mengatur volume (0.0 hingga 1.0).",
+      "example": "video.volume = 0.5",
+      "output": "Volume setengah"
+    },
+    {
+      "name": "HTMLMediaElement.muted",
+      "desc": "Mematikan atau menghidupkan suara.",
+      "example": "video.muted = true",
+      "output": "Sunyi"
+    },
+    {
+      "name": "HTMLMediaElement.playbackRate",
+      "desc": "Mengatur kecepatan pemutaran (1.0 normal, 2.0 dua kali lipat).",
+      "example": "video.playbackRate = 1.5",
+      "output": "Kecepatan 1.5x"
+    },
+    {
+      "name": "Media Events (loadstart, canplay, ended, error, dll)",
+      "desc": "Berbagai event yang bisa didengarkan.",
+      "example": "video.addEventListener('ended', () => console.log('Selesai'))",
+      "output": "Log saat video habis"
+    }
+  ],
+  "media-streaming": [
+    {
+      "name": "Media Source Extensions (MSE)",
+      "desc": "API untuk membuat stream video sendiri (digunakan oleh pemutar canggih).",
+      "example": "const mediaSource = new MediaSource()\nvideo.src = URL.createObjectURL(mediaSource)",
+      "output": "Video dari buffer"
+    },
+    {
+      "name": "HLS (HTTP Live Streaming)",
+      "desc": "Format streaming adaptif Apple. Diputar melalui library seperti hls.js.",
+      "example": "const hls = new Hls()\nhls.loadSource('stream.m3u8')\nhls.attachMedia(video)",
+      "output": "Streaming adaptif"
+    },
+    {
+      "name": "DASH (Dynamic Adaptive Streaming over HTTP)",
+      "desc": "Standar streaming adaptif internasional. Diputar dengan dash.js.",
+      "example": "const player = dashjs.MediaPlayer().create()\nplayer.initialize(video, 'stream.mpd', true)",
+      "output": "Streaming adaptif DASH"
+    }
+  ],
+  "formats-codecs": [
+    {
+      "name": "MP4 (H.264 + AAC)",
+      "desc": "Format paling kompatibel; codec video H.264, audio AAC.",
+      "example": "<source src=\"video.mp4\" type=\"video/mp4\">",
+      "output": "Didukung hampir semua browser"
+    },
+    {
+      "name": "WebM (VP8/VP9 + Vorbis/Opus)",
+      "desc": "Format terbuka, bebas royalti. Biasanya lebih kecil.",
+      "example": "<source src=\"video.webm\" type=\"video/webm\">",
+      "output": "Chrome, Firefox, Edge"
+    },
+    {
+      "name": "Ogg (Theora + Vorbis)",
+      "desc": "Format terbuka alternatif.",
+      "example": "<source src=\"video.ogv\" type=\"video/ogg\">",
+      "output": "Firefox, Chrome"
+    },
+    {
+      "name": "HEVC/H.265",
+      "desc": "Format kompresi lebih baik, tetapi terbatas dukungan browser (Safari).",
+      "example": "<source src=\"video-hevc.mp4\" type=\"video/mp4; codecs=hvc1\">",
+      "output": "Safari (iOS/macOS)"
+    },
+    {
+      "name": "AV1",
+      "desc": "Codec terbuka generasi terbaru, kompresi tinggi, semakin didukung.",
+      "example": "<source src=\"video-av1.mp4\" type=\"video/mp4; codecs=av01\">",
+      "output": "Chrome, Firefox, Edge"
+    },
+    {
+      "name": "MP3 (audio/mpeg)",
+      "desc": "Format audio paling kompatibel.",
+      "example": "<source src=\"lagu.mp3\" type=\"audio/mpeg\">",
+      "output": "Semua browser"
+    }
+  ],
+  "responsive-images": [
+    {
+      "name": "<picture>",
+      "desc": "Elemen untuk art-direction, menyediakan sumber gambar berbeda.",
+      "example": "<picture>\n  <source srcset=\"large.webp\" media=\"(min-width: 800px)\">\n  <img src=\"small.jpg\" alt=\"...\">\n</picture>",
+      "output": "Gambar sesuai kondisi"
+    },
+    {
+      "name": "srcset (atribut pada <img>)",
+      "desc": "Menyediakan beberapa ukuran gambar untuk responsif.",
+      "example": "<img src=\"default.jpg\" srcset=\"small.jpg 480w, medium.jpg 800w, large.jpg 1200w\" sizes=\"100vw\" alt=\"...\">",
+      "output": "Browser memilih ukuran terbaik"
+    },
+    {
+      "name": "sizes",
+      "desc": "Memberi tahu browser lebar tampilan gambar pada berbagai breakpoint.",
+      "example": "sizes=\"(max-width: 600px) 100vw, 50vw\"",
+      "output": "Gambar responsif akurat"
+    }
+  ],
+  "accessibility-media": [
+    {
+      "name": "Captions (kind=\"captions\")",
+      "desc": "Teks untuk orang dengan gangguan pendengaran, termasuk deskripsi suara non-bicara.",
+      "example": "<track src=\"captions.vtt\" kind=\"captions\" srclang=\"en\" label=\"English\" default>",
+      "output": "Semua suara ditampilkan teks"
+    },
+    {
+      "name": "Subtitles (kind=\"subtitles\")",
+      "desc": "Terjemahan dialog, tidak termasuk suara non-bicara.",
+      "example": "<track src=\"subtitle-id.vtt\" kind=\"subtitles\" srclang=\"id\" label=\"Indonesia\">",
+      "output": "Terjemahan dialog"
+    },
+    {
+      "name": "Audio Description (kind=\"descriptions\")",
+      "desc": "Deskripsi naratif tentang adegan visual untuk tuna netra.",
+      "example": "<track src=\"desc.vtt\" kind=\"descriptions\" srclang=\"en\">",
+      "output": "Deskripsi adegan dibacakan"
+    },
+    {
+      "name": "Transcript",
+      "desc": "Teks lengkap semua konten audio dan visual, ditempatkan di luar pemutar.",
+      "example": "<details><summary>Transkrip Video</summary><p>...</p></details>",
+      "output": "Alternatif teks lengkap"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan <picture> dan srcset untuk gambar",
+      "desc": "Hindari gambar besar di perangkat kecil.",
+      "example": "<picture>...</picture>",
+      "output": "Performa lebih baik"
+    },
+    {
+      "name": "Sediakan fallback untuk semua <source>",
+      "desc": "Pastikan ada pesan teks jika tidak ada source yang didukung.",
+      "example": "<video controls>\n  ...\n  Maaf, browser Anda tidak mendukung video.\n</video>",
+      "output": "Pengalaman pengguna terjaga"
+    },
+    {
+      "name": "Optimasi ukuran file media",
+      "desc": "Kompres video/audio tanpa kehilangan kualitas signifikan.",
+      "example": "Gunakan HandBrake atau ffmpeg untuk kompresi.",
+      "output": "Loading lebih cepat"
+    },
+    {
+      "name": "Hindari autoplay tanpa muted",
+      "desc": "Kebijakan browser memblokir autoplay bersuara.",
+      "example": "autoplay muted",
+      "output": "Autoplay diizinkan"
+    }
+  ]
+}

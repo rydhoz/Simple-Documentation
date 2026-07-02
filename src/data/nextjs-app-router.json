@@ -1,0 +1,50 @@
+{
+  "routing": [
+    { "name": "page.tsx", "desc": "Halaman yang dirender pada URL tertentu.", "example": "// app/about/page.tsx\nexport default function AboutPage() { return <h1>About</h1> }", "output": "/about" },
+    { "name": "layout.tsx", "desc": "Layout pembungkus untuk halaman dan nested layout.", "example": "// app/layout.tsx\nexport default function RootLayout({ children }) { return <html><body>{children}</body></html> }", "output": "Layout global" },
+    { "name": "loading.tsx", "desc": "UI loading yang ditampilkan saat halaman/segmen dimuat.", "example": "// app/dashboard/loading.tsx\nexport default function Loading() { return <p>Loading...</p> }", "output": "Loading UI" },
+    { "name": "error.tsx", "desc": "Error boundary untuk menangani error di halaman/segmen.", "example": "'use client';\nexport default function Error({ error, reset }) { return <button onClick={reset}>Try again</button> }", "output": "Error UI" },
+    { "name": "not-found.tsx", "desc": "UI yang ditampilkan ketika halaman tidak ditemukan.", "example": "// app/not-found.tsx\nexport default function NotFound() { return <h1>404 - Not Found</h1> }", "output": "404 UI" },
+    { "name": "route.ts", "desc": "Route handler untuk membuat API endpoint.", "example": "// app/api/users/route.ts\nexport async function GET() { return NextResponse.json([...]) }", "output": "/api/users" },
+    { "name": "middleware.ts", "desc": "Middleware yang dijalankan sebelum request selesai.", "example": "// middleware.ts\nexport function middleware(request: NextRequest) { ... }", "output": "Middleware" },
+    { "name": "Dynamic Routes", "desc": "Rute dengan parameter [id], [...slug], [[...slug]].", "example": "// app/blog/[id]/page.tsx\nexport default function BlogPost({ params }: { params: { id: string } }) { ... }", "output": "/blog/123" },
+    { "name": "Route Groups", "desc": "Mengelompokkan rute tanpa mempengaruhi URL.", "example": "// app/(marketing)/about/page.tsx\n// app/(dashboard)/settings/page.tsx", "output": "URL tetap /about, /settings" },
+    { "name": "Parallel Routes", "desc": "Render beberapa halaman secara paralel di layout yang sama.", "example": "// app/@modal/login/page.tsx\n// app/@feed/page.tsx", "output": "Slot paralel" },
+    { "name": "Intercepting Routes", "desc": "Mengintersep navigasi untuk menampilkan halaman alternatif (modal, dll).", "example": "// app/(..)photo/[id]/page.tsx", "output": "Intercepting route" }
+  ],
+  "server-client": [
+    { "name": "Server Component (default)", "desc": "Komponen yang dirender di server. Tidak bisa pakai hook/event handler.", "example": "export default async function ServerComp() { const data = await fetch(...); return <div>{data}</div> }", "output": "Rendered on server" },
+    { "name": "Client Component", "desc": "Komponen interaktif dengan state/effect/event handler. Gunakan direktif 'use client'.", "example": "'use client';\nimport { useState } from 'react';\nexport default function Counter() { const [count, setCount] = useState(0); ... }", "output": "Interaktif" },
+    { "name": "Composition Pattern", "desc": "Server component bisa wrapping client component.", "example": "// ServerComp.tsx (tanpa 'use client')\nimport ClientButton from './ClientButton';\nexport default function Page() { return <div><ClientButton /></div> }", "output": "Client di dalam server" },
+    { "name": "Server Actions", "desc": "Fungsi async yang berjalan di server, bisa dipanggil dari client/form.", "example": "'use server';\nexport async function createPost(formData: FormData) { ... }", "output": "Mutasi server" }
+  ],
+  "data-fetching": [
+    { "name": "fetch (server)", "desc": "Native fetch API di server component, otomatis caching.", "example": "const data = await fetch('https://api.example.com/data');", "output": "Data ter-cache" },
+    { "name": "revalidate (ISR)", "desc": "Revalidasi data pada interval tertentu.", "example": "fetch(url, { next: { revalidate: 3600 } });", "output": "Revalidate setiap 1 jam" },
+    { "name": "no-store (dynamic)", "desc": "Selalu ambil data terbaru tanpa cache.", "example": "fetch(url, { cache: 'no-store' });", "output": "Data selalu baru" },
+    { "name": "generateStaticParams", "desc": "Pre-render halaman dinamis di build time.", "example": "export async function generateStaticParams() { const posts = await fetch(...); return posts.map(p => ({ id: p.id })) }", "output": "Static params" },
+    { "name": "React cache()", "desc": "Cache hasil fungsi untuk request yang sama (dedup).", "example": "import { cache } from 'react';\nexport const getUser = cache(async (id: string) => { ... });", "output": "Deduplikasi fetch" }
+  ],
+  "navigation": [
+    { "name": "<Link>", "desc": "Komponen untuk navigasi client-side dengan prefetch.", "example": "import Link from 'next/link';\n<Link href=\"/about\">About</Link>", "output": "Navigasi SPA" },
+    { "name": "useRouter", "desc": "Hook untuk navigasi programatik (client component).", "example": "import { useRouter } from 'next/navigation';\nconst router = useRouter(); router.push('/dashboard');", "output": "Navigasi programatik" },
+    { "name": "redirect", "desc": "Redirect di server component/action.", "example": "import { redirect } from 'next/navigation';\nexport async function ServerAction() { redirect('/login') }", "output": "Redirect server-side" },
+    { "name": "usePathname", "desc": "Mendapatkan pathname saat ini (client component).", "example": "import { usePathname } from 'next/navigation';\nconst pathname = usePathname();", "output": "/about" },
+    { "name": "useSearchParams", "desc": "Mendapatkan query string (client component).", "example": "import { useSearchParams } from 'next/navigation';\nconst searchParams = useSearchParams(); const q = searchParams.get('q');", "output": "Query param 'q'" }
+  ],
+  "metadata": [
+    { "name": "Static Metadata", "desc": "Export objek Metadata dari layout/page.", "example": "import { Metadata } from 'next';\nexport const metadata: Metadata = { title: 'Home', description: '...' };", "output": "Metadata SEO" },
+    { "name": "Dynamic Metadata", "desc": "Export fungsi generateMetadata untuk metadata dinamis.", "example": "export async function generateMetadata({ params }): Promise<Metadata> { return { title: params.id } }", "output": "Metadata dinamis" }
+  ],
+  "optimasi": [
+    { "name": "next/image", "desc": "Komponen gambar yang dioptimasi (lazy, blur-up, webp).", "example": "import Image from 'next/image';\n<Image src=\"/hero.jpg\" width={800} height={600} alt=\"Hero\" />", "output": "Gambar optimal" },
+    { "name": "next/font", "desc": "Font optimization (Google Fonts, local).", "example": "import { Inter } from 'next/font/google';\nconst inter = Inter({ subsets: ['latin'] });\n<body className={inter.className}>", "output": "Font self-host" },
+    { "name": "next/script", "desc": "Memuat script eksternal dengan strategi (afterInteractive, lazyOnload).", "example": "import Script from 'next/script';\n<Script src=\"https://example.com/script.js\" strategy=\"lazyOnload\" />", "output": "Script dimuat malas" },
+    { "name": "next/dynamic", "desc": "Dynamic import untuk code-splitting komponen.", "example": "import dynamic from 'next/dynamic';\nconst HeavyComponent = dynamic(() => import('./Heavy'), { loading: () => <p>Loading...</p> });", "output": "Lazy component" }
+  ],
+  "caching": [
+    { "name": "revalidatePath", "desc": "Revalidasi halaman berdasarkan path (server action).", "example": "import { revalidatePath } from 'next/cache';\nrevalidatePath('/blog/[slug]', 'page');", "output": "Cache halaman dibersihkan" },
+    { "name": "revalidateTag", "desc": "Revalidasi data berdasarkan tag yang digunakan di fetch.", "example": "fetch(url, { next: { tags: ['posts'] } });\nrevalidateTag('posts');", "output": "Cache tag 'posts' dibersihkan" },
+    { "name": "unstable_cache (experimental)", "desc": "Cache function level (mirip React cache).", "example": "import { unstable_cache } from 'next/cache';\nconst getCachedData = unstable_cache(async () => { ... }, ['key'], { revalidate: 60 });", "output": "Data ter-cache" }
+  ]
+}

@@ -1,0 +1,434 @@
+{
+  "fungsi-teks": [
+    {
+      "name": "LEFT(text, num_chars)",
+      "desc": "Mengambil sejumlah karakter dari kiri string.",
+      "example": "=LEFT(\"Dokumentasi\", 5)",
+      "output": "Dokum"
+    },
+    {
+      "name": "RIGHT(text, num_chars)",
+      "desc": "Mengambil sejumlah karakter dari kanan string.",
+      "example": "=RIGHT(\"Dokumentasi\", 4)",
+      "output": "tasi"
+    },
+    {
+      "name": "MID(text, start_num, num_chars)",
+      "desc": "Mengambil karakter dari tengah string.",
+      "example": "=MID(\"Dokumentasi\", 3, 5)",
+      "output": "kumen"
+    },
+    {
+      "name": "LEN(text)",
+      "desc": "Menghitung jumlah karakter dalam string.",
+      "example": "=LEN(\"Excel\")",
+      "output": "5"
+    },
+    {
+      "name": "TRIM(text)",
+      "desc": "Menghapus spasi berlebih di awal, akhir, dan tengah (kecuali spasi tunggal antar kata).",
+      "example": "=TRIM(\"   Hello   World   \")",
+      "output": "Hello World"
+    },
+    {
+      "name": "UPPER(text)",
+      "desc": "Mengubah semua huruf menjadi huruf besar.",
+      "example": "=UPPER(\"Hello\")",
+      "output": "HELLO"
+    },
+    {
+      "name": "LOWER(text)",
+      "desc": "Mengubah semua huruf menjadi huruf kecil.",
+      "example": "=LOWER(\"Hello\")",
+      "output": "hello"
+    },
+    {
+      "name": "PROPER(text)",
+      "desc": "Membuat huruf pertama setiap kata menjadi huruf besar.",
+      "example": "=PROPER(\"hello world\")",
+      "output": "Hello World"
+    },
+    {
+      "name": "CONCATENATE / CONCAT",
+      "desc": "Menggabungkan beberapa string menjadi satu.",
+      "example": "=CONCAT(\"Hello\", \" \", \"World\")",
+      "output": "Hello World"
+    },
+    {
+      "name": "TEXTJOIN(delimiter, ignore_empty, text1, …)",
+      "desc": "Menggabungkan teks dengan delimiter, bisa mengabaikan sel kosong.",
+      "example": "=TEXTJOIN(\", \", TRUE, A1:A5)",
+      "output": "Nilai A1, A2, A3, A4, A5 (dengan koma, kosong diabaikan)"
+    }
+  ],
+  "fungsi-logika": [
+    {
+      "name": "IF(logical_test, value_if_true, value_if_false)",
+      "desc": "Mengembalikan nilai berdasarkan kondisi. Bisa nested.",
+      "example": "=IF(A1>70, \"Lulus\", \"Remedial\")",
+      "output": "Lulus jika A1>70"
+    },
+    {
+      "name": "IFS(logical_test1, value1, …)",
+      "desc": "Alternatif nested IF untuk banyak kondisi (Excel 2019+).",
+      "example": "=IFS(A1>=90, \"A\", A1>=80, \"B\", A1>=70, \"C\")",
+      "output": "Grade sesuai nilai"
+    },
+    {
+      "name": "AND(logical1, logical2, …)",
+      "desc": "TRUE jika semua kondisi terpenuhi.",
+      "example": "=AND(A1>60, B1<100)",
+      "output": "TRUE jika keduanya benar"
+    },
+    {
+      "name": "OR(logical1, logical2, …)",
+      "desc": "TRUE jika salah satu kondisi terpenuhi.",
+      "example": "=OR(A1=\"Ya\", B1=\"Ya\")",
+      "output": "TRUE jika salah satu Ya"
+    },
+    {
+      "name": "NOT(logical)",
+      "desc": "Membalikkan nilai logika.",
+      "example": "=NOT(A1=10)",
+      "output": "TRUE jika A1 bukan 10"
+    },
+    {
+      "name": "IFERROR(value, value_if_error)",
+      "desc": "Menampilkan nilai alternatif jika rumus error.",
+      "example": "=IFERROR(A1/B1, 0)",
+      "output": "0 jika B1 kosong atau nol"
+    },
+    {
+      "name": "SWITCH(expression, value1, result1, …)",
+      "desc": "Mengevaluasi ekspresi terhadap daftar nilai.",
+      "example": "=SWITCH(A1, 1, \"Satu\", 2, \"Dua\", \"Lainnya\")",
+      "output": "Satu jika A1=1"
+    }
+  ],
+  "fungsi-pencarian-referensi": [
+    {
+      "name": "VLOOKUP(lookup_value, table_array, col_index, [range_lookup])",
+      "desc": "Pencarian vertikal di kolom pertama tabel. range_lookup FALSE untuk exact match.",
+      "example": "=VLOOKUP(123, A2:C100, 2, FALSE)",
+      "output": "Nilai dari kolom kedua di baris yang cocok"
+    },
+    {
+      "name": "XLOOKUP(lookup_value, lookup_array, return_array, …)",
+      "desc": "Penerus VLOOKUP/HLOOKUP yang lebih fleksibel (Excel 2021+).",
+      "example": "=XLOOKUP(123, A2:A100, C2:C100, \"Tidak ditemukan\")",
+      "output": "Nilai dari kolom C di baris yang cocok"
+    },
+    {
+      "name": "INDEX(array, row_num, [col_num])",
+      "desc": "Mengembalikan nilai berdasarkan nomor baris dan kolom.",
+      "example": "=INDEX(A1:C10, 3, 2)",
+      "output": "Nilai di baris ke-3 kolom ke-2 dalam range"
+    },
+    {
+      "name": "MATCH(lookup_value, lookup_array, [match_type])",
+      "desc": "Mencari posisi relatif suatu nilai dalam range.",
+      "example": "=MATCH(123, A1:A100, 0)",
+      "output": "Nomor baris tempat 123 ditemukan"
+    },
+    {
+      "name": "INDEX + MATCH",
+      "desc": "Kombinasi ampuh pengganti VLOOKUP untuk pencarian dua arah.",
+      "example": "=INDEX(C2:C100, MATCH(123, A2:A100, 0))",
+      "output": "Nilai dari kolom C untuk ID 123"
+    }
+  ],
+  "fungsi-tanggal-waktu": [
+    {
+      "name": "TODAY()",
+      "desc": "Mengembalikan tanggal hari ini (dinamis).",
+      "example": "=TODAY()",
+      "output": "28/06/2025 (format sesuai lokal)"
+    },
+    {
+      "name": "NOW()",
+      "desc": "Mengembalikan tanggal dan waktu saat ini.",
+      "example": "=NOW()",
+      "output": "28/06/2025 14:35"
+    },
+    {
+      "name": "DATE(year, month, day)",
+      "desc": "Membuat tanggal dari komponen.",
+      "example": "=DATE(2025,6,28)",
+      "output": "28/06/2025"
+    },
+    {
+      "name": "DAY(date) / MONTH(date) / YEAR(date)",
+      "desc": "Mengambil bagian tanggal.",
+      "example": "=YEAR(TODAY())",
+      "output": "2025"
+    },
+    {
+      "name": "DATEDIF(start_date, end_date, unit)",
+      "desc": "Menghitung selisih (\"d\", \"m\", \"y\").",
+      "example": "=DATEDIF(A1, B1, \"Y\")",
+      "output": "Umur dalam tahun"
+    },
+    {
+      "name": "EOMONTH(start_date, months)",
+      "desc": "Tanggal akhir bulan setelah beberapa bulan.",
+      "example": "=EOMONTH(TODAY(), 0)",
+      "output": "30/06/2025"
+    }
+  ],
+  "fungsi-matematika": [
+    {
+      "name": "SUM(number1, number2, …)",
+      "desc": "Menjumlahkan angka.",
+      "example": "=SUM(A1:A10)",
+      "output": "Total A1 s.d. A10"
+    },
+    {
+      "name": "SUMIF(range, criteria, [sum_range])",
+      "desc": "Menjumlahkan dengan syarat.",
+      "example": "=SUMIF(B2:B10, \">10\", C2:C10)",
+      "output": "Jumlah C2:C10 jika B2:B10 >10"
+    },
+    {
+      "name": "SUMIFS(sum_range, criteria_range1, criteria1, …)",
+      "desc": "Menjumlahkan dengan banyak syarat.",
+      "example": "=SUMIFS(D2:D10, B2:B10, \">10\", C2:C10, \"Aktif\")",
+      "output": "Jumlah dengan dua kondisi"
+    },
+    {
+      "name": "COUNT(value1, …)",
+      "desc": "Menghitung sel yang berisi angka.",
+      "example": "=COUNT(A1:A10)",
+      "output": "Jumlah sel yang isinya angka"
+    },
+    {
+      "name": "COUNTA(value1, …)",
+      "desc": "Menghitung sel yang tidak kosong.",
+      "example": "=COUNTA(A1:A10)",
+      "output": "Jumlah sel berisi data apapun"
+    },
+    {
+      "name": "COUNTIF(range, criteria)",
+      "desc": "Menghitung dengan satu syarat.",
+      "example": "=COUNTIF(A1:A100, \">=60\")",
+      "output": "Jumlah sel >=60"
+    },
+    {
+      "name": "COUNTIFS(range1, criteria1, …)",
+      "desc": "Menghitung dengan banyak syarat.",
+      "example": "=COUNTIFS(A1:A100, \">=60\", B1:B100, \"Lulus\")",
+      "output": "Jumlah yang memenuhi dua syarat"
+    },
+    {
+      "name": "AVERAGE(number1, …)",
+      "desc": "Rata-rata.",
+      "example": "=AVERAGE(A1:A10)",
+      "output": "Nilai rata-rata"
+    },
+    {
+      "name": "ROUND(number, num_digits)",
+      "desc": "Membulatkan angka.",
+      "example": "=ROUND(3.14159, 2)",
+      "output": "3.14"
+    },
+    {
+      "name": "INT(number)",
+      "desc": "Membulatkan ke bawah ke bilangan bulat terdekat.",
+      "example": "=INT(8.9)",
+      "output": "8"
+    },
+    {
+      "name": "MOD(number, divisor)",
+      "desc": "Sisa pembagian.",
+      "example": "=MOD(10, 3)",
+      "output": "1"
+    }
+  ],
+  "fungsi-statistik": [
+    {
+      "name": "MIN(number1, …)",
+      "desc": "Nilai terkecil.",
+      "example": "=MIN(A1:A10)",
+      "output": "Nilai minimum"
+    },
+    {
+      "name": "MAX(number1, …)",
+      "desc": "Nilai terbesar.",
+      "example": "=MAX(A1:A10)",
+      "output": "Nilai maksimum"
+    },
+    {
+      "name": "LARGE(array, k)",
+      "desc": "Nilai terbesar ke-k.",
+      "example": "=LARGE(A1:A10, 2)",
+      "output": "Nilai terbesar kedua"
+    },
+    {
+      "name": "SMALL(array, k)",
+      "desc": "Nilai terkecil ke-k.",
+      "example": "=SMALL(A1:A10, 3)",
+      "output": "Nilai terkecil ketiga"
+    },
+    {
+      "name": "RANK(number, ref, [order])",
+      "desc": "Peringkat suatu angka dalam daftar.",
+      "example": "=RANK(A1, A1:A10, 0)",
+      "output": "Peringkat menurun (nilai terbesar peringkat 1)"
+    }
+  ],
+  "shortcuts-umum": [
+    {
+      "name": "Ctrl + C / Ctrl + V / Ctrl + X",
+      "desc": "Salin, Tempel, Potong.",
+      "example": "Pilih sel, Ctrl+C, klik sel tujuan, Ctrl+V",
+      "output": "Data disalin/dipindah"
+    },
+    {
+      "name": "Ctrl + Z / Ctrl + Y",
+      "desc": "Undo / Redo.",
+      "example": "Ctrl+Z untuk batalkan, Ctrl+Y untuk mengulangi.",
+      "output": "Kembali/maju satu langkah"
+    },
+    {
+      "name": "Ctrl + A",
+      "desc": "Pilih seluruh data dalam sheet.",
+      "example": "Ctrl+A di area kosong → pilih semua sel.",
+      "output": "Semua sel terpilih"
+    },
+    {
+      "name": "Ctrl + Shift + L",
+      "desc": "Mengaktifkan/menonaktifkan AutoFilter.",
+      "example": "Klik header tabel, Ctrl+Shift+L",
+      "output": "Filter muncul pada header"
+    },
+    {
+      "name": "Ctrl + ;",
+      "desc": "Masukkan tanggal hari ini (statis).",
+      "example": "Ctrl+;",
+      "output": "28/06/2025"
+    },
+    {
+      "name": "Ctrl + Shift + :",
+      "desc": "Masukkan waktu saat ini (statis).",
+      "example": "Ctrl+Shift+:",
+      "output": "14:35"
+    },
+    {
+      "name": "F4",
+      "desc": "Mengulangi aksi terakhir atau mengunci referensi sel (absolut) saat mengedit rumus.",
+      "example": "Tekan F4 pada referensi A1 → $A$1",
+      "output": "Referensi absolut/relatif"
+    }
+  ],
+  "data-tools": [
+    {
+      "name": "Text to Columns",
+      "desc": "Memisahkan teks dalam satu kolom menjadi beberapa kolom berdasarkan delimiter.",
+      "example": "Data → Text to Columns → Delimited → Centang koma → Finish",
+      "output": "\"Ridho,25\" menjadi kolom A: Ridho, kolom B: 25"
+    },
+    {
+      "name": "Remove Duplicates",
+      "desc": "Menghapus baris duplikat berdasarkan kolom yang dipilih.",
+      "example": "Data → Remove Duplicates → pilih kolom → OK",
+      "output": "Baris duplikat dihapus"
+    },
+    {
+      "name": "Data Validation",
+      "desc": "Membatasi input yang bisa dimasukkan (list dropdown, angka, tanggal).",
+      "example": "Data → Data Validation → Allow: List → Source: Ya,Tidak",
+      "output": "Sel hanya bisa diisi Ya/Tidak"
+    },
+    {
+      "name": "Sort & Filter",
+      "desc": "Mengurutkan data (A-Z, Z-A, custom) dan menyaring data berdasarkan kriteria.",
+      "example": "Home → Sort & Filter → Filter",
+      "output": "Tabel bisa difilter"
+    }
+  ],
+  "pivot-table": [
+    {
+      "name": "Recommended PivotTables",
+      "desc": "Excel menyarankan pivot table berdasarkan data.",
+      "example": "Insert → Recommended PivotTables → pilih salah satu",
+      "output": "Pivot table otomatis"
+    },
+    {
+      "name": "Manual PivotTable",
+      "desc": "Membuat pivot table dengan menyeret field ke area Rows, Columns, Values, Filters.",
+      "example": "Insert → PivotTable → pilih range → New Worksheet",
+      "output": "Kerangka pivot table kosong"
+    },
+    {
+      "name": "Value Field Settings",
+      "desc": "Mengatur agregasi (Sum, Count, Average, Max, Min).",
+      "example": "Klik kanan value → Value Field Settings → Sum",
+      "output": "Total per kategori"
+    }
+  ],
+  "format": [
+    {
+      "name": "Format Cells (Ctrl+1)",
+      "desc": "Mengatur format angka (Currency, Date, Percentage), perataan, font, border, fill.",
+      "example": "Ctrl+1 → Number → Currency → Symbol: Rp",
+      "output": "Angka tampil sebagai Rp 10.000"
+    },
+    {
+      "name": "Conditional Formatting",
+      "desc": "Memberi format otomatis (warna, ikon) berdasarkan nilai sel.",
+      "example": "Home → Conditional Formatting → Highlight Cells Rules → Greater Than 75",
+      "output": "Sel >75 berwarna hijau"
+    }
+  ],
+  "chart": [
+    {
+      "name": "Recommended Charts",
+      "desc": "Excel menganalisis data dan menyarankan grafik yang cocok.",
+      "example": "Insert → Recommended Charts → pilih grafik",
+      "output": "Grafik langsung dibuat"
+    },
+    {
+      "name": "Column / Bar Chart",
+      "desc": "Membandingkan nilai antar kategori.",
+      "example": "Insert → Column Chart → Clustered Column",
+      "output": "Batang vertikal"
+    },
+    {
+      "name": "Line Chart",
+      "desc": "Menunjukkan tren dari waktu ke waktu.",
+      "example": "Insert → Line Chart → Line with Markers",
+      "output": "Grafik garis"
+    },
+    {
+      "name": "Pie Chart",
+      "desc": "Proporsi dari keseluruhan.",
+      "example": "Insert → Pie Chart → 2-D Pie",
+      "output": "Diagram lingkaran"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan Tabel (Insert > Table)",
+      "desc": "Mengubah range menjadi tabel untuk filter otomatis, rumus terstruktur, dan perluasan dinamis.",
+      "example": "Insert → Table (Ctrl+T)",
+      "output": "Tabel dengan header dan desain bergantian"
+    },
+    {
+      "name": "Named Ranges",
+      "desc": "Memberi nama pada range untuk memudahkan penulisan rumus.",
+      "example": "Formulas → Define Name → \"Penjualan\" → =Sheet1!$A$1:$A$100",
+      "output": "=SUM(Penjualan) bukan =SUM(A1:A100)"
+    },
+    {
+      "name": "Jangan Merge Cells",
+      "desc": "Gunakan 'Center Across Selection' (Format Cells > Alignment) untuk judul tabel agar tidak merusak struktur.",
+      "example": "Blok A1:D1 → Ctrl+1 → Alignment → Horizontal: Center Across Selection",
+      "output": "Judul di tengah tanpa merge"
+    },
+    {
+      "name": "Gunakan Absolute & Relative References dengan Benar",
+      "desc": "$A$1 (absolut), $A1 / A$1 (campuran), A1 (relatif). F4 untuk toggle.",
+      "example": "=$A$1*B1 → $A$1 tetap, B1 bergeser saat dicopy",
+      "output": "Referensi yang tepat"
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "core-web-vitals": [
+    {
+      "name": "Largest Contentful Paint (LCP)",
+      "desc": "Mengukur waktu yang dibutuhkan untuk merender konten terbesar yang terlihat di viewport. Target: < 2.5 detik.",
+      "example": "Diukur menggunakan PerformanceObserver atau Lighthouse.",
+      "output": "Skor LCP dalam milidetik"
+    },
+    {
+      "name": "Interaction to Next Paint (INP)",
+      "desc": "Mengukur latensi interaksi pengguna (klik, ketukan, keyboard) hingga frame berikutnya dilukis. Target: < 200ms.",
+      "example": "Menggantikan First Input Delay (FID) pada Maret 2024.",
+      "output": "Latensi interaksi terburuk"
+    },
+    {
+      "name": "Cumulative Layout Shift (CLS)",
+      "desc": "Mengukur stabilitas visual halaman, menghitung pergeseran tata letak yang tidak terduga. Target: < 0.1.",
+      "example": "Hindari menyisipkan konten dinamis di atas konten yang sudah ada tanpa reservasi ruang.",
+      "output": "Skor CLS (skor numerik)"
+    },
+    {
+      "name": "First Contentful Paint (FCP)",
+      "desc": "Waktu hingga konten pertama (teks/gambar) dirender. Target: < 1.8 detik.",
+      "example": "Optimalkan critical rendering path.",
+      "output": "Waktu FCP dalam milidetik"
+    },
+    {
+      "name": "Time to First Byte (TTFB)",
+      "desc": "Waktu dari permintaan hingga byte pertama diterima. Target: < 800ms.",
+      "example": "Gunakan CDN, caching server, dan database yang efisien.",
+      "output": "TTFB dalam milidetik"
+    }
+  ],
+  "resource-loading": [
+    {
+      "name": "Preload",
+      "desc": "Memprioritaskan pengambilan sumber daya yang penting untuk halaman saat ini.",
+      "example": "<link rel=\"preload\" href=\"font.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>",
+      "output": "Sumber daya diambil lebih awal"
+    },
+    {
+      "name": "Prefetch",
+      "desc": "Mengambil sumber daya untuk navigasi berikutnya di latar belakang.",
+      "example": "<link rel=\"prefetch\" href=\"/next-page.js\">",
+      "output": "Cache untuk halaman berikutnya"
+    },
+    {
+      "name": "Preconnect",
+      "desc": "Membangun koneksi ke asal sumber daya (DNS, TCP, TLS) lebih awal.",
+      "example": "<link rel=\"preconnect\" href=\"https://api.example.com\">",
+      "output": "Koneksi awal siap"
+    },
+    {
+      "name": "DNS Prefetch",
+      "desc": "Menyelesaikan nama domain menjadi alamat IP di latar belakang.",
+      "example": "<link rel=\"dns-prefetch\" href=\"https://fonts.googleapis.com\">",
+      "output": "Resolusi DNS lebih cepat"
+    },
+    {
+      "name": "Priority Hints (fetchpriority)",
+      "desc": "Memberi petunjuk prioritas pada sumber daya (high, low, auto).",
+      "example": "<img src=\"hero.jpg\" fetchpriority=\"high\" alt=\"Hero\">",
+      "output": "Gambar hero diprioritaskan"
+    }
+  ],
+  "caching-strategies": [
+    {
+      "name": "Cache-Control (HTTP Header)",
+      "desc": "Mengontrol caching browser. max-age untuk durasi, immutable untuk file statis.",
+      "example": "Cache-Control: public, max-age=31536000, immutable",
+      "output": "File di-cache 1 tahun"
+    },
+    {
+      "name": "ETag / Last-Modified",
+      "desc": "Validasi cache dengan token ETag atau waktu modifikasi terakhir.",
+      "example": "ETag: \"33a64df551425fcc55e4d42a148795d9f25f89d4\"",
+      "output": "304 Not Modified jika cocok"
+    },
+    {
+      "name": "Service Worker Caching",
+      "desc": "Menggunakan service worker untuk caching offline-first dan strategi stale-while-revalidate.",
+      "example": "self.addEventListener('fetch', event => { event.respondWith(caches.match(event.request).then(response => response || fetch(event.request))) })",
+      "output": "Cache offline"
+    }
+  ],
+  "image-performance": [
+    {
+      "name": "next/image (Next.js)",
+      "desc": "Komponen yang secara otomatis mengoptimalkan gambar (resize, format modern, lazy loading).",
+      "example": "import Image from 'next/image'\n<Image src=\"/hero.jpg\" width={800} height={600} alt=\"Hero\" />",
+      "output": "Gambar dalam format WebP/AVIF"
+    },
+    {
+      "name": "loading=\"lazy\"",
+      "desc": "Menunda pemuatan gambar hingga mendekati viewport.",
+      "example": "<img src=\"image.jpg\" loading=\"lazy\" alt=\"...\" />",
+      "output": "Gambar tidak dimuat sekaligus"
+    },
+    {
+      "name": "srcset & sizes",
+      "desc": "Menyediakan beberapa resolusi gambar untuk layar berbeda.",
+      "example": "<img srcset=\"small.jpg 480w, large.jpg 1200w\" sizes=\"(max-width: 600px) 480px, 1200px\" src=\"default.jpg\" alt=\"...\" />",
+      "output": "Hanya gambar yang sesuai yang diunduh"
+    },
+    {
+      "name": "WebP / AVIF",
+      "desc": "Format gambar modern dengan kompresi lebih baik dari JPEG/PNG.",
+      "example": "<picture><source srcset=\"img.avif\" type=\"image/avif\"><img src=\"img.jpg\" alt=\"...\"></picture>",
+      "output": "Ukuran file lebih kecil"
+    }
+  ],
+  "font-optimization": [
+    {
+      "name": "font-display: swap",
+      "desc": "Menampilkan teks dengan font fallback sampai font kustom siap.",
+      "example": "@font-face { font-family: 'MyFont'; src: url(...); font-display: swap; }",
+      "output": "Teks terlihat lebih cepat"
+    },
+    {
+      "name": "Preload Font",
+      "desc": "Mengambil font lebih awal agar siap saat dibutuhkan.",
+      "example": "<link rel=\"preload\" href=\"font.woff2\" as=\"font\" crossorigin>",
+      "output": "Font di-cache sebelum render"
+    },
+    {
+      "name": "Subset Font",
+      "desc": "Mengurangi ukuran font dengan hanya menyertakan karakter yang diperlukan.",
+      "example": "Gunakan layanan seperti Google Fonts dengan parameter text= atau subset manual.",
+      "output": "Font lebih kecil"
+    },
+    {
+      "name": "next/font (Next.js)",
+      "desc": "Mengoptimalkan dan self-host font secara otomatis.",
+      "example": "import { Inter } from 'next/font/google'\nconst inter = Inter({ subsets: ['latin'] })",
+      "output": "Font dimuat optimal"
+    }
+  ],
+  "javascript-performance": [
+    {
+      "name": "Code Splitting",
+      "desc": "Memecah bundel JavaScript menjadi potongan yang lebih kecil sesuai rute.",
+      "example": "const HeavyComponent = dynamic(() => import('./Heavy'))",
+      "output": "Halaman awal lebih ringan"
+    },
+    {
+      "name": "Tree Shaking",
+      "desc": "Menghapus kode yang tidak digunakan selama build.",
+      "example": "Gunakan ES module import, pastikan library mendukung tree shaking.",
+      "output": "Bundel lebih kecil"
+    },
+    {
+      "name": "Defer / Async Scripts",
+      "desc": "Mengontrol eksekusi script agar tidak memblokir parsing.",
+      "example": "<script src=\"script.js\" defer></script>",
+      "output": "Script dieksekusi setelah HTML diparse"
+    },
+    {
+      "name": "Memoization",
+      "desc": "Menggunakan useMemo / useCallback untuk mencegah komputasi berulang.",
+      "example": "const value = useMemo(() => computeExpensive(a, b), [a, b])",
+      "output": "Tidak dihitung ulang jika dependensi sama"
+    }
+  ],
+  "performance-api": [
+    {
+      "name": "PerformanceObserver",
+      "desc": "Mengamati metrik performa (LCP, FCP, CLS, long tasks) secara real-time.",
+      "example": "const observer = new PerformanceObserver((list) => { ... })\nobserver.observe({ type: 'largest-contentful-paint', buffered: true })",
+      "output": "Data metrik dikirim ke analytics"
+    },
+    {
+      "name": "Navigation Timing API",
+      "desc": "Memberikan data waktu navigasi halaman (DNS, TLS, request, response).",
+      "example": "const { domContentLoadedEventEnd, navigationStart } = performance.timing",
+      "output": "Durasi tiap fase navigasi"
+    },
+    {
+      "name": "Resource Timing API",
+      "desc": "Mengukur performa pemuatan setiap sumber daya (gambar, script, CSS).",
+      "example": "performance.getEntriesByType('resource')",
+      "output": "Waktu muat setiap resource"
+    },
+    {
+      "name": "User Timing API",
+      "desc": "Membuat mark dan measure kustom untuk mengukur operasi spesifik.",
+      "example": "performance.mark('start-task'); ... ; performance.measure('task-duration', 'start-task');",
+      "output": "Durasi tugas kustom"
+    },
+    {
+      "name": "Long Tasks API",
+      "desc": "Mendeteksi tugas yang memblokir main thread selama >50ms.",
+      "example": "observer.observe({ type: 'longtask', buffered: true })",
+      "output": "Identifikasi penyebab jank"
+    }
+  ],
+  "testing-monitoring": [
+    {
+      "name": "Lighthouse / PageSpeed Insights",
+      "desc": "Alat untuk mengaudit performa, aksesibilitas, SEO, dan best practices.",
+      "example": "Jalankan dari Chrome DevTools atau https://pagespeed.web.dev",
+      "output": "Skor dan rekomendasi"
+    },
+    {
+      "name": "Web Vitals Extension",
+      "desc": "Ekstensi Chrome yang menampilkan Core Web Vitals secara real-time.",
+      "example": "Instal ekstensi 'Web Vitals' dari Chrome Web Store.",
+      "output": "LCP, CLS, INP langsung terlihat"
+    },
+    {
+      "name": "Sentry / LogRocket",
+      "desc": "Monitoring performa dan error di produksi.",
+      "example": "Sentry.init({ dsn: '...', integrations: [new BrowserTracing()] })",
+      "output": "Data performa pengguna nyata"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Minifikasi & Kompresi",
+      "desc": "Minify HTML, CSS, JS dan gunakan kompresi Brotli/Gzip.",
+      "example": "Build tools (Webpack, Vite) dan konfigurasi server.",
+      "output": "Ukuran transfer lebih kecil"
+    },
+    {
+      "name": "Hindari Flash of Invisible Text (FOIT)",
+      "desc": "Gunakan font-display: swap atau preload untuk font kustom.",
+      "example": "@font-face { font-display: swap; }",
+      "output": "Teks selalu terlihat"
+    },
+    {
+      "name": "Gunakan HTTP/2 atau HTTP/3",
+      "desc": "Memungkinkan multiplexing dan header compression untuk loading lebih cepat.",
+      "example": "Aktifkan di server atau melalui CDN.",
+      "output": "Banyak request sekaligus tanpa antrean"
+    },
+    {
+      "name": "Kurangi Waktu Respon Server (TTFB)",
+      "desc": "Gunakan edge function, CDN, dan database query yang efisien.",
+      "example": "Next.js ISR, Vercel Edge Functions.",
+      "output": "TTFB < 800ms"
+    }
+  ]
+}

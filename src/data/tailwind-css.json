@@ -1,0 +1,692 @@
+{
+  "layout": [
+    {
+      "name": "container",
+      "desc": "Elemen dengan lebar maksimum tetap dan pusatkan secara otomatis. Responsif dengan breakpoint.",
+      "example": "<div class=\"container mx-auto px-4\">...</div>",
+      "output": "Lebar konten terbatas dan berada di tengah."
+    },
+    {
+      "name": "box-border / box-content",
+      "desc": "Mengatur box-sizing: border-box atau content-box.",
+      "example": "<div class=\"box-border w-32 p-4\">...</div>",
+      "output": "Lebar total 32 (128px) termasuk padding dan border."
+    },
+    {
+      "name": "block",
+      "desc": "Elemen menjadi block (lebar penuh, baris baru).",
+      "example": "<span class=\"block\">Saya sekarang block</span>",
+      "output": "Seperti <div>."
+    },
+    {
+      "name": "inline",
+      "desc": "Elemen menjadi inline (tidak memulai baris baru, tidak bisa atur width/height).",
+      "example": "<div class=\"inline\">Inline</div>",
+      "output": "Mengalir seperti teks."
+    },
+    {
+      "name": "inline-block",
+      "desc": "Gabungan inline dan block: mengalir inline tapi bisa atur ukuran.",
+      "example": "<span class=\"inline-block w-24 h-8\">...</span>",
+      "output": "Lebar/tinggi bisa diatur, tetap dalam satu baris."
+    },
+    {
+      "name": "hidden",
+      "desc": "Menyembunyikan elemen (display: none).",
+      "example": "<div class=\"hidden\">Tidak terlihat</div>",
+      "output": "Elemen hilang dari layout."
+    },
+    {
+      "name": "flex",
+      "desc": "Mengaktifkan flex container.",
+      "example": "<div class=\"flex\"><div>1</div><div>2</div></div>",
+      "output": "Anak-anak sejajar horizontal."
+    },
+    {
+      "name": "inline-flex",
+      "desc": "Flex container yang inline.",
+      "example": "<div class=\"inline-flex\">...</div>",
+      "output": "Seperti flex, tapi lebar sesuai konten."
+    },
+    {
+      "name": "grid",
+      "desc": "Mengaktifkan grid container.",
+      "example": "<div class=\"grid grid-cols-3 gap-4\">...</div>",
+      "output": "Anak-anak disusun dalam grid 3 kolom."
+    },
+    {
+      "name": "inline-grid",
+      "desc": "Grid container yang inline.",
+      "example": "<div class=\"inline-grid\">...</div>",
+      "output": "Grid dengan lebar konten."
+    }
+  ],
+  "flexbox-grid": [
+    {
+      "name": "flex-row / flex-col",
+      "desc": "Arah sumbu utama flex: horizontal (row) atau vertikal (col).",
+      "example": "<div class=\"flex flex-col\"><div>A</div><div>B</div></div>",
+      "output": "A di atas, B di bawah."
+    },
+    {
+      "name": "flex-wrap",
+      "desc": "Item turun ke baris baru jika tidak muat.",
+      "example": "<div class=\"flex flex-wrap\">...</div>",
+      "output": "Tidak overflow; baris baru terbentuk."
+    },
+    {
+      "name": "justify-center",
+      "desc": "Rata tengah horizontal untuk flex/grid item.",
+      "example": "<div class=\"flex justify-center\"><div>Item</div></div>",
+      "output": "Item berada di tengah horizontal."
+    },
+    {
+      "name": "items-center",
+      "desc": "Rata tengah vertikal item dalam container flex/grid.",
+      "example": "<div class=\"flex items-center\">...</div>",
+      "output": "Item rata tengah vertikal."
+    },
+    {
+      "name": "space-x-4 / space-y-2",
+      "desc": "Memberi jarak antar anak secara horizontal (x) atau vertikal (y).",
+      "example": "<div class=\"flex space-x-4\"><div>A</div><div>B</div></div>",
+      "output": "Jarak 1rem antar A dan B."
+    },
+    {
+      "name": "grid-cols-3",
+      "desc": "Grid dengan 3 kolom sama lebar.",
+      "example": "<div class=\"grid grid-cols-3 gap-4\">...</div>",
+      "output": "Tiga kolom."
+    },
+    {
+      "name": "col-span-2",
+      "desc": "Elemen mengambil 2 kolom dari grid.",
+      "example": "<div class=\"col-span-2\">Lebar 2 kolom</div>",
+      "output": "Membentang 2 kolom."
+    },
+    {
+      "name": "row-span-2",
+      "desc": "Elemen mengambil 2 baris.",
+      "example": "<div class=\"row-span-2\">Tinggi 2 baris</div>",
+      "output": "Membentang vertikal 2 baris."
+    }
+  ],
+  "spacing": [
+    {
+      "name": "p-4, pt-2, pr-8, pb-2, pl-8",
+      "desc": "Padding (semua sisi, top, right, bottom, left). Angka 0, 0.5 (0.125rem), 1 (0.25rem), 2 (0.5rem), 3 (0.75rem), 4 (1rem), 5 (1.25rem), 6 (1.5rem), 8 (2rem), 10 (2.5rem), 12 (3rem), 16 (4rem), 20 (5rem), 24 (6rem).",
+      "example": "<div class=\"p-4 pt-2\">Konten</div>",
+      "output": "Padding 1rem di semua sisi, 0.5rem di atas."
+    },
+    {
+      "name": "m-4, mt-2, mr-8, mb-2, ml-8, mx-auto, my-4",
+      "desc": "Margin. mx-auto membuat margin kiri/kanan otomatis (centering block).",
+      "example": "<div class=\"mx-auto w-1/2\">Tengah</div>",
+      "output": "Elemen block berada di tengah horizontal."
+    },
+    {
+      "name": "gap-4",
+      "desc": "Jarak antar item dalam flex atau grid.",
+      "example": "<div class=\"grid grid-cols-2 gap-4\">...</div>",
+      "output": "Jarak 1rem antar item."
+    }
+  ],
+  "sizing": [
+    {
+      "name": "w-1/2, w-full, w-screen",
+      "desc": "Lebar: 50%, 100%, 100vw.",
+      "example": "<div class=\"w-1/2\">Setengah</div>",
+      "output": "Lebar 50% parent."
+    },
+    {
+      "name": "h-10, h-screen",
+      "desc": "Tinggi: 10 (2.5rem), 100vh.",
+      "example": "<div class=\"h-screen\">Tinggi penuh</div>",
+      "output": "Memenuhi tinggi viewport."
+    },
+    {
+      "name": "min-h-screen",
+      "desc": "Tinggi minimal 100vh.",
+      "example": "<div class=\"min-h-screen\">Min 100vh</div>",
+      "output": "Minimal setinggi layar, bisa lebih."
+    },
+    {
+      "name": "max-w-lg",
+      "desc": "Lebar maksimum: sm (24rem), md (28rem), lg (32rem), xl (36rem), 2xl (42rem), ...",
+      "example": "<div class=\"max-w-lg mx-auto\">...</div>",
+      "output": "Lebar maksimal 32rem, tengah."
+    }
+  ],
+  "typography": [
+    {
+      "name": "text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, ..., text-9xl",
+      "desc": "Ukuran font. xs: 0.75rem, sm: 0.875rem, base: 1rem, lg: 1.125rem, xl: 1.25rem, 2xl: 1.5rem, 3xl: 1.875rem, 4xl: 2.25rem, ... 9xl: 8rem.",
+      "example": "<p class=\"text-base\">Teks normal</p>",
+      "output": "Ukuran font 16px."
+    },
+    {
+      "name": "font-bold, font-semibold, font-normal, font-light, font-thin",
+      "desc": "Ketebalan font. bold=700, semibold=600, normal=400, light=300, thin=100.",
+      "example": "<h1 class=\"text-2xl font-bold\">Judul</h1>",
+      "output": "Tebal."
+    },
+    {
+      "name": "tracking-tight, tracking-wide",
+      "desc": "Letter spacing. tight: -0.025em, wide: 0.025em.",
+      "example": "<h2 class=\"tracking-tight\">Judul rapat</h2>",
+      "output": "Huruf lebih rapat."
+    },
+    {
+      "name": "leading-relaxed",
+      "desc": "Line height. relaxed: 1.625.",
+      "example": "<p class=\"leading-relaxed\">Paragraf panjang...</p>",
+      "output": "Baris renggang."
+    },
+    {
+      "name": "text-center, text-left, text-right, text-justify",
+      "desc": "Rata teks.",
+      "example": "<div class=\"text-center\">Tengah</div>",
+      "output": "Teks di tengah."
+    },
+    {
+      "name": "text-red-500, text-blue-700, text-gray-900, dll.",
+      "desc": "Warna teks. Menggunakan palet warna bawaan Tailwind.",
+      "example": "<span class=\"text-red-500\">Error</span>",
+      "output": "Teks merah."
+    },
+    {
+      "name": "underline, line-through, no-underline",
+      "desc": "Dekorasi teks.",
+      "example": "<a class=\"underline hover:no-underline\">Link</a>",
+      "output": "Tautan bergaris bawah."
+    },
+    {
+      "name": "truncate",
+      "desc": "Memotong teks dengan ellipsis jika overflow (perlu width tetap).",
+      "example": "<p class=\"w-48 truncate\">Teks yang sangat panjang...</p>",
+      "output": "Teks dipotong dengan '...'."
+    },
+    {
+      "name": "whitespace-nowrap",
+      "desc": "Teks tidak melipat ke baris baru.",
+      "example": "<td class=\"whitespace-nowrap\">Data panjang</td>",
+      "output": "Teks dalam satu baris."
+    },
+    {
+      "name": "break-words",
+      "desc": "Memotong kata jika terlalu panjang (overflow-wrap: break-word).",
+      "example": "<p class=\"break-words\">url_sangat_panjang...</p>",
+      "output": "Kata dipecah jika perlu."
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "bg-red-500, bg-blue-200, bg-gray-100",
+      "desc": "Warna latar belakang.",
+      "example": "<div class=\"bg-blue-500 text-white p-4\">Tombol</div>",
+      "output": "Latar belakang biru."
+    },
+    {
+      "name": "bg-gradient-to-r, from-cyan-500, to-blue-500",
+      "desc": "Gradien linear. to-r (kanan), to-b (bawah), to-tl (kiri atas).",
+      "example": "<div class=\"bg-gradient-to-r from-purple-500 to-pink-500 p-4\">Gradien</div>",
+      "output": "Gradien ungu ke pink."
+    },
+    {
+      "name": "bg-opacity-50",
+      "desc": "Mengatur opacity latar belakang (0-100).",
+      "example": "<div class=\"bg-black bg-opacity-50\">...</div>",
+      "output": "Hitam dengan opacity 50%."
+    },
+    {
+      "name": "bg-cover, bg-center, bg-no-repeat",
+      "desc": "Background image: cover, posisi tengah, tidak diulang.",
+      "example": "<div class=\"bg-[url('/img/hero.jpg')] bg-cover bg-center\">...</div>",
+      "output": "Gambar menutupi elemen, terpusat."
+    }
+  ],
+  "borders": [
+    {
+      "name": "border, border-2, border-4",
+      "desc": "Menambahkan border dengan ketebalan 1px, 2px, 4px.",
+      "example": "<div class=\"border-2 border-gray-300 p-4\">Card</div>",
+      "output": "Border abu-abu 2px."
+    },
+    {
+      "name": "border-red-500, border-t-4, border-r-0",
+      "desc": "Warna border, border sisi tertentu, hapus border sisi.",
+      "example": "<div class=\"border-t-4 border-blue-500\">...</div>",
+      "output": "Hanya border atas tebal biru."
+    },
+    {
+      "name": "rounded, rounded-lg, rounded-full",
+      "desc": "Sudut melengkung. rounded: 0.25rem, lg: 0.5rem, full: 9999px (lingkaran).",
+      "example": "<img class=\"rounded-full w-12 h-12\" src=\"...\" />",
+      "output": "Gambar bulat sempurna."
+    },
+    {
+      "name": "divide-y, divide-x, divide-gray-200",
+      "desc": "Mengatur border antar anak dalam flex/grid.",
+      "example": "<div class=\"divide-y divide-gray-200\"><div>A</div><div>B</div></div>",
+      "output": "Garis horizontal antar A dan B."
+    }
+  ],
+  "effects": [
+    {
+      "name": "shadow, shadow-md, shadow-lg, shadow-xl",
+      "desc": "Box shadow. md: 0 4px 6px rgba(0,0,0,0.1).",
+      "example": "<div class=\"shadow-lg p-6 bg-white rounded\">Card</div>",
+      "output": "Bayangan besar di bawah card."
+    },
+    {
+      "name": "shadow-inner",
+      "desc": "Shadow di dalam elemen.",
+      "example": "<div class=\"shadow-inner bg-gray-100 p-4\">...</div>",
+      "output": "Efek cekung."
+    },
+    {
+      "name": "opacity-75",
+      "desc": "Transparansi. 0-100 (0-1).",
+      "example": "<img class=\"opacity-50\" ... />",
+      "output": "Gambar semi-transparan."
+    },
+    {
+      "name": "mix-blend-multiply",
+      "desc": "Blend mode (multiply, screen, overlay, dll).",
+      "example": "<div class=\"mix-blend-multiply bg-blue-500\">...</div>",
+      "output": "Efek campuran dengan latar."
+    }
+  ],
+  "filters": [
+    {
+      "name": "blur, blur-sm, blur-lg",
+      "desc": "Efek blur.",
+      "example": "<div class=\"blur-sm\">Teks kabur</div>",
+      "output": "Sedikit blur."
+    },
+    {
+      "name": "brightness-110, contrast-125, saturate-150",
+      "desc": "Penyesuaian kecerahan, kontras, saturasi (persen).",
+      "example": "<img class=\"brightness-75\" ... />",
+      "output": "Gambar lebih gelap."
+    },
+    {
+      "name": "grayscale, sepia",
+      "desc": "Filter abu-abu, sepia.",
+      "example": "<img class=\"grayscale hover:grayscale-0\" ... />",
+      "output": "Hitam-putih, hover menjadi berwarna."
+    }
+  ],
+  "tables": [
+    {
+      "name": "table, table-auto, table-fixed",
+      "desc": "Mengatur display table dan layout.",
+      "example": "<table class=\"table-auto w-full\">...</table>",
+      "output": "Lebar kolom otomatis sesuai konten."
+    },
+    {
+      "name": "border-collapse",
+      "desc": "Menggabungkan border sel (collapse) atau terpisah.",
+      "example": "<table class=\"border-collapse border border-gray-300\">...</table>",
+      "output": "Border antar sel menyatu."
+    }
+  ],
+  "transitions-animation": [
+    {
+      "name": "transition, transition-all, transition-colors, transition-opacity, transition-transform",
+      "desc": "Mengaktifkan transisi pada perubahan properti.",
+      "example": "<button class=\"transition-colors duration-300 hover:bg-blue-700\">...</button>",
+      "output": "Warna berubah halus dalam 300ms."
+    },
+    {
+      "name": "duration-300",
+      "desc": "Durasi transisi dalam milidetik: 75, 100, 150, 200, 300, 500, 700, 1000.",
+      "example": "class=\"duration-500\"",
+      "output": "Transisi 0.5 detik."
+    },
+    {
+      "name": "ease-in, ease-out, ease-in-out, linear",
+      "desc": "Timing function transisi.",
+      "example": "<div class=\"transition-transform duration-200 ease-in-out hover:scale-105\">...</div>",
+      "output": "Membesar perlahan saat hover."
+    },
+    {
+      "name": "animate-spin, animate-ping, animate-pulse, animate-bounce",
+      "desc": "Animasi bawaan Tailwind.",
+      "example": "<div class=\"animate-spin h-6 w-6 border-t-2 border-blue-500 rounded-full\"></div>",
+      "output": "Berputar terus menerus (spinner)."
+    }
+  ],
+  "transforms": [
+    {
+      "name": "scale-105, scale-x-50, scale-y-75",
+      "desc": "Memperbesar/memperkecil elemen. 100 = 100%.",
+      "example": "<img class=\"transform hover:scale-110 transition\" ... />",
+      "output": "Gambar membesar saat hover."
+    },
+    {
+      "name": "rotate-45, rotate-90, -rotate-45",
+      "desc": "Rotasi dalam derajat.",
+      "example": "<div class=\"transform rotate-45\">...</div>",
+      "output": "Elemen diputar 45°."
+    },
+    {
+      "name": "translate-x-4, -translate-y-2",
+      "desc": "Translasi (pergeseran) sumbu x atau y (nilai dalam rem).",
+      "example": "<div class=\"transform translate-x-4\">Geser kanan</div>",
+      "output": "Bergeser 1rem ke kanan."
+    },
+    {
+      "name": "origin-top-left, origin-center",
+      "desc": "Titik asal transformasi.",
+      "example": "<div class=\"transform rotate-45 origin-top-left\">...</div>",
+      "output": "Berputar dari pojok kiri atas."
+    }
+  ],
+  "interactivity": [
+    {
+      "name": "cursor-pointer, cursor-not-allowed",
+      "desc": "Bentuk kursor.",
+      "example": "<button class=\"cursor-pointer\">Klik</button>",
+      "output": "Kursor tangan."
+    },
+    {
+      "name": "select-none, select-text",
+      "desc": "Mengizinkan atau mencegah seleksi teks.",
+      "example": "<div class=\"select-none\">Tidak bisa di-select</div>",
+      "output": "Teks tidak bisa di-copy."
+    },
+    {
+      "name": "resize, resize-none",
+      "desc": "Mengizinkan resize elemen (textarea).",
+      "example": "<textarea class=\"resize-none\"></textarea>",
+      "output": "Tidak bisa diresize."
+    }
+  ],
+  "svg": [
+    {
+      "name": "fill-current",
+      "desc": "Mengisi SVG dengan warna teks saat ini.",
+      "example": "<svg class=\"fill-current text-blue-500\">...</svg>",
+      "output": "SVG mengikuti warna teks."
+    },
+    {
+      "name": "stroke-current",
+      "desc": "Stroke SVG mengikuti warna teks.",
+      "example": "<svg class=\"stroke-current text-red-500\">...</svg>",
+      "output": "Garis SVG berwarna merah."
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "sr-only",
+      "desc": "Hanya terlihat oleh screen reader (teks tersembunyi secara visual).",
+      "example": "<span class=\"sr-only\">Tutup</span>",
+      "output": "Screen reader membaca 'Tutup'."
+    },
+    {
+      "name": "not-sr-only",
+      "desc": "Mengembalikan elemen dari sr-only menjadi terlihat pada breakpoint tertentu.",
+      "example": "<span class=\"sr-only md:not-sr-only\">Tampil di md</span>",
+      "output": "Di layar medium ke atas, teks terlihat."
+    }
+  ],
+  "config": [
+    {
+      "name": "tailwind.config.js",
+      "desc": "File konfigurasi untuk menyesuaikan tema, breakpoint, plugin, dll.",
+      "example": "module.exports = { theme: { extend: { colors: { brand: '#6C5CE7' } } }, plugins: [] }",
+      "output": "Warna kustom 'brand' tersedia sebagai bg-brand, text-brand, dll."
+    },
+    {
+      "name": "@layer base",
+      "desc": "Menambahkan gaya dasar (reset) di file CSS utama dengan @tailwind base.",
+      "example": "@layer base { h1 { @apply text-2xl font-bold; } }",
+      "output": "Gaya dasar untuk h1 diterapkan."
+    },
+    {
+      "name": "@apply",
+      "desc": "Menggabungkan utility Tailwind ke dalam aturan CSS kustom.",
+      "example": ".btn { @apply bg-blue-500 text-white py-2 px-4 rounded; }",
+      "output": "Kelas .btn memiliki semua utility tersebut."
+    }
+  ],
+  "variants": [
+    {
+      "name": "hover:bg-red-600",
+      "desc": "Gaya diterapkan saat hover.",
+      "example": "<button class=\"bg-red-500 hover:bg-red-600\">Hover me</button>",
+      "output": "Warna tombol berubah saat disorot."
+    },
+    {
+      "name": "focus:outline-none focus:ring-2",
+      "desc": "Gaya saat elemen difokuskan (keyboard atau klik).",
+      "example": "<input class=\"focus:outline-none focus:ring-2 focus:ring-blue-500\" />",
+      "output": "Saat fokus, muncul cincin biru."
+    },
+    {
+      "name": "active:scale-95",
+      "desc": "Gaya saat elemen sedang diklik (aktif).",
+      "example": "<button class=\"active:scale-95 transition\">Klik</button>",
+      "output": "Tombol sedikit mengecil saat ditekan."
+    },
+    {
+      "name": "dark:bg-gray-900",
+      "desc": "Gaya saat mode gelap (prefers-color-scheme: dark). Butuh konfigurasi darkMode: 'class' atau 'media'.",
+      "example": "<div class=\"bg-white dark:bg-gray-900 dark:text-white\">...</div>",
+      "output": "Latar belakang putih di mode terang, abu-abu gelap di mode gelap."
+    },
+    {
+      "name": "md:flex, lg:hidden",
+      "desc": "Responsive variant: hanya berlaku pada breakpoint tertentu.",
+      "example": "<div class=\"hidden md:flex\">...</div>",
+      "output": "Elemen tersembunyi di mobile, tampil flex di tablet ke atas."
+    }
+  ],
+  "plugins": [
+    {
+      "name": "@tailwindcss/typography",
+      "desc": "Plugin resmi untuk styling konten teks panjang (artikel, blog) dengan kelas 'prose'.",
+      "example": "<article class=\"prose lg:prose-xl\"><h1>Judul</h1><p>...</p></article>",
+      "output": "Tipografi otomatis yang indah untuk konten Markdown/HTML."
+    },
+    {
+      "name": "@tailwindcss/forms",
+      "desc": "Plugin untuk mereset gaya default form agar seragam di semua browser.",
+      "example": "// tailwind.config.js: plugins: [require('@tailwindcss/forms')]",
+      "output": "Input, select, textarea memiliki tampilan yang konsisten."
+    },
+    {
+      "name": "@tailwindcss/line-clamp",
+      "desc": "Plugin untuk membatasi baris teks (line-clamp). Sekarang sudah termasuk di core (line-clamp-3).",
+      "example": "<p class=\"line-clamp-3\">Teks panjang...</p>",
+      "output": "Maksimal 3 baris, lebih dipotong dengan ellipsis."
+    }
+  ],
+   "pseudo-classes": [
+    {
+      "name": "hover:bg-blue-600",
+      "desc": "Gaya saat kursor berada di atas elemen.",
+      "example": "<button class=\"bg-blue-500 hover:bg-blue-600\">Hover me</button>",
+      "output": "Tombol berubah warna saat disorot."
+    },
+    {
+      "name": "focus:ring-2",
+      "desc": "Gaya saat elemen menerima fokus (input, tombol).",
+      "example": "<input class=\"focus:ring-2 focus:ring-blue-500 focus:outline-none\" />",
+      "output": "Cincin biru muncul saat input difokuskan."
+    },
+    {
+      "name": "active:scale-95",
+      "desc": "Gaya saat elemen sedang diklik (mouse down).",
+      "example": "<button class=\"active:scale-95 transition\">Klik</button>",
+      "output": "Tombol sedikit mengecil saat ditekan."
+    },
+    {
+      "name": "visited:text-purple-600",
+      "desc": "Gaya untuk tautan yang sudah dikunjungi.",
+      "example": "<a href=\"#\" class=\"text-blue-600 visited:text-purple-600\">Link</a>",
+      "output": "Tautan berubah ungu setelah diklik."
+    },
+    {
+      "name": "disabled:opacity-50",
+      "desc": "Gaya saat elemen dalam keadaan disabled.",
+      "example": "<button class=\"disabled:opacity-50 disabled:cursor-not-allowed\" disabled>Submit</button>",
+      "output": "Tombol terlihat redup dan kursor berubah."
+    },
+    {
+      "name": "checked:bg-green-500",
+      "desc": "Gaya untuk checkbox/radio yang sedang checked.",
+      "example": "<input type=\"checkbox\" class=\"checked:bg-green-500\" />",
+      "output": "Warna latar berubah saat dicentang."
+    },
+    {
+      "name": "focus-within:ring-2",
+      "desc": "Gaya pada parent jika ada anak yang sedang fokus.",
+      "example": "<div class=\"border focus-within:ring-2 focus-within:ring-blue-500\"><input /></div>",
+      "output": "Border parent berubah saat anak input difokuskan."
+    },
+    {
+      "name": "first:mt-0 / last:mb-0",
+      "desc": "Gaya untuk elemen pertama atau terakhir di dalam container.",
+      "example": "<ul><li class=\"first:mt-0 last:mb-0\">Item</li></ul>",
+      "output": "Menghapus margin atas/bawah pada item pertama/terakhir."
+    },
+    {
+      "name": "even:bg-gray-100 / odd:bg-white",
+      "desc": "Gaya untuk baris genap/ganjil (zebra striping).",
+      "example": "<tr class=\"even:bg-gray-100 odd:bg-white\">...</tr>",
+      "output": "Baris genap abu‑abu, baris ganjil putih."
+    },
+    {
+      "name": "nth-child(3):bg-red-500",
+      "desc": "Arbitrary pseudo‑class: memilih anak ke‑n.",
+      "example": "<div class=\"[&:nth-child(3)]:bg-red-500\">Item 3</div>",
+      "output": "Hanya item ke‑3 yang merah."
+    }
+  ],
+  "pseudo-elements": [
+    {
+      "name": "placeholder:text-gray-400",
+      "desc": "Gaya untuk teks placeholder pada input/textarea.",
+      "example": "<input class=\"placeholder:text-gray-400 placeholder:italic\" placeholder=\"Nama\" />",
+      "output": "Placeholder abu‑abu dan miring."
+    },
+    {
+      "name": "file:bg-blue-500 file:text-white",
+      "desc": "Gaya untuk tombol upload file (pada input type=\"file\").",
+      "example": "<input type=\"file\" class=\"file:bg-blue-500 file:text-white file:border-none file:rounded\" />",
+      "output": "Tombol Choose File berwarna biru."
+    },
+    {
+      "name": "selection:bg-yellow-300",
+      "desc": "Gaya untuk teks yang diseleksi pengguna.",
+      "example": "<p class=\"selection:bg-yellow-300 selection:text-black\">Pilih teks ini</p>",
+      "output": "Blok seleksi berwarna kuning."
+    },
+    {
+      "name": "marker:text-red-500",
+      "desc": "Gaya untuk penanda (bullet) di daftar.",
+      "example": "<ul class=\"list-disc marker:text-red-500\"><li>Merah</li></ul>",
+      "output": "Bullet berwarna merah."
+    },
+    {
+      "name": "before:content-['*'] / after:content-['→']",
+      "desc": "Menambahkan konten pseudo‑element ::before dan ::after.",
+      "example": "<span class=\"before:content-['★_'] after:content-['_★']\">Penting</span>",
+      "output": "★ Penting ★"
+    },
+    {
+      "name": "first-letter:text-2xl",
+      "desc": "Gaya untuk huruf pertama paragraf.",
+      "example": "<p class=\"first-letter:text-2xl first-letter:font-bold first-letter:float-left\">Drop cap</p>",
+      "output": "Huruf pertama lebih besar."
+    },
+    {
+      "name": "first-line:uppercase",
+      "desc": "Gaya untuk baris pertama paragraf.",
+      "example": "<p class=\"first-line:uppercase first-line:tracking-wide\">Baris pertama kapital semua</p>",
+      "output": "Hanya baris pertama yang kapital."
+    }
+  ],
+  "child-sibling": [
+    {
+      "name": "*:mx-2 (semua anak langsung)",
+      "desc": "Menerapkan gaya ke semua anak langsung dari sebuah container.",
+      "example": "<div class=\"*:mx-2\"><span>A</span><span>B</span></div>",
+      "output": "Semua <span> di dalam div mendapat mx‑2."
+    },
+    {
+      "name": "[&>li]:hover:bg-gray-100",
+      "desc": "Arbitrary variant: saat hover pada <li> anak.",
+      "example": "<ul class=\"[&>li]:hover:bg-gray-100\"><li>Item</li></ul>",
+      "output": "Setiap item <li> berubah latar saat disorot."
+    },
+    {
+      "name": "[&_a]:text-blue-600",
+      "desc": "Arbitrary variant: semua <a> di dalam elemen (berapapun kedalamannya).",
+      "example": "<div class=\"[&_a]:text-blue-600 [&_a]:underline\"><a href=\"#\">Link</a></div>",
+      "output": "Semua tautan di dalam div berwarna biru."
+    },
+    {
+      "name": "[&:not(:first-child)]:border-t",
+      "desc": "Arbitrary variant: kecuali anak pertama.",
+      "example": "<div class=\"[&>div:not(:first-child)]:border-t\"><div>A</div><div>B</div></div>",
+      "output": "Border atas hanya pada B, bukan A."
+    }
+  ],
+  "group-peer": [
+    {
+      "name": "group (parent marker) + group-hover:...",
+      "desc": "Mengubah anak saat parent di‑hover.",
+      "example": "<div class=\"group\"><h3 class=\"group-hover:text-blue-500\">Judul</h3></div>",
+      "output": "Judul berubah biru saat kursor di atas parent."
+    },
+    {
+      "name": "group-focus:...",
+      "desc": "Mengubah anak saat parent menerima fokus.",
+      "example": "<div class=\"group\"><input /><span class=\"group-focus-within:text-blue-500\">Aktif</span></div>",
+      "output": "Teks 'Aktif' membiru saat input di dalamnya fokus."
+    },
+    {
+      "name": "peer (sibling marker) + peer-invalid:...",
+      "desc": "Mengubah saudara setelahnya berdasarkan state sibling (contoh: input valid/invalid).",
+      "example": "<input class=\"peer\" required /><p class=\"hidden peer-invalid:block text-red-500\">Wajib diisi</p>",
+      "output": "Pesan error muncul jika input tidak valid."
+    },
+    {
+      "name": "peer-checked:...",
+      "desc": "Mengubah saudara setelah checkbox/radio yang dicentang.",
+      "example": "<input type=\"checkbox\" class=\"peer\" /><span class=\"peer-checked:text-green-500\">Setuju</span>",
+      "output": "Teks berubah hijau saat checkbox dicentang."
+    }
+  ],
+  "attribute-selectors": [
+    {
+      "name": "aria-checked:bg-green-500",
+      "desc": "Gaya berdasarkan atribut aksesibilitas (aria-*).",
+      "example": "<div role=\"checkbox\" aria-checked=\"true\" class=\"aria-checked:bg-green-500\">✓</div>",
+      "output": "Latar hijau saat aria‑checked=\"true\"."
+    },
+    {
+      "name": "data-[state=open]:block",
+      "desc": "Gaya berdasarkan atribut data.",
+      "example": "<div data-state=\"open\" class=\"hidden data-[state=open]:block\">Terbuka</div>",
+      "output": "Elemen terlihat hanya jika data‑state='open'."
+    }
+  ],
+  "arbitrary": [
+    {
+      "name": "Arbitrary values (w-[300px], bg-[#bada55])",
+      "desc": "Menggunakan nilai kustom di luar konfigurasi default.",
+      "example": "<div class=\"w-[calc(100%-2rem)] bg-[#bada55]\">Custom</div>",
+      "output": "Lebar kalkulasi dan warna hex bebas."
+    },
+    {
+      "name": "Arbitrary variants ([@media(min-width:1234px)]:flex)",
+      "desc": "Menggunakan media query atau selector kustom.",
+      "example": "<div class=\"[@media(min-width:1234px)]:flex [&_.child]:hidden\">...</div>",
+      "output": "Flex hanya di atas 1234px; child di dalamnya hidden."
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "privacy-principles": [
+    {
+      "name": "Data Minimization",
+      "desc": "Hanya kumpulkan data yang benar-benar diperlukan untuk fungsi yang diberikan.",
+      "example": "Jika hanya perlu email untuk login, jangan minta nomor telepon dan alamat.",
+      "output": "Data minimal dikumpulkan"
+    },
+    {
+      "name": "Purpose Limitation",
+      "desc": "Gunakan data hanya untuk tujuan yang sudah dijelaskan kepada pengguna.",
+      "example": "Email yang dikumpulkan untuk reset password tidak boleh digunakan untuk marketing tanpa izin.",
+      "output": "Data hanya untuk tujuan spesifik"
+    },
+    {
+      "name": "Transparency",
+      "desc": "Beritahu pengguna data apa yang dikumpulkan, mengapa, dan dengan siapa dibagikan.",
+      "example": "Kebijakan privasi yang jelas dan mudah diakses.",
+      "output": "Pengguna memahami penggunaan data"
+    },
+    {
+      "name": "User Consent",
+      "desc": "Dapatkan izin eksplisit sebelum mengumpulkan data sensitif atau melacak pengguna.",
+      "example": "Cookie consent banner dengan opsi terperinci (bukan hanya 'terima semua').",
+      "output": "Persetujuan sadar"
+    },
+    {
+      "name": "Right to be Forgotten",
+      "desc": "Pengguna berhak meminta penghapusan semua data pribadi mereka.",
+      "example": "Sediakan form atau kontak untuk permintaan penghapusan data.",
+      "output": "Data dihapus permanen"
+    },
+    {
+      "name": "Data Portability",
+      "desc": "Pengguna berhak menerima data mereka dalam format yang dapat dibaca mesin.",
+      "example": "Ekspor data pengguna dalam format JSON atau CSV.",
+      "output": "Data mudah dipindahkan"
+    }
+  ],
+  "browser-features": [
+    {
+      "name": "SameSite Cookies",
+      "desc": "Atribut SameSite mengontrol kapan cookie dikirim bersama permintaan lintas situs. Nilai: Strict, Lax, None.",
+      "example": "Set-Cookie: session_id=abc123; SameSite=Lax; Secure; HttpOnly",
+      "output": "Cookie hanya dikirim dalam konteks first-party (Lax) atau strictly first-party (Strict)"
+    },
+    {
+      "name": "Third-Party Cookie Phase-Out",
+      "desc": "Browser utama (Safari, Firefox, Chrome) secara bertahap memblokir cookie pihak ketiga.",
+      "example": "Mengganti dengan CHIPS (Cookies Having Independent Partitioned State) atau Storage Access API.",
+      "output": "Pelacakan lintas situs berkurang"
+    },
+    {
+      "name": "Intelligent Tracking Prevention (ITP)",
+      "desc": "Fitur Safari yang membatasi pelacakan dengan membatasi masa pakai cookie dan membatasi akses storage.",
+      "example": "Cookie pihak ketiga diblokir penuh; localStorage dibersihkan setelah 7 hari tidak aktif.",
+      "output": "Pelacakan dibatasi"
+    },
+    {
+      "name": "Enhanced Tracking Protection (ETP)",
+      "desc": "Fitur Firefox yang memblokir pelacak media sosial, fingerprinting, dan cryptominer.",
+      "example": "Firefox memblokir skrip pelacakan dari daftar Disconnect.me.",
+      "output": "Pelacak diblokir otomatis"
+    },
+    {
+      "name": "Global Privacy Control (GPC)",
+      "desc": "Sinyal browser yang memberi tahu website untuk tidak menjual atau membagikan data pengguna.",
+      "example": "Situs harus membaca sinyal Sec-GPC header dan menghormatinya.",
+      "output": "Sinyal Do Not Sell/Share"
+    }
+  ],
+  "http-headers": [
+    {
+      "name": "Strict-Transport-Security (HSTS)",
+      "desc": "Memaksa browser hanya menggunakan HTTPS untuk mengakses situs.",
+      "example": "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
+      "output": "Semua koneksi HTTPS"
+    },
+    {
+      "name": "Referrer-Policy",
+      "desc": "Mengontrol informasi referrer yang dikirim saat navigasi.",
+      "example": "Referrer-Policy: strict-origin-when-cross-origin",
+      "output": "URL penuh hanya di same-origin, origin saja di cross-origin"
+    },
+    {
+      "name": "Permissions-Policy",
+      "desc": "Mengontrol akses ke fitur browser (kamera, mikrofon, lokasi) untuk dokumen dan iframe.",
+      "example": "Permissions-Policy: camera=(), microphone=(), geolocation=(self \"https://trusted.com\")",
+      "output": "Fitur dibatasi sesuai kebijakan"
+    },
+    {
+      "name": "Content-Security-Policy (CSP)",
+      "desc": "Mencegah XSS, clickjacking, dan serangan injeksi dengan membatasi sumber daya.",
+      "example": "Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'",
+      "output": "Hanya sumber daya dari domain sendiri"
+    },
+    {
+      "name": "Clear-Site-Data",
+      "desc": "Memerintahkan browser untuk menghapus data situs (cookie, cache, storage).",
+      "example": "Clear-Site-Data: \"cookies\", \"storage\", \"cache\"",
+      "output": "Semua data situs dibersihkan"
+    },
+    {
+      "name": "Sec-GPC",
+      "desc": "Header yang dikirim browser untuk mengaktifkan Global Privacy Control.",
+      "example": "Sec-GPC: 1",
+      "output": "Sinyal privasi aktif"
+    }
+  ],
+  "cookies-storage": [
+    {
+      "name": "Cookie Secure Flag",
+      "desc": "Cookie hanya dikirim melalui koneksi HTTPS.",
+      "example": "Set-Cookie: token=abc; Secure",
+      "output": "Aman dari pengintaian jaringan"
+    },
+    {
+      "name": "Cookie HttpOnly Flag",
+      "desc": "Cookie tidak dapat diakses melalui JavaScript (document.cookie).",
+      "example": "Set-Cookie: token=abc; Secure; HttpOnly",
+      "output": "Terlindung dari serangan XSS"
+    },
+    {
+      "name": "Cookie Max-Age / Expires",
+      "desc": "Mengatur masa berlaku cookie.",
+      "example": "Set-Cookie: session=abc; Max-Age=3600",
+      "output": "Cookie kadaluarsa 1 jam"
+    },
+    {
+      "name": "Cookie Domain & Path",
+      "desc": "Membatasi scope cookie ke domain dan path tertentu.",
+      "example": "Set-Cookie: token=abc; Domain=example.com; Path=/app",
+      "output": "Hanya di /app pada example.com"
+    },
+    {
+      "name": "localStorage vs sessionStorage",
+      "desc": "localStorage menetap, sessionStorage hilang setelah tab ditutup. Keduanya tidak dikirim ke server.",
+      "example": "localStorage.setItem('theme', 'dark')\nsessionStorage.setItem('temp', 'value')",
+      "output": "Storage sisi klien"
+    },
+    {
+      "name": "Partitioned Cookies (CHIPS)",
+      "desc": "Cookie dengan atribut Partitioned disimpan per top-level site, bukan lintas situs.",
+      "example": "Set-Cookie: __Host-token=abc; Secure; Path=/; SameSite=None; Partitioned",
+      "output": "Terisolasi per situs"
+    }
+  ],
+  "privacy-apis": [
+    {
+      "name": "Permissions API",
+      "desc": "Memeriksa dan meminta izin akses fitur sensitif (geolokasi, notifikasi, kamera).",
+      "example": "const status = await navigator.permissions.query({ name: 'geolocation' })\nif (status.state === 'granted') { ... }",
+      "output": "Status izin: granted, denied, prompt"
+    },
+    {
+      "name": "Storage Access API",
+      "desc": "Memungkinkan iframe pihak ketiga meminta akses ke cookie first-party (menggantikan third-party cookies).",
+      "example": "document.requestStorageAccess().then(() => { ... })",
+      "output": "Akses storage diberikan setelah izin pengguna"
+    },
+    {
+      "name": "FedCM (Federated Credential Management)",
+      "desc": "API privasi untuk federated identity (login dengan Google, dll) tanpa third-party cookies.",
+      "example": "const cred = await navigator.credentials.get({ identity: { providers: [...] } })",
+      "output": "Token federasi diterima"
+    },
+    {
+      "name": "Attribution Reporting API",
+      "desc": "Mengukur konversi iklan tanpa pelacakan individu lintas situs.",
+      "example": "Gunakan header Attribution-Reporting-Register-Source dan trigger.",
+      "output": "Data agregat atau dengan noise"
+    },
+    {
+      "name": "Private State Tokens",
+      "desc": "Mencegah penipuan tanpa mengidentifikasi pengguna secara unik.",
+      "example": "Browser mengeluarkan token kriptografi yang bisa diverifikasi oleh penerbit.",
+      "output": "Anti-fraud tanpa fingerprinting"
+    },
+    {
+      "name": "Topics API",
+      "desc": "Menggantikan third-party cookies untuk iklan berbasis minat dengan topik yang dihitung secara lokal di browser.",
+      "example": "document.browsingTopics() mengembalikan topik (misal 'Olahraga')",
+      "output": "Topik tanpa mengungkapkan situs spesifik"
+    }
+  ],
+  "tracking-protection": [
+    {
+      "name": "Browser Fingerprinting",
+      "desc": "Teknik mengidentifikasi pengguna berdasarkan karakteristik unik browser (font, WebGL, user agent).",
+      "example": "Menggunakan canvas fingerprinting: menggambar teks tersembunyi, hash hasilnya.",
+      "output": "Identifikasi unik tanpa cookie"
+    },
+    {
+      "name": "Anti-Fingerprinting",
+      "desc": "Browser memblokir atau mengacak data fingerprinting (user agent reduction, WebGL noise).",
+      "example": "Chrome User-Agent Reduction: hanya mengirim info browser minimal.",
+      "output": "Data fingerprint tidak akurat"
+    },
+    {
+      "name": "Do Not Track (DNT)",
+      "desc": "Header yang meminta situs tidak melacak pengguna. Tidak wajib dipatuhi.",
+      "example": "DNT: 1",
+      "output": "Sinyal tidak melacak (opsional)"
+    },
+    {
+      "name": "Global Privacy Control (GPC)",
+      "desc": "Penerus DNT yang lebih kuat dan diakui secara hukum di beberapa yurisdiksi.",
+      "example": "Header Sec-GPC: 1 dan properti navigator.globalPrivacyControl",
+      "output": "Sinyal privasi yang dapat ditegakkan"
+    }
+  ],
+  "regulations": [
+    {
+      "name": "GDPR (General Data Protection Regulation)",
+      "desc": "Regulasi perlindungan data Uni Eropa yang mewajibkan izin eksplisit, hak akses, dan penghapusan data.",
+      "example": "Cookie consent dengan opt-in, privacy policy lengkap, Data Protection Officer (DPO).",
+      "output": "Kepatuhan untuk pengguna EU"
+    },
+    {
+      "name": "CCPA / CPRA (California Consumer Privacy Act)",
+      "desc": "Memberi hak kepada warga California untuk mengetahui, menghapus, dan menolak penjualan data pribadi.",
+      "example": "Tautan 'Do Not Sell My Personal Information' di footer.",
+      "output": "Kepatuhan untuk pengguna California"
+    },
+    {
+      "name": "ePrivacy Directive (Cookie Law)",
+      "desc": "Mewajibkan izin sebelum menyimpan atau mengakses informasi di perangkat pengguna (cookie).",
+      "example": "Cookie banner yang memblokir cookie non-esensial sebelum persetujuan.",
+      "output": "Izin cookie eksplisit"
+    },
+    {
+      "name": "LGPD (Lei Geral de Proteção de Dados)",
+      "desc": "Regulasi privasi data Brasil, mirip GDPR.",
+      "example": "Hak akses, koreksi, penghapusan data.",
+      "output": "Kepatuhan untuk pengguna Brasil"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Privacy by Design",
+      "desc": "Privasi diintegrasikan ke dalam produk sejak awal, bukan sebagai tambahan.",
+      "example": "Enkripsi data in transit dan at rest, minimalisasi pengumpulan data.",
+      "output": "Privasi bawaan"
+    },
+    {
+      "name": "Gunakan HTTPS di mana-mana",
+      "desc": "Enkripsi semua komunikasi antara pengguna dan server.",
+      "example": "Server mendukung TLS 1.3, redirect HTTP ke HTTPS.",
+      "output": "Data tidak dapat disadap"
+    },
+    {
+      "name": "Validasi dan Sanitasi Input",
+      "desc": "Cegah kebocoran data melalui serangan injeksi.",
+      "example": "Gunakan parameterized query, validasi sisi server.",
+      "output": "Data tetap aman"
+    },
+    {
+      "name": "Enkripsi Data Sensitif",
+      "desc": "Enkripsi password (bcrypt/argon2), data pribadi (AES), dan data in transit (TLS).",
+      "example": "bcrypt.hash(password, 12)\ncrypto.createCipheriv('aes-256-gcm', key, iv)",
+      "output": "Data tidak bisa dibaca jika bocor"
+    },
+    {
+      "name": "Transparansi dengan Kebijakan Privasi",
+      "desc": "Sediakan kebijakan privasi yang mudah ditemukan dan dipahami.",
+      "example": "Tautan di footer: '/privacy-policy' dengan bahasa sederhana.",
+      "output": "Pengguna memahami haknya"
+    },
+    {
+      "name": "Audit Data secara Berkala",
+      "desc": "Tinjau data apa yang dikumpulkan, di mana disimpan, dan siapa yang memiliki akses.",
+      "example": "Data inventory spreadsheet atau alat otomatis.",
+      "output": "Kontrol penuh atas data"
+    },
+    {
+      "name": "Responsif terhadap Permintaan Data",
+      "desc": "Sediakan mekanisme bagi pengguna untuk mengakses, mengunduh, atau menghapus data mereka.",
+      "example": "Formulir otomatis di dashboard pengguna.",
+      "output": "Hak pengguna terpenuhi"
+    }
+  ]
+}

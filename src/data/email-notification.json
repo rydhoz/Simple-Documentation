@@ -1,0 +1,126 @@
+{
+  "email-sending": [
+    {
+      "name": "Resend",
+      "desc": "Layanan pengiriman email modern dengan API sederhana dan dukungan React Email.",
+      "example": "import { Resend } from 'resend'\n\nconst resend = new Resend(process.env.RESEND_API_KEY)\n\nawait resend.emails.send({\n  from: 'onboarding@resend.dev',\n  to: 'user@example.com',\n  subject: 'Hello World',\n  html: '<p>Selamat datang!</p>'\n})",
+      "output": "Email terkirim"
+    },
+    {
+      "name": "Nodemailer",
+      "desc": "Library SMTP populer untuk mengirim email dari server Node.js.",
+      "example": "import nodemailer from 'nodemailer'\n\nconst transporter = nodemailer.createTransport({\n  service: 'gmail',\n  auth: { user: process.env.EMAIL, pass: process.env.PASSWORD }\n})\n\nawait transporter.sendMail({\n  from: '\"Nama\" <email@example.com>',\n  to: 'user@example.com',\n  subject: 'Test',\n  text: 'Hello'\n})",
+      "output": "Email terkirim via SMTP"
+    },
+    {
+      "name": "SendGrid",
+      "desc": "Layanan email massal dengan API yang kaya dan template builder.",
+      "example": "import sgMail from '@sendgrid/mail'\nsgMail.setApiKey(process.env.SENDGRID_API_KEY)\n\nawait sgMail.send({\n  to: 'user@example.com',\n  from: 'admin@example.com',\n  subject: 'Sending with SendGrid',\n  html: '<strong>and easy</strong>'\n})",
+      "output": "Email terkirim via SendGrid"
+    },
+    {
+      "name": "Mailgun",
+      "desc": "API pengiriman email untuk developer, dengan fitur validasi dan tracking.",
+      "example": "import formData from 'form-data'\nimport Mailgun from 'mailgun.js'\nconst mailgun = new Mailgun(formData)\nconst mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY })\n\nawait mg.messages.create('sandbox...mailgun.org', {\n  from: 'Excited User <mailgun@sandbox...>',\n  to: ['user@example.com'],\n  subject: 'Hello',\n  text: 'Testing some Mailgun awesomeness!'\n})",
+      "output": "Email terkirim via Mailgun"
+    },
+    {
+      "name": "Plunk",
+      "desc": "Email API yang simpel dan open-source friendly.",
+      "example": "import Plunk from '@plunk/node'\nconst plunk = new Plunk(process.env.PLUNK_API_KEY)\n\nawait plunk.emails.send({\n  to: 'user@example.com',\n  subject: 'Hello',\n  body: '<h1>Welcome!</h1>'\n})",
+      "output": "Email terkirim via Plunk"
+    }
+  ],
+  "email-templates": [
+    {
+      "name": "React Email",
+      "desc": "Membuat template email dengan komponen React dan mengirimnya via Resend / Nodemailer.",
+      "example": "import { Html, Button, Text } from '@react-email/components'\n\nexport function WelcomeEmail({ name }) {\n  return (\n    <Html>\n      <Text>Hello {name},</Text>\n      <Button href=\"https://example.com\">Click me</Button>\n    </Html>\n  )\n}",
+      "output": "Template email dalam React"
+    },
+    {
+      "name": "MJML",
+      "desc": "Framework markup untuk mendesain email responsif tanpa rasa sakit.",
+      "example": "<mjml>\n  <mj-body>\n    <mj-section>\n      <mj-column>\n        <mj-text>Hello World</mj-text>\n      </mj-column>\n    </mj-section>\n  </mj-body>\n</mjml>",
+      "output": "HTML email responsif"
+    },
+    {
+      "name": "Handlebars (Nodemailer)",
+      "desc": "Menggunakan template engine Handlebars dengan Nodemailer untuk email dinamis.",
+      "example": "import hbs from 'nodemailer-express-handlebars'\ntransporter.use('compile', hbs({ viewEngine: 'handlebars', viewPath: './emails' }))\n\nawait transporter.sendMail({\n  to: 'user@example.com',\n  template: 'welcome',\n  context: { name: 'Ridho' }\n})",
+      "output": "Email dengan template Handlebars"
+    },
+    {
+      "name": "Maizzle",
+      "desc": "Framework untuk membangun email HTML dengan Tailwind CSS.",
+      "example": "<!-- Maizzle menggunakan Tailwind utility classes -->\n<div class=\"bg-blue-500 text-white p-4\">Hello</div>",
+      "output": "HTML email dari Tailwind"
+    }
+  ],
+  "toast-notifications": [
+    {
+      "name": "Sonner",
+      "desc": "Toast notification ringan dan mudah digunakan di React.",
+      "example": "import { toast } from 'sonner'\n\ntoast('Event has been created')\ntoast.success('Berhasil disimpan!')\ntoast.error('Terjadi kesalahan')",
+      "output": "Toast muncul di layar"
+    },
+    {
+      "name": "React Hot Toast",
+      "desc": "Alternatif toast notification dengan API simpel dan animasi keren.",
+      "example": "import toast, { Toaster } from 'react-hot-toast'\n\ntoast.success('Berhasil!')\ntoast.error('Gagal')",
+      "output": "Notifikasi sukses/gagal"
+    },
+    {
+      "name": "React Toastify",
+      "desc": "Library toast notification yang sangat customizable.",
+      "example": "import { toast } from 'react-toastify'\n\ntoast('Default notification')\ntoast.success('Success!')\ntoast.info('Info')",
+      "output": "Toast muncul di sudut"
+    }
+  ],
+  "push-notifications": [
+    {
+      "name": "Web Push API",
+      "desc": "Mengirim notifikasi push ke browser melalui service worker.",
+      "example": "// Di client\nnavigator.serviceWorker.ready.then(reg => {\n  reg.showNotification('Halo', { body: 'Pesan baru' })\n})",
+      "output": "Notifikasi muncul di sistem"
+    },
+    {
+      "name": "Firebase Cloud Messaging (FCM)",
+      "desc": "Mengirim notifikasi push ke web & mobile via Firebase.",
+      "example": "import { initializeApp } from 'firebase/app'\nimport { getMessaging, getToken } from 'firebase/messaging'\n\nconst app = initializeApp(firebaseConfig)\nconst messaging = getMessaging(app)\nconst token = await getToken(messaging, { vapidKey: '...' })",
+      "output": "Token perangkat"
+    },
+    {
+      "name": "OneSignal",
+      "desc": "Layanan notifikasi push cross-platform dengan dashboard.",
+      "example": "import OneSignal from 'onesignal-node'\nconst client = new OneSignal.Client(process.env.ONESIGNAL_APP_ID, process.env.ONESIGNAL_API_KEY)\n\nawait client.createNotification({\n  contents: { en: 'Hello' },\n  included_segments: ['Subscribed Users']\n})",
+      "output": "Notifikasi terkirim ke pengguna"
+    },
+    {
+      "name": "Notifee (React Native)",
+      "desc": "Library untuk menampilkan notifikasi lokal di aplikasi React Native.",
+      "example": "import notifee from '@notifee/react-native'\n\nawait notifee.displayNotification({\n  title: 'Update',\n  body: 'A new version is available!',\n  android: { channelId: 'default' }\n})",
+      "output": "Notifikasi lokal di Android/iOS"
+    }
+  ],
+  "webhook-events": [
+    {
+      "name": "Resend Webhooks",
+      "desc": "Menerima event seperti email delivered, bounced, complained.",
+      "example": "// Di endpoint API /api/email/webhook\nexport async function POST(req: Request) {\n  const body = await req.json()\n  if (body.type === 'email.delivered') {\n    console.log(`Email to ${body.data.email_id} delivered`)\n  }\n  return Response.json({ received: true })\n}",
+      "output": "Event diterima"
+    },
+    {
+      "name": "SendGrid Event Webhook",
+      "desc": "Menerima event dari SendGrid (delivered, open, click, dll).",
+      "example": "app.post('/webhook', (req, res) => {\n  const events = req.body\n  events.forEach(e => console.log(e.event))\n  res.status(200).end()\n})",
+      "output": "Data event SendGrid"
+    },
+    {
+      "name": "Notification Tracking",
+      "desc": "Melacak interaksi notifikasi push (click, dismiss).",
+      "example": "self.addEventListener('notificationclick', event => {\n  event.notification.close()\n  clients.openWindow(event.notification.data.url)\n})",
+      "output": "Buka URL saat notifikasi diklik"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* ========== Dark Mode ========== */
+@variant dark (&:where(.dark, .dark *));
+.ayam-poke {
+  background-color: red;
+}
+
+/* ========== Custom Scrollbar ========== */
+/* WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e0e5ec;
+  border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937; /* gray-800 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c8cfd8;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 4px #a3b1c6, inset -2px -2px 4px #ffffff;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563; /* gray-600 */
+  box-shadow: inset 2px 2px 4px #374151, inset -2px -2px 4px #6b7280;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b0b9c4;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #c8cfd8 #e0e5ec;
+}
+
+.dark html {
+  scrollbar-color: #4b5563 #1f2937;
+}

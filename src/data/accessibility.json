@@ -1,0 +1,322 @@
+{
+  "wcag-guidelines": [
+    {
+      "name": "WCAG 2.2 – Perceivable (Prinsip 1)",
+      "desc": "Informasi dan antarmuka harus dapat dipahami oleh indra pengguna.",
+      "example": "Alt text pada gambar, transkrip video, kontras warna cukup.",
+      "output": "Konten dapat diakses"
+    },
+    {
+      "name": "WCAG 2.2 – Operable (Prinsip 2)",
+      "desc": "Antarmuka harus dapat dioperasikan oleh semua pengguna (keyboard, touch, voice).",
+      "example": "Semua fungsi dapat diakses keyboard, cukup waktu membaca, hindari konten flashing.",
+      "output": "Navigasi inklusif"
+    },
+    {
+      "name": "WCAG 2.2 – Understandable (Prinsip 3)",
+      "desc": "Informasi dan operasi antarmuka harus dapat dimengerti.",
+      "example": "Label formulir jelas, error disampaikan dengan teks, konsistensi navigasi.",
+      "output": "UI mudah dipahami"
+    },
+    {
+      "name": "WCAG 2.2 – Robust (Prinsip 4)",
+      "desc": "Konten harus cukup tangguh untuk ditafsirkan oleh berbagai user agent, termasuk assistive technology.",
+      "example": "HTML valid, gunakan ARIA bila diperlukan, status disampaikan.",
+      "output": "Kompatibel dengan screen reader"
+    },
+    {
+      "name": "Level A (Minimum)",
+      "desc": "Kriteria paling dasar. Tanpa ini beberapa pengguna tidak bisa mengakses.",
+      "example": "Alt text untuk gambar, form label, tidak ada keyboard trap.",
+      "output": "Dapat diakses dasar"
+    },
+    {
+      "name": "Level AA (Standar)",
+      "desc": "Target umum untuk sebagian besar website. Mengatasi hambatan terbesar.",
+      "example": "Kontras minimal 4.5:1, fokus terlihat, heading terstruktur.",
+      "output": "Aksesibilitas baik"
+    },
+    {
+      "name": "Level AAA (Tertinggi)",
+      "desc": "Tingkat aksesibilitas tertinggi. Tidak semua konten bisa mencapai AAA.",
+      "example": "Kontras 7:1, teks isyarat, tidak ada batas waktu.",
+      "output": "Aksesibilitas maksimal"
+    }
+  ],
+  "semantic-html": [
+    {
+      "name": "<header>",
+      "desc": "Mendefinisikan bagian kepala halaman atau bagian.",
+      "example": "<header><h1>Logo</h1><nav>...</nav></header>",
+      "output": "Screen reader kenali sebagai banner (jika dalam <body>)"
+    },
+    {
+      "name": "<main>",
+      "desc": "Konten utama dokumen. Harus unik per halaman.",
+      "example": "<main><article>...</article></main>",
+      "output": "Langsung lompat ke konten"
+    },
+    {
+      "name": "<nav>",
+      "desc": "Navigasi utama. Gunakan aria-label jika ada banyak nav.",
+      "example": "<nav aria-label=\"Main\"><ul>...</ul></nav>",
+      "output": "Screen reader identifikasi navigasi"
+    },
+    {
+      "name": "<footer>",
+      "desc": "Bagian kaki halaman.",
+      "example": "<footer><p>&copy; 2025</p></footer>",
+      "output": "Dikenali sebagai contentinfo"
+    },
+    {
+      "name": "<section>",
+      "desc": "Pengelompokan tematik, sebaiknya punya heading.",
+      "example": "<section aria-labelledby=\"id\"><h2 id=\"id\">...</h2></section>",
+      "output": "Region terdefinisi"
+    },
+    {
+      "name": "<article>",
+      "desc": "Konten mandiri yang dapat berdiri sendiri.",
+      "example": "<article><h2>Judul Artikel</h2>...</article>",
+      "output": "Screen reader bisa ringkas"
+    },
+    {
+      "name": "<aside>",
+      "desc": "Konten sampingan, sering sebagai complementary.",
+      "example": "<aside aria-label=\"Related articles\">...</aside>",
+      "output": "Dapat dilewati"
+    },
+    {
+      "name": "Headings (h1-h6)",
+      "desc": "Struktur hierarki. Jangan lewati level.",
+      "example": "<h1>Judul Halaman</h1><h2>Sub Judul</h2>",
+      "output": "Navigasi cepat dengan screen reader"
+    }
+  ],
+  "aria-basics": [
+    {
+      "name": "role",
+      "desc": "Mendefinisikan peran elemen (bila tidak menggunakan elemen semantik).",
+      "example": "<div role=\"button\" tabindex=\"0\" onclick=\"...\">Klik</div>",
+      "output": "Diperlakukan sebagai tombol"
+    },
+    {
+      "name": "aria-label",
+      "desc": "Memberikan label yang dapat dibaca oleh assistive technology.",
+      "example": "<button aria-label=\"Tutup\">&times;</button>",
+      "output": "Dibaca 'Tutup'"
+    },
+    {
+      "name": "aria-labelledby",
+      "desc": "Merujuk id elemen lain sebagai label.",
+      "example": "<h2 id=\"section-title\">Berita</h2><section aria-labelledby=\"section-title\">",
+      "output": "Region bernama"
+    },
+    {
+      "name": "aria-describedby",
+      "desc": "Merujuk deskripsi tambahan.",
+      "example": "<input aria-describedby=\"hint\"><span id=\"hint\">Masukkan email</span>",
+      "output": "Deskripsi dibacakan setelah label"
+    },
+    {
+      "name": "aria-hidden",
+      "desc": "Menyembunyikan elemen dari assistive technology.",
+      "example": "<span aria-hidden=\"true\">🎉</span>",
+      "output": "Ikon tidak dibacakan"
+    },
+    {
+      "name": "aria-live",
+      "desc": "Menandakan wilayah dinamis yang akan diumumkan saat konten berubah.",
+      "example": "<div aria-live=\"polite\" id=\"notification\">Pesan terkirim</div>",
+      "output": "Screen reader mengumumkan perubahan"
+    },
+    {
+      "name": "aria-atomic",
+      "desc": "Apakah seluruh konten live region harus diumumkan.",
+      "example": "aria-atomic=\"true\"",
+      "output": "Semua konten dibaca ulang"
+    },
+    {
+      "name": "aria-relevant",
+      "desc": "Tipe perubahan yang perlu diumumkan (additions, removals, text, all).",
+      "example": "aria-relevant=\"additions\"",
+      "output": "Hanya penambahan"
+    }
+  ],
+  "keyboard-accessibility": [
+    {
+      "name": "tabindex=\"0\"",
+      "desc": "Membuat elemen dapat difokuskan sesuai urutan DOM.",
+      "example": "<div tabindex=\"0\" role=\"button\">Klik</div>",
+      "output": "Bisa Tab"
+    },
+    {
+      "name": "tabindex=\"-1\"",
+      "desc": "Dapat difokuskan lewat JavaScript, tidak dengan Tab.",
+      "example": "<div tabindex=\"-1\" id=\"modal\">...</div>",
+      "output": "Fokus programatik"
+    },
+    {
+      "name": "Keyboard Event Handling",
+      "desc": "Tangani Enter dan Space untuk mengaktifkan, Escape untuk menutup.",
+      "example": "button.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') activate() })",
+      "output": "Interaksi keyboard penuh"
+    },
+    {
+      "name": "Focus Management",
+      "desc": "Pindahkan fokus ke elemen relevan setelah tindakan (contoh: setelah membuka modal).",
+      "example": "modalOpen ? firstFocusable.focus() : trigger.focus()",
+      "output": "Tidak tersesat"
+    },
+    {
+      "name": "No Keyboard Trap",
+      "desc": "Pastikan pengguna keyboard bisa keluar dari semua komponen.",
+      "example": "Modal: Escape tutup, Tab melingkar di dalam.",
+      "output": "Kebebasan navigasi"
+    }
+  ],
+  "forms-accessibility": [
+    {
+      "name": "<label>",
+      "desc": "Mengaitkan label dengan input melalui atribut for/id.",
+      "example": "<label for=\"email\">Email</label><input id=\"email\" type=\"email\">",
+      "output": "Klik label fokus ke input"
+    },
+    {
+      "name": "aria-required / required",
+      "desc": "Menandai input wajib.",
+      "example": "<input aria-required=\"true\" required>",
+      "output": "Diumumkan wajib"
+    },
+    {
+      "name": "aria-invalid",
+      "desc": "Menandai input yang tidak valid.",
+      "example": "<input aria-invalid=\"true\" aria-describedby=\"error-msg\">",
+      "output": "Error diumumkan"
+    },
+    {
+      "name": "Error Message (Live Region)",
+      "desc": "Tampilkan pesan error dengan aria-live untuk diumumkan.",
+      "example": "<div id=\"error-msg\" role=\"alert\" aria-live=\"assertive\">Email tidak valid</div>",
+      "output": "Langsung dibacakan"
+    }
+  ],
+  "color-contrast": [
+    {
+      "name": "Minimum Contrast (AA)",
+      "desc": "Teks normal minimal rasio 4.5:1, teks besar 3:1.",
+      "example": "#333 di atas #fff → rasio 12.6:1 (lulus)",
+      "output": "Terbaca jelas"
+    },
+    {
+      "name": "Enhanced Contrast (AAA)",
+      "desc": "Teks normal minimal 7:1, teks besar 4.5:1.",
+      "example": "#000 di atas #fff → 21:1",
+      "output": "Sangat kontras"
+    },
+    {
+      "name": "Non-text Contrast",
+      "desc": "Komponen UI dan grafik harus memiliki kontras minimal 3:1 terhadap latar.",
+      "example": "Border input #ccc → kontras rendah, ganti #888",
+      "output": "Komponen terlihat"
+    },
+    {
+      "name": "Jangan Hanya Warna",
+      "desc": "Informasi tidak boleh hanya disampaikan lewat warna.",
+      "example": "Grafik: bedakan juga dengan pola atau label.",
+      "output": "Aksesibel untuk buta warna"
+    }
+  ],
+  "accessible-names": [
+    {
+      "name": "aria-label pada tombol ikon",
+      "desc": "Tombol tanpa teks harus punya aria-label.",
+      "example": "<button aria-label=\"Tutup dialog\"><svg>...</svg></button>",
+      "output": "Nama aksesibel: 'Tutup dialog'"
+    },
+    {
+      "name": "aria-labelledby untuk komponen kompleks",
+      "desc": "Gabungkan beberapa ID untuk nama yang lebih deskriptif.",
+      "example": "<div role=\"tablist\" aria-labelledby=\"tablist-title\"><h2 id=\"tablist-title\">Pengaturan</h2>",
+      "output": "Nama aksesibel"
+    },
+    {
+      "name": "alt pada gambar",
+      "desc": "Atribut alt memberikan deskripsi gambar.",
+      "example": "<img src=\"chart.png\" alt=\"Grafik penjualan kuartal 3 menunjukkan peningkatan 20%\">",
+      "output": "Dibacakan"
+    }
+  ],
+  "media-accessibility": [
+    {
+      "name": "Caption & Subtitles",
+      "desc": "Sediakan teks untuk audio/video.",
+      "example": "<track kind=\"captions\" src=\"captions.vtt\" srclang=\"en\" label=\"English\">",
+      "output": "Teks berjalan"
+    },
+    {
+      "name": "Audio Description",
+      "desc": "Deskripsi suara untuk konten visual penting.",
+      "example": "<track kind=\"descriptions\" src=\"desc.vtt\">",
+      "output": "Penjelasan visual"
+    },
+    {
+      "name": "Transkrip",
+      "desc": "Teks lengkap dari konten audio/video.",
+      "example": "Tautan ke halaman transkrip di dekat video.",
+      "output": "Alternatif teks penuh"
+    }
+  ],
+  "testing-tools": [
+    {
+      "name": "Lighthouse (Audit A11y)",
+      "desc": "Alat bawaan Chrome DevTools untuk menilai aksesibilitas.",
+      "example": "Buka DevTools > Lighthouse > Accessibility",
+      "output": "Skor a11y"
+    },
+    {
+      "name": "axe DevTools",
+      "desc": "Ekstensi browser untuk menemukan masalah a11y otomatis.",
+      "example": "Buka DevTools > axe DevTools > Scan all",
+      "output": "Daftar pelanggaran"
+    },
+    {
+      "name": "WAVE",
+      "desc": "Web Accessibility Evaluation Tool.",
+      "example": "Kunjungi wave.webaim.org, masukkan URL.",
+      "output": "Laporan visual"
+    },
+    {
+      "name": "Screen Reader Testing (NVDA/ VoiceOver)",
+      "desc": "Uji manual dengan screen reader untuk memastikan pengalaman pengguna.",
+      "example": "Gunakan VoiceOver di Mac (Cmd+F5) atau NVDA di Windows.",
+      "output": "Navigasi non-visual"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Skip Navigation Link",
+      "desc": "Tautan tersembunyi yang muncul saat fokus untuk langsung ke konten utama.",
+      "example": "<a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>",
+      "output": "Langsung ke <main id=\"main-content\">"
+    },
+    {
+      "name": "Gunakan Elemen Semantik",
+      "desc": "Prioritaskan HTML semantik sebelum ARIA.",
+      "example": "Gunakan <button> bukan <div role=\"button\">",
+      "output": "Lebih mudah dan inklusif"
+    },
+    {
+      "name": "Sediakan Teks Alternatif untuk Semua Gambar",
+      "desc": "Termasuk gambar dekoratif (alt=\"\").",
+      "example": "<img src=\"dekorasi.png\" alt=\"\">",
+      "output": "Dilewati screen reader"
+    },
+    {
+      "name": "Pastikan Focus Indicator Jelas",
+      "desc": "Hindari outline: none tanpa pengganti.",
+      "example": ":focus { outline: 2px solid blue; }",
+      "output": "Pengguna keyboard tahu lokasi"
+    }
+  ]
+}

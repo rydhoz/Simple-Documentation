@@ -1,0 +1,438 @@
+{
+  "webdriver-introduction": [
+    {
+      "name": "WebDriver Protocol",
+      "desc": "Protokol standar W3C untuk mengotomatisasi browser secara remote melalui HTTP.",
+      "example": "POST /session { capabilities: { alwaysMatch: { browserName: 'chrome' } } }",
+      "output": "Session ID"
+    },
+    {
+      "name": "WebDriver vs Selenium",
+      "desc": "WebDriver adalah standar W3C; Selenium adalah implementasi populer yang mendukung banyak bahasa (Java, Python, JS).",
+      "example": "const { Builder } = require('selenium-webdriver');\nconst driver = new Builder().forBrowser('chrome').build();",
+      "output": "Driver instance"
+    }
+  ],
+  "setup": [
+    {
+      "name": "ChromeDriver / GeckoDriver",
+      "desc": "Driver spesifik browser yang menjembatani WebDriver dengan browser. ChromeDriver untuk Chrome, GeckoDriver untuk Firefox.",
+      "example": "npm install chromedriver",
+      "output": "Driver binary tersedia"
+    },
+    {
+      "name": "Selenium WebDriver (JS)",
+      "desc": "Klien JavaScript untuk WebDriver.",
+      "example": "const webdriver = require('selenium-webdriver');\nconst driver = new webdriver.Builder().forBrowser('chrome').build();",
+      "output": "Driver siap"
+    },
+    {
+      "name": "WebDriverIO",
+      "desc": "Framework test automation populer berbasis WebDriver dengan sintaks deklaratif.",
+      "example": "const { remote } = require('webdriverio');\nconst browser = await remote({ capabilities: { browserName: 'chrome' } });",
+      "output": "Browser instance"
+    },
+    {
+      "name": "Playwright vs Selenium",
+      "desc": "Playwright menggunakan protokol DevTools, bukan WebDriver, tetapi memiliki API serupa untuk testing cross-browser.",
+      "example": "const { chromium } = require('playwright');\nconst browser = await chromium.launch();",
+      "output": "Browser Playwright"
+    }
+  ],
+  "session-management": [
+    {
+      "name": "New Session",
+      "desc": "Membuat sesi baru dengan browser tertentu.",
+      "example": "const session = await driver.getSession();",
+      "output": "{ id: 'abc123...', capabilities: {...} }"
+    },
+    {
+      "name": "Delete Session",
+      "desc": "Menutup browser dan mengakhiri sesi.",
+      "example": "await driver.quit();",
+      "output": "Browser tertutup"
+    },
+    {
+      "name": "Capabilities",
+      "desc": "Konfigurasi browser (nama, versi, platform, headless, argumen).",
+      "example": "capabilities: { browserName: 'chrome', 'goog:chromeOptions': { args: ['--headless'] } }",
+      "output": "Chrome headless"
+    }
+  ],
+  "navigation": [
+    {
+      "name": "Navigate To URL",
+      "desc": "Membuka URL tertentu di browser.",
+      "example": "await driver.get('https://example.com');",
+      "output": "Halaman dimuat"
+    },
+    {
+      "name": "Back / Forward",
+      "desc": "Navigasi history.",
+      "example": "await driver.navigate().back();\nawait driver.navigate().forward();",
+      "output": "Pindah history"
+    },
+    {
+      "name": "Refresh",
+      "desc": "Memuat ulang halaman.",
+      "example": "await driver.navigate().refresh();",
+      "output": "Halaman direfresh"
+    },
+    {
+      "name": "Get Current URL",
+      "desc": "Mendapatkan URL halaman saat ini.",
+      "example": "const url = await driver.getCurrentUrl();",
+      "output": "'https://example.com'"
+    },
+    {
+      "name": "Get Title",
+      "desc": "Mendapatkan judul halaman.",
+      "example": "const title = await driver.getTitle();",
+      "output": "'Example Domain'"
+    }
+  ],
+  "element-retrieval": [
+    {
+      "name": "Find Element",
+      "desc": "Mencari elemen pertama yang cocok dengan strategi locator.",
+      "example": "const el = await driver.findElement(By.id('myId'));",
+      "output": "WebElement"
+    },
+    {
+      "name": "Find Elements",
+      "desc": "Mencari semua elemen yang cocok.",
+      "example": "const els = await driver.findElements(By.css('.item'));",
+      "output": "[WebElement, WebElement]"
+    },
+    {
+      "name": "Locator Strategies",
+      "desc": "Cara menemukan elemen: By.id, By.css, By.xpath, By.name, By.className, By.linkText, By.partialLinkText, By.tagName.",
+      "example": "By.id('username'), By.css('input[type=\"email\"]'), By.xpath('//button[text()=\"Submit\"]')",
+      "output": "Locator"
+    },
+    {
+      "name": "Relative Locators (Selenium 4)",
+      "desc": "Mencari elemen relatif terhadap elemen lain (above, below, toLeftOf, toRightOf, near).",
+      "example": "const password = driver.findElement(locateWith(By.tagName('input')).below(By.id('username')));",
+      "output": "Input di bawah username"
+    }
+  ],
+  "element-interaction": [
+    {
+      "name": "Click",
+      "desc": "Mengklik elemen.",
+      "example": "await el.click();",
+      "output": "Klik dilakukan"
+    },
+    {
+      "name": "Send Keys",
+      "desc": "Mengirim input teks ke elemen (input, textarea).",
+      "example": "await el.sendKeys('Hello World');",
+      "output": "Teks diketik"
+    },
+    {
+      "name": "Clear",
+      "desc": "Menghapus nilai input.",
+      "example": "await el.clear();",
+      "output": "Input kosong"
+    },
+    {
+      "name": "Submit",
+      "desc": "Mengirim form yang memuat elemen.",
+      "example": "await el.submit();",
+      "output": "Form tersubmit"
+    },
+    {
+      "name": "Select Dropdown",
+      "desc": "Memilih opsi dari <select> menggunakan Select helper.",
+      "example": "const select = new Select(el);\nawait select.selectByVisibleText('Option 1');",
+      "output": "Opsi dipilih"
+    }
+  ],
+  "element-information": [
+    {
+      "name": "Get Text",
+      "desc": "Mendapatkan teks yang terlihat dari elemen.",
+      "example": "const text = await el.getText();",
+      "output": "'Hello World'"
+    },
+    {
+      "name": "Get Attribute",
+      "desc": "Mendapatkan nilai atribut elemen.",
+      "example": "const href = await el.getAttribute('href');",
+      "output": "'https://example.com'"
+    },
+    {
+      "name": "Get CSS Value",
+      "desc": "Mendapatkan nilai properti CSS yang dihitung.",
+      "example": "const color = await el.getCssValue('color');",
+      "output": "'rgba(0,0,0,1)'"
+    },
+    {
+      "name": "Is Displayed",
+      "desc": "Memeriksa apakah elemen terlihat.",
+      "example": "const visible = await el.isDisplayed();",
+      "output": "true/false"
+    },
+    {
+      "name": "Is Enabled",
+      "desc": "Memeriksa apakah elemen diaktifkan (tidak disabled).",
+      "example": "const enabled = await el.isEnabled();",
+      "output": "true/false"
+    },
+    {
+      "name": "Is Selected",
+      "desc": "Memeriksa apakah elemen (checkbox/radio/option) dipilih.",
+      "example": "const selected = await el.isSelected();",
+      "output": "true/false"
+    },
+    {
+      "name": "Get Tag Name",
+      "desc": "Mendapatkan nama tag elemen.",
+      "example": "const tag = await el.getTagName();",
+      "output": "'input'"
+    },
+    {
+      "name": "Get Size & Location",
+      "desc": "Mendapatkan dimensi dan posisi elemen.",
+      "example": "const rect = await el.getRect();",
+      "output": "{ x: 100, y: 200, width: 300, height: 50 }"
+    }
+  ],
+  "cookies": [
+    {
+      "name": "Get All Cookies",
+      "desc": "Mendapatkan semua cookie.",
+      "example": "const cookies = await driver.manage().getCookies();",
+      "output": "[{ name, value, domain, ... }]"
+    },
+    {
+      "name": "Add Cookie",
+      "desc": "Menambahkan cookie baru.",
+      "example": "await driver.manage().addCookie({ name: 'key', value: 'val' });",
+      "output": "Cookie ditambahkan"
+    },
+    {
+      "name": "Delete Cookie",
+      "desc": "Menghapus cookie berdasarkan nama.",
+      "example": "await driver.manage().deleteCookie('key');",
+      "output": "Cookie dihapus"
+    },
+    {
+      "name": "Delete All Cookies",
+      "desc": "Menghapus semua cookie.",
+      "example": "await driver.manage().deleteAllCookies();",
+      "output": "Semua cookie dihapus"
+    }
+  ],
+  "alerts": [
+    {
+      "name": "Accept Alert",
+      "desc": "Menerima dialog alert/confirm/prompt.",
+      "example": "await driver.switchTo().alert().accept();",
+      "output": "Alert diterima"
+    },
+    {
+      "name": "Dismiss Alert",
+      "desc": "Menolak dialog.",
+      "example": "await driver.switchTo().alert().dismiss();",
+      "output": "Alert ditolak"
+    },
+    {
+      "name": "Get Alert Text",
+      "desc": "Mendapatkan teks dialog.",
+      "example": "const text = await driver.switchTo().alert().getText();",
+      "output": "'Are you sure?'"
+    },
+    {
+      "name": "Send Keys to Alert",
+      "desc": "Mengirim teks ke prompt.",
+      "example": "await driver.switchTo().alert().sendKeys('Hello');",
+      "output": "Prompt terisi"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "Take Screenshot",
+      "desc": "Mengambil tangkapan layar halaman penuh atau viewport.",
+      "example": "const screenshot = await driver.takeScreenshot();\nfs.writeFileSync('screenshot.png', screenshot, 'base64');",
+      "output": "File PNG"
+    },
+    {
+      "name": "Element Screenshot",
+      "desc": "Tangkapan layar hanya elemen tertentu.",
+      "example": "const base64 = await el.takeScreenshot();",
+      "output": "Gambar elemen"
+    }
+  ],
+  "window-management": [
+    {
+      "name": "Get Window Size / Position",
+      "desc": "Mendapatkan ukuran dan posisi jendela.",
+      "example": "const { width, height } = await driver.manage().window().getRect();",
+      "output": "{ width: 1024, height: 768, x: 0, y: 0 }"
+    },
+    {
+      "name": "Set Window Size",
+      "desc": "Mengatur ukuran jendela.",
+      "example": "await driver.manage().window().setRect({ width: 1280, height: 720 });",
+      "output": "Ukuran diubah"
+    },
+    {
+      "name": "Maximize / Minimize / Fullscreen",
+      "desc": "Operasi jendela umum.",
+      "example": "await driver.manage().window().maximize();\nawait driver.manage().window().minimize();\nawait driver.manage().window().fullscreen();",
+      "output": "Jendela diubah"
+    },
+    {
+      "name": "Switch Window / Tab",
+      "desc": "Pindah antar jendela atau tab berdasarkan handle.",
+      "example": "const handles = await driver.getAllWindowHandles();\nawait driver.switchTo().window(handles[1]);",
+      "output": "Pindah tab"
+    },
+    {
+      "name": "Close Window / Tab",
+      "desc": "Menutup jendela saat ini.",
+      "example": "await driver.close();",
+      "output": "Tab tertutup"
+    },
+    {
+      "name": "New Window / Tab",
+      "desc": "Membuka jendela atau tab baru.",
+      "example": "await driver.switchTo().newWindow('tab');\nawait driver.switchTo().newWindow('window');",
+      "output": "Jendela/tab baru"
+    }
+  ],
+  "frames": [
+    {
+      "name": "Switch to Frame",
+      "desc": "Beralih ke dalam iframe berdasarkan indeks, nama/id, atau WebElement.",
+      "example": "await driver.switchTo().frame(0);\nawait driver.switchTo().frame(driver.findElement(By.css('iframe')));",
+      "output": "Konteks di dalam frame"
+    },
+    {
+      "name": "Switch to Parent Frame",
+      "desc": "Kembali ke konteks induk.",
+      "example": "await driver.switchTo().parentFrame();",
+      "output": "Kembali ke parent"
+    },
+    {
+      "name": "Switch to Default Content",
+      "desc": "Kembali ke halaman utama.",
+      "example": "await driver.switchTo().defaultContent();",
+      "output": "Konteks root"
+    }
+  ],
+  "actions": [
+    {
+      "name": "Actions API (W3C)",
+      "desc": "API untuk simulasi interaksi kompleks: keyboard, mouse, pen, touch.",
+      "example": "const actions = driver.actions();\nawait actions.move({ origin: el }).click().perform();",
+      "output": "Klik dilakukan"
+    },
+    {
+      "name": "Keyboard Actions",
+      "desc": "Menekan tombol keyboard (keyDown, keyUp, sendKeys).",
+      "example": "await actions.keyDown(Key.SHIFT).sendKeys('a').keyUp(Key.SHIFT).perform();",
+      "output": "Huruf 'A' besar"
+    },
+    {
+      "name": "Mouse Actions",
+      "desc": "Gerakan mouse: move, click, doubleClick, contextClick, dragAndDrop.",
+      "example": "await actions.move({ origin: el1 }).press().move({ origin: el2 }).release().perform();",
+      "output": "Drag and drop"
+    },
+    {
+      "name": "Scroll to Element",
+      "desc": "Menggulir ke elemen menggunakan Actions atau JavaScript.",
+      "example": "await driver.executeScript('arguments[0].scrollIntoView(true);', el);",
+      "output": "Tergulir"
+    }
+  ],
+  "javascript-execution": [
+    {
+      "name": "Execute Script",
+      "desc": "Menjalankan JavaScript sinkron di halaman.",
+      "example": "const title = await driver.executeScript('return document.title;');",
+      "output": "'Judul Halaman'"
+    },
+    {
+      "name": "Execute Async Script",
+      "desc": "Menjalankan skrip asinkron dengan callback.",
+      "example": "await driver.executeAsyncScript('var callback = arguments[arguments.length - 1]; setTimeout(callback, 1000);');",
+      "output": "Menunggu 1 detik"
+    }
+  ],
+  "timeouts": [
+    {
+      "name": "Implicit Wait",
+      "desc": "Waktu tunggu global untuk mencari elemen sebelum melempar error.",
+      "example": "await driver.manage().setTimeouts({ implicit: 5000 });",
+      "output": "Timeout 5 detik"
+    },
+    {
+      "name": "Explicit Wait (WebDriverWait)",
+      "desc": "Menunggu kondisi tertentu terpenuhi (misal elemen terlihat) dengan polling.",
+      "example": "const wait = new WebDriverWait(driver, 10000);\nconst el = await wait.until(ExpectedConditions.elementLocated(By.id('result')));",
+      "output": "Elemen ditemukan"
+    },
+    {
+      "name": "Script Timeout",
+      "desc": "Batas waktu untuk executeAsyncScript.",
+      "example": "await driver.manage().setTimeouts({ script: 10000 });",
+      "output": "Timeout 10 detik"
+    }
+  ],
+  "advanced-features": [
+    {
+      "name": "Virtual Authenticator (WebAuthn)",
+      "desc": "Mensimulasikan autentikator untuk menguji WebAuthn (fingerprint, security key).",
+      "example": "await driver.addVirtualAuthenticator({ protocol: 'ctap2', transport: 'usb' });",
+      "output": "Autentikator virtual ditambahkan"
+    },
+    {
+      "name": "Print Page",
+      "desc": "Mengubah halaman menjadi PDF.",
+      "example": "const pdf = await driver.printPage({ orientation: 'landscape' });",
+      "output": "Base64 PDF"
+    },
+    {
+      "name": "Network Interception (CDP)",
+      "desc": "Mengintersep permintaan jaringan melalui Chrome DevTools Protocol (ChromeDriver).",
+      "example": "const cdp = await driver.createCDPConnection('page');\nawait cdp.execute('Network.setBlockedURLs', { urls: ['*.css'] });",
+      "output": "CSS diblokir"
+    },
+    {
+      "name": "Permissions",
+      "desc": "Mengatur izin browser (geolocation, notifications, dll).",
+      "example": "await driver.setPermission('geolocation', 'granted');",
+      "output": "Izin diberikan"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan Page Object Model",
+      "desc": "Abstraksi halaman menjadi objek terpisah untuk pemeliharaan yang lebih baik.",
+      "example": "class LoginPage { constructor(driver) { this.driver = driver; } async login(user, pass) { ... } }",
+      "output": "Test mudah dirawat"
+    },
+    {
+      "name": "Hindari Thread.sleep, gunakan Explicit Wait",
+      "desc": "Menunggu waktu tetap tidak efisien dan flaky.",
+      "example": "await driver.wait(until.elementLocated(By.id('result')), 10000);",
+      "output": "Tes lebih stabil"
+    },
+    {
+      "name": "Headless Mode untuk CI/CD",
+      "desc": "Jalankan browser dalam mode headless agar lebih cepat dan tidak membutuhkan display.",
+      "example": "capabilities: { 'goog:chromeOptions': { args: ['--headless'] } }",
+      "output": "Browser tanpa GUI"
+    },
+    {
+      "name": "Tangkap Screenshot saat Gagal",
+      "desc": "Ambil screenshot ketika test gagal untuk debugging.",
+      "example": "afterEach(async function() { if (this.currentTest.state === 'failed') { await driver.takeScreenshot() } });",
+      "output": "Bukti kegagalan"
+    }
+  ]
+}

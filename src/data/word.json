@@ -1,0 +1,338 @@
+{
+  "text-formatting": [
+    {
+      "name": "Bold, Italic, Underline",
+      "desc": "Memformat teks: tebal, miring, garis bawah. Shortcut: Ctrl+B, Ctrl+I, Ctrl+U.",
+      "example": "Pilih teks, tekan Ctrl+B",
+      "output": "Teks menjadi **tebal**"
+    },
+    {
+      "name": "Font & Size",
+      "desc": "Mengubah jenis dan ukuran font. Tersedia di tab Home atau Ctrl+D.",
+      "example": "Pilih teks → Home → Font: Calibri, Size: 12",
+      "output": "Teks Calibri 12pt"
+    },
+    {
+      "name": "Text Highlight Color",
+      "desc": "Memberi latar belakang warna pada teks seperti stabilo.",
+      "example": "Pilih teks → Home → Text Highlight Color → Kuning",
+      "output": "Teks berlatar kuning"
+    },
+    {
+      "name": "Font Color",
+      "desc": "Mengubah warna teks.",
+      "example": "Pilih teks → Home → Font Color → Merah",
+      "output": "Teks berwarna merah"
+    },
+    {
+      "name": "Strikethrough, Subscript, Superscript",
+      "desc": "Coret, tika bawah, tika atas. Tombol di Home atau Ctrl+D.",
+      "example": "H~2~O, X^2^ (gunakan sup/subscript)",
+      "output": "H₂O, X²"
+    },
+    {
+      "name": "Change Case",
+      "desc": "Mengubah kapitalisasi: UPPERCASE, lowercase, Sentence case, dll. Shift+F3.",
+      "example": "\"hello world\" → tekan Shift+F3",
+      "output": "Hello World → HELLO WORLD → hello world"
+    },
+    {
+      "name": "Clear Formatting",
+      "desc": "Menghapus semua format dari teks terpilih. Tombol 'Clear All Formatting' di Home.",
+      "example": "Pilih teks → klik ikon penghapus di Home",
+      "output": "Kembali ke format default"
+    }
+  ],
+  "paragraph-formatting": [
+    {
+      "name": "Alignment (Left, Center, Right, Justify)",
+      "desc": "Perataan teks. Tombol di Home atau Ctrl+L/E/R/J.",
+      "example": "Ctrl+L = rata kiri",
+      "output": "Paragraf rata kiri"
+    },
+    {
+      "name": "Line Spacing",
+      "desc": "Jarak antar baris. 1.0, 1.5, 2.0, atau custom.",
+      "example": "Home → Line and Paragraph Spacing → 2.0",
+      "output": "Spasi ganda"
+    },
+    {
+      "name": "Indentation (Left, Right, First line)",
+      "desc": "Menggeser margin paragraf. Bisa diatur di ruler atau Page Layout.",
+      "example": "Seret indikator 'First Line Indent' pada ruler ke 1 cm",
+      "output": "Baris pertama menjorok 1 cm"
+    },
+    {
+      "name": "Bullets & Numbering",
+      "desc": "Membuat daftar berbutir atau bernomor. Tombol di Home.",
+      "example": "Pilih teks → klik Bullets (•)",
+      "output": "• Item 1\n• Item 2"
+    },
+    {
+      "name": "Borders & Shading",
+      "desc": "Menambahkan bingkai atau latar pada paragraf. Home → Borders.",
+      "example": "Pilih paragraf → Home → Borders → Outside Borders",
+      "output": "Paragraf diberi kotak"
+    }
+  ],
+  "styles": [
+    {
+      "name": "Apply a Style",
+      "desc": "Gunakan gaya bawaan (Normal, Heading 1, Heading 2, dll.) di galeri Styles.",
+      "example": "Pilih teks → Home → Styles → Heading 1",
+      "output": "Teks menjadi judul besar, biru, bold"
+    },
+    {
+      "name": "Modify a Style",
+      "desc": "Ubah format gaya dan perbarui semua teks yang menggunakan gaya tersebut.",
+      "example": "Klik kanan Heading 1 → Modify → Font: Arial → OK",
+      "output": "Semua Heading 1 berubah font"
+    },
+    {
+      "name": "Create a New Style",
+      "desc": "Buat gaya kustom untuk dipakai berulang.",
+      "example": "Home → Styles → Create a Style → beri nama 'MyCaption'",
+      "output": "Gaya 'MyCaption' muncul di galeri"
+    }
+  ],
+  "tables": [
+    {
+      "name": "Insert Table",
+      "desc": "Menyisipkan tabel dengan jumlah baris/kolom tertentu.",
+      "example": "Insert → Table → pilih 3x3",
+      "output": "Tabel 3 baris, 3 kolom"
+    },
+    {
+      "name": "Merge / Split Cells",
+      "desc": "Menggabungkan atau memisahkan sel. Klik kanan pada sel.",
+      "example": "Pilih dua sel → Layout → Merge Cells",
+      "output": "Kedua sel menjadi satu"
+    },
+    {
+      "name": "Table Styles",
+      "desc": "Desain tabel siap pakai (warna, header).",
+      "example": "Klik di dalam tabel → Table Design → pilih style",
+      "output": "Tabel bergaris dan berwarna"
+    },
+    {
+      "name": "Sort Table Data",
+      "desc": "Mengurutkan data dalam tabel berdasarkan kolom.",
+      "example": "Pilih tabel → Layout → Sort",
+      "output": "Baris diurutkan alfabetis/numeris"
+    }
+  ],
+  "images-grafis": [
+    {
+      "name": "Insert Picture",
+      "desc": "Menyisipkan gambar dari file lokal.",
+      "example": "Insert → Pictures → This Device → pilih file",
+      "output": "Gambar muncul di dokumen"
+    },
+    {
+      "name": "Text Wrapping",
+      "desc": "Mengatur posisi gambar terhadap teks (In Line, Square, Tight, dll.).",
+      "example": "Klik gambar → Layout Options → Square",
+      "output": "Teks mengelilingi gambar"
+    },
+    {
+      "name": "Crop & Resize",
+      "desc": "Memotong atau mengubah ukuran gambar. Gunakan handle di pojok.",
+      "example": "Seret handle sudut sambil tekan Shift (jaga proporsi)",
+      "output": "Gambar tetap proporsional"
+    },
+    {
+      "name": "Insert Shapes & SmartArt",
+      "desc": "Menambahkan bentuk atau diagram.",
+      "example": "Insert → Shapes → Rectangle",
+      "output": "Kotak siap di-draw"
+    }
+  ],
+  "headers-footers": [
+    {
+      "name": "Insert Header",
+      "desc": "Menambahkan teks atau logo di bagian atas setiap halaman.",
+      "example": "Insert → Header → Blank",
+      "output": "Area header muncul, bisa diketik"
+    },
+    {
+      "name": "Insert Page Number",
+      "desc": "Menomori halaman secara otomatis.",
+      "example": "Insert → Page Number → Bottom of Page → Plain Number 2",
+      "output": "Angka halaman di tengah bawah"
+    },
+    {
+      "name": "Different First Page",
+      "desc": "Header/footer halaman pertama berbeda (misal tanpa nomor).",
+      "example": "Header & Footer Tools → centang 'Different First Page'",
+      "output": "Halaman pertama tanpa header"
+    }
+  ],
+  "page-layout": [
+    {
+      "name": "Margins",
+      "desc": "Mengatur batas tepi halaman.",
+      "example": "Layout → Margins → Narrow",
+      "output": "Margin lebih kecil, lebih banyak ruang"
+    },
+    {
+      "name": "Orientation (Portrait / Landscape)",
+      "desc": "Mengubah orientasi halaman.",
+      "example": "Layout → Orientation → Landscape",
+      "output": "Halaman melebar"
+    },
+    {
+      "name": "Size (A4, Letter, dll.)",
+      "desc": "Mengubah ukuran kertas.",
+      "example": "Layout → Size → A4",
+      "output": "Ukuran kertas A4 (210x297mm)"
+    },
+    {
+      "name": "Columns",
+      "desc": "Membagi teks menjadi beberapa kolom seperti koran.",
+      "example": "Pilih teks → Layout → Columns → Two",
+      "output": "Teks terbagi dua kolom"
+    },
+    {
+      "name": "Page Break (Ctrl+Enter)",
+      "desc": "Memaksa pindah ke halaman berikutnya.",
+      "example": "Letakkan kursor → Ctrl+Enter",
+      "output": "Konten setelahnya di halaman baru"
+    }
+  ],
+  "mail-merge": [
+    {
+      "name": "Start Mail Merge",
+      "desc": "Menggabungkan dokumen utama dengan sumber data (Excel) untuk surat massal.",
+      "example": "Mailings → Start Mail Merge → Letters",
+      "output": "Dokumen siap dihubungkan ke data"
+    },
+    {
+      "name": "Select Recipients",
+      "desc": "Memilih file sumber data (Excel, Access, CSV).",
+      "example": "Mailings → Select Recipients → Use an Existing List → pilih file.xlsx",
+      "output": "Data terhubung"
+    },
+    {
+      "name": "Insert Merge Field",
+      "desc": "Menempatkan placeholder yang akan diganti data.",
+      "example": "Posisikan kursor → Insert Merge Field → «Nama»",
+      "output": "Muncul «Nama» yang akan terisi otomatis"
+    },
+    {
+      "name": "Preview Results & Finish",
+      "desc": "Melihat pratinjau surat individual dan menyelesaikan penggabungan.",
+      "example": "Mailings → Preview Results → Finish & Merge → Print Documents",
+      "output": "Semua surat tercetak dengan data unik"
+    }
+  ],
+  "references": [
+    {
+      "name": "Table of Contents (TOC)",
+      "desc": "Membuat daftar isi otomatis dari heading.",
+      "example": "References → Table of Contents → Automatic Table 1",
+      "output": "Daftar isi dengan nomor halaman"
+    },
+    {
+      "name": "Insert Footnote / Endnote",
+      "desc": "Menambahkan catatan kaki atau akhir.",
+      "example": "References → Insert Footnote",
+      "output": "Superscript dan catatan di bawah halaman"
+    },
+    {
+      "name": "Insert Citation & Bibliography",
+      "desc": "Menyisipkan kutipan dan membuat daftar pustaka.",
+      "example": "References → Insert Citation → Add New Source → ketik detail",
+      "output": "Kutipan muncul, bisa dibuat bibliography"
+    }
+  ],
+  "review-tools": [
+    {
+      "name": "Track Changes",
+      "desc": "Merekam setiap perubahan yang dilakukan pada dokumen.",
+      "example": "Review → Track Changes → ON",
+      "output": "Koreksi ditandai warna dan bisa diterima/ditolak"
+    },
+    {
+      "name": "Comments",
+      "desc": "Menambahkan komentar tanpa mengubah teks asli.",
+      "example": "Pilih teks → Review → New Comment → ketik komentar",
+      "output": "Gelembung komentar di margin"
+    },
+    {
+      "name": "Spelling & Grammar (F7)",
+      "desc": "Memeriksa ejaan dan tata bahasa.",
+      "example": "F7",
+      "output": "Panel pemeriksaan, saran perbaikan"
+    },
+    {
+      "name": "Compare Documents",
+      "desc": "Membandingkan dua versi dokumen.",
+      "example": "Review → Compare → pilih dua file",
+      "output": "Perbedaan ditampilkan"
+    }
+  ],
+  "shortcuts-penting": [
+    {
+      "name": "Ctrl+S",
+      "desc": "Menyimpan dokumen.",
+      "example": "Ctrl+S",
+      "output": "Dokumen tersimpan"
+    },
+    {
+      "name": "Ctrl+P",
+      "desc": "Mencetak dokumen.",
+      "example": "Ctrl+P",
+      "output": "Dialog print"
+    },
+    {
+      "name": "Ctrl+F / Ctrl+H",
+      "desc": "Mencari teks / Ganti teks.",
+      "example": "Ctrl+F → ketik 'word'",
+      "output": "Navigasi ke kata yang dicari"
+    },
+    {
+      "name": "Ctrl+Z / Ctrl+Y",
+      "desc": "Undo / Redo.",
+      "example": "Ctrl+Z",
+      "output": "Membatalkan aksi terakhir"
+    },
+    {
+      "name": "Ctrl+A",
+      "desc": "Pilih semua konten.",
+      "example": "Ctrl+A",
+      "output": "Semua teks terseleksi"
+    },
+    {
+      "name": "Ctrl+Shift+> / <",
+      "desc": "Memperbesar/memperkecil ukuran font.",
+      "example": "Pilih teks → Ctrl+Shift+>",
+      "output": "Font bertambah 1pt"
+    }
+  ],
+  "tips-trik": [
+    {
+      "name": "Paste Special (Ctrl+Alt+V)",
+      "desc": "Menempelkan dengan format tertentu (tanpa format, gambar, dll).",
+      "example": "Copy → Ctrl+Alt+V → Unformatted Text",
+      "output": "Hanya teks bersih"
+    },
+    {
+      "name": "Format Painter (Ctrl+Shift+C / V)",
+      "desc": "Menyalin format dan menerapkannya ke teks lain.",
+      "example": "Pilih teks dengan format → klik Format Painter → sapukan ke teks lain",
+      "output": "Format identik"
+    },
+    {
+      "name": "Navigation Pane",
+      "desc": "Menampilkan panel navigasi untuk berpindah antar heading dengan cepat.",
+      "example": "View → Navigation Pane (centang)",
+      "output": "Panel di kiri, klik heading untuk lompat"
+    },
+    {
+      "name": "AutoCorrect",
+      "desc": "Mengoreksi otomatis kesalahan ketik umum atau membuat shortcut teks.",
+      "example": "File → Options → Proofing → AutoCorrect Options → ganti 'tpyo' jadi 'typo'",
+      "output": "Ketik 'tpyo' otomatis berubah 'typo'"
+    }
+  ]
+}

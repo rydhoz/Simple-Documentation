@@ -1,0 +1,280 @@
+{
+  "setup": [
+    {
+      "name": "Auth.js Route Handler (App Router)",
+      "desc": "Route handler untuk Auth.js di App Router (Next.js).",
+      "example": "// app/api/auth/[...nextauth]/route.ts\nimport { handlers } from \"@/auth\"\nexport const { GET, POST } = handlers",
+      "output": "Auth API siap"
+    },
+    {
+      "name": "Auth.js Config File",
+      "desc": "File konfigurasi Auth.js (auth.ts) yang berisi providers, adapter, callbacks.",
+      "example": "// auth.ts\nimport NextAuth from \"next-auth\"\nimport GitHub from \"next-auth/providers/github\"\n\nexport const { handlers, auth, signIn, signOut } = NextAuth({\n  providers: [GitHub]\n})",
+      "output": "Auth instance"
+    },
+    {
+      "name": "Auth.js Middleware",
+      "desc": "Middleware untuk proteksi rute menggunakan Auth.js.",
+      "example": "// middleware.ts\nimport { auth } from \"@/auth\"\nexport default auth((req) => {\n  if (!req.auth && req.nextUrl.pathname !== \"/login\") {\n    return Response.redirect(new URL(\"/login\", req.url))\n  }\n})",
+      "output": "Rute terproteksi"
+    },
+    {
+      "name": "Installation",
+      "desc": "Instalasi Auth.js dengan Next.js.",
+      "example": "pnpm add next-auth @auth/prisma-adapter",
+      "output": "Package terinstal"
+    }
+  ],
+  "providers": [
+    {
+      "name": "GoogleProvider",
+      "desc": "Login dengan Google OAuth.",
+      "example": "import Google from \"next-auth/providers/google\"\n\nGoogle({\n  clientId: process.env.GOOGLE_CLIENT_ID,\n  clientSecret: process.env.GOOGLE_CLIENT_SECRET\n})",
+      "output": "Tombol Login Google"
+    },
+    {
+      "name": "GitHubProvider",
+      "desc": "Login dengan GitHub OAuth.",
+      "example": "import GitHub from \"next-auth/providers/github\"\n\nGitHub({\n  clientId: process.env.GITHUB_CLIENT_ID,\n  clientSecret: process.env.GITHUB_CLIENT_SECRET\n})",
+      "output": "Tombol Login GitHub"
+    },
+    {
+      "name": "CredentialsProvider",
+      "desc": "Login custom dengan email/password atau kredensial lainnya.",
+      "example": "import Credentials from \"next-auth/providers/credentials\"\n\nCredentials({\n  name: \"credentials\",\n  credentials: {\n    email: { label: \"Email\", type: \"email\" },\n    password: { label: \"Password\", type: \"password\" }\n  },\n  async authorize(credentials) {\n    const user = await verifyUser(credentials)\n    return user ?? null\n  }\n})",
+      "output": "Login custom"
+    },
+    {
+      "name": "DiscordProvider",
+      "desc": "Login dengan Discord.",
+      "example": "import Discord from \"next-auth/providers/discord\"\n\nDiscord({\n  clientId: process.env.DISCORD_CLIENT_ID,\n  clientSecret: process.env.DISCORD_CLIENT_SECRET\n})",
+      "output": "Tombol Login Discord"
+    },
+    {
+      "name": "EmailProvider",
+      "desc": "Login tanpa password via email (Magic Link).",
+      "example": "import Email from \"next-auth/providers/email\"\n\nEmail({\n  server: process.env.EMAIL_SERVER,\n  from: process.env.EMAIL_FROM\n})",
+      "output": "Kirim email magic link"
+    },
+    {
+      "name": "AppleProvider",
+      "desc": "Login dengan Apple.",
+      "example": "import Apple from \"next-auth/providers/apple\"\n\nApple({\n  clientId: process.env.APPLE_ID,\n  clientSecret: process.env.APPLE_SECRET\n})",
+      "output": "Tombol Login Apple"
+    }
+  ],
+  "hooks-client": [
+    {
+      "name": "useSession",
+      "desc": "Hook client untuk mendapatkan data sesi pengguna.",
+      "example": "import { useSession } from \"next-auth/react\"\n\nexport default function Component() {\n  const { data: session, status } = useSession()\n  return <p>{session?.user?.name}</p>\n}",
+      "output": "{ user: { name: 'Ridho', email: '...' } }"
+    },
+    {
+      "name": "signIn",
+      "desc": "Fungsi client untuk memulai proses login.",
+      "example": "import { signIn } from \"next-auth/react\"\n\n<button onClick={() => signIn(\"google\")}>Login with Google</button>",
+      "output": "Redirect ke Google"
+    },
+    {
+      "name": "signOut",
+      "desc": "Fungsi client untuk logout.",
+      "example": "import { signOut } from \"next-auth/react\"\n\n<button onClick={() => signOut()}>Logout</button>",
+      "output": "Sesi dihancurkan"
+    },
+    {
+      "name": "SessionProvider",
+      "desc": "Provider client untuk membungkus aplikasi dan menyediakan sesi.",
+      "example": "// app/layout.tsx\nimport { SessionProvider } from \"next-auth/react\"\n\nexport default function RootLayout({ children, session }) {\n  return <SessionProvider session={session}>{children}</SessionProvider>\n}",
+      "output": "Sesi tersedia di klien"
+    }
+  ],
+  "server-side": [
+    {
+      "name": "auth()",
+      "desc": "Mendapatkan sesi di Server Component (Auth.js v5).",
+      "example": "import { auth } from \"@/auth\"\n\nexport default async function ServerPage() {\n  const session = await auth()\n  return <p>{session?.user?.name}</p>\n}",
+      "output": "{ user: { name: 'Ridho' } }"
+    },
+    {
+      "name": "getServerSession (legacy)",
+      "desc": "Mendapatkan sesi di server (NextAuth v4).",
+      "example": "import { getServerSession } from \"next-auth\"\nimport { authOptions } from \"@/auth\"\n\nexport async function getServerSideProps(ctx) {\n  const session = await getServerSession(ctx, authOptions)\n  return { props: { session } }\n}",
+      "output": "{ user: { ... } }"
+    },
+    {
+      "name": "API Route Protection (App Router)",
+      "desc": "Proteksi route handler dengan auth().",
+      "example": "import { auth } from \"@/auth\"\n\nexport async function GET() {\n  const session = await auth()\n  if (!session) return Response.json({ error: 'Unauthorized' }, { status: 401 })\n  return Response.json({ data: 'ok' })\n}",
+      "output": "Respons 401 jika tidak login"
+    }
+  ],
+  "session-management": [
+    {
+      "name": "callbacks.jwt",
+      "desc": "Menyesuaikan token JWT saat login/refresh.",
+      "example": "callbacks: {\n  async jwt({ token, user }) {\n    if (user) {\n      token.role = user.role\n    }\n    return token\n  }\n}",
+      "output": "Token JWT berisi role"
+    },
+    {
+      "name": "callbacks.session",
+      "desc": "Menyesuaikan objek sesi yang dikirim ke klien.",
+      "example": "callbacks: {\n  async session({ session, token }) {\n    session.user.role = token.role\n    return session\n  }\n}",
+      "output": "Session.user.role tersedia"
+    },
+    {
+      "name": "session.strategy",
+      "desc": "Strategi penyimpanan sesi: \"jwt\" (default) atau \"database\".",
+      "example": "session: {\n  strategy: \"jwt\"\n}",
+      "output": "Sesi disimpan di JWT"
+    },
+    {
+      "name": "callbacks.signIn",
+      "desc": "Mengontrol apakah user boleh login.",
+      "example": "callbacks: {\n  async signIn({ user, account }) {\n    if (account.provider === \"google\") {\n      return user.email?.endsWith(\"@company.com\")\n    }\n    return true\n  }\n}",
+      "output": "Hanya email company yang diizinkan"
+    },
+    {
+      "name": "callbacks.redirect",
+      "desc": "Mengarahkan ulang setelah login/logout.",
+      "example": "callbacks: {\n  async redirect({ url, baseUrl }) {\n    return url.startsWith(baseUrl) ? url : baseUrl\n  }\n}",
+      "output": "Redirect aman"
+    }
+  ],
+  "database-adapter": [
+    {
+      "name": "PrismaAdapter",
+      "desc": "Menyimpan sesi, akun, dan user di database menggunakan Prisma.",
+      "example": "import { PrismaAdapter } from \"@auth/prisma-adapter\"\nimport { prisma } from \"@/lib/prisma\"\n\nexport const { handlers, auth } = NextAuth({\n  adapter: PrismaAdapter(prisma)\n})",
+      "output": "Database session"
+    },
+    {
+      "name": "Schema Prisma untuk Auth.js",
+      "desc": "Model yang diperlukan di schema.prisma.",
+      "example": "model Account {\n  id String @id @default(cuid())\n  userId String\n  type String\n  provider String\n  providerAccountId String\n  refresh_token String?\n  access_token String?\n  expires_at Int?\n  token_type String?\n  scope String?\n  id_token String?\n  session_state String?\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n  @@unique([provider, providerAccountId])\n}\n\nmodel Session {\n  id String @id @default(cuid())\n  sessionToken String @unique\n  userId String\n  expires DateTime\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\nmodel User {\n  id String @id @default(cuid())\n  name String?\n  email String? @unique\n  emailVerified DateTime?\n  image String?\n  accounts Account[]\n  sessions Session[]\n}\n\nmodel VerificationToken {\n  identifier String\n  token String @unique\n  expires DateTime\n  @@unique([identifier, token])\n}",
+      "output": "Model siap"
+    },
+    {
+      "name": "Database Migration",
+      "desc": "Membuat tabel yang diperlukan Auth.js.",
+      "example": "pnpm exec prisma migrate dev --name auth-js",
+      "output": "Tabel Account, Session, User, VerificationToken"
+    }
+  ],
+  "security": [
+    {
+      "name": "Middleware Route Protection",
+      "desc": "Mengamankan rute dengan middleware Auth.js.",
+      "example": "// middleware.ts\nimport { auth } from \"@/auth\"\n\nexport default auth((req) => {\n  if (!req.auth && req.nextUrl.pathname !== \"/login\") {\n    return Response.redirect(new URL(\"/login\", req.url))\n  }\n})\n\nexport const config = { matcher: [\"/dashboard/:path*\"] }",
+      "output": "Halaman /dashboard hanya untuk login"
+    },
+    {
+      "name": "CSRF Protection",
+      "desc": "Auth.js menangani CSRF secara otomatis pada API routes.",
+      "example": "Tidak perlu konfigurasi khusus.",
+      "output": "CSRF otomatis"
+    },
+    {
+      "name": "JWT Encryption",
+      "desc": "Token JWT dienkripsi dengan AUTH_SECRET.",
+      "example": "AUTH_SECRET=your-secret-key",
+      "output": "JWT terenkripsi"
+    },
+    {
+      "name": "Custom JWT Encode/Decode",
+      "desc": "Override encoding/dekoding JWT.",
+      "example": "jwt: {\n  encode({ token, secret }) { ... },\n  decode({ token, secret }) { ... }\n}",
+      "output": "Kustom JWT"
+    }
+  ],
+  "custom-pages": [
+    {
+      "name": "pages.signIn",
+      "desc": "Halaman login kustom.",
+      "example": "pages: {\n  signIn: '/auth/login'\n}",
+      "output": "Redirect ke /auth/login"
+    },
+    {
+      "name": "pages.error",
+      "desc": "Halaman error kustom.",
+      "example": "pages: {\n  error: '/auth/error'\n}",
+      "output": "Redirect ke /auth/error"
+    },
+    {
+      "name": "pages.verifyRequest",
+      "desc": "Halaman verifikasi setelah email magic link dikirim.",
+      "example": "pages: {\n  verifyRequest: '/auth/check-email'\n}",
+      "output": "Redirect ke /auth/check-email"
+    },
+    {
+      "name": "pages.newUser",
+      "desc": "Halaman setelah user baru terdaftar.",
+      "example": "pages: {\n  newUser: '/auth/welcome'\n}",
+      "output": "Redirect ke /auth/welcome"
+    }
+  ],
+  "events": [
+    {
+      "name": "events.signIn",
+      "desc": "Callback saat user berhasil login.",
+      "example": "events: {\n  async signIn({ user, account, isNewUser }) {\n    console.log(`${user.name} signed in`)\n  }\n}",
+      "output": "Log login"
+    },
+    {
+      "name": "events.signOut",
+      "desc": "Callback saat user logout.",
+      "example": "events: {\n  async signOut({ session }) { ... }\n}",
+      "output": "Log logout"
+    },
+    {
+      "name": "events.createUser",
+      "desc": "Callback setelah user baru dibuat di database.",
+      "example": "events: {\n  async createUser({ user }) {\n    await sendWelcomeEmail(user.email)\n  }\n}",
+      "output": "Kirim email selamat datang"
+    },
+    {
+      "name": "events.linkAccount",
+      "desc": "Callback saat akun OAuth ditautkan ke user yang sudah ada.",
+      "example": "events: {\n  async linkAccount({ user, account, profile }) { ... }\n}",
+      "output": "Log penautan"
+    },
+    {
+      "name": "events.session",
+      "desc": "Callback saat sesi diakses (setiap request).",
+      "example": "events: {\n  async session({ session, token }) { ... }\n}",
+      "output": "Log aktivitas sesi"
+    }
+  ],
+  "advanced": [
+    {
+      "name": "Email Verification",
+      "desc": "Verifikasi email setelah pendaftaran atau login.",
+      "example": "// Menggunakan Email provider atau credentials dengan verifikasi\ncallbacks: {\n  async signIn({ user }) {\n    if (!user.emailVerified) {\n      throw new Error(\"Email not verified\")\n    }\n    return true\n  }\n}",
+      "output": "Hanya email terverifikasi yang bisa login"
+    },
+    {
+      "name": "Magic Link",
+      "desc": "Login tanpa password dengan email magic link.",
+      "example": "// Gunakan EmailProvider dan kirim link ke email\nimport Email from \"next-auth/providers/email\"\n\nEmail({\n  server: process.env.EMAIL_SERVER,\n  from: process.env.EMAIL_FROM,\n  maxAge: 10 * 60 // 10 menit\n})",
+      "output": "Link login dikirim ke email"
+    },
+    {
+      "name": "Credentials Flow with JWT",
+      "desc": "Login custom dengan mengembalikan user dan membuat JWT.",
+      "example": "Credentials({\n  async authorize(credentials) {\n    const user = await verifyUser(credentials)\n    if (user) {\n      return { id: user.id, name: user.name, email: user.email, role: user.role }\n    }\n    return null\n  }\n})",
+      "output": "User object masuk ke JWT"
+    },
+    {
+      "name": "Refresh Token Rotation",
+      "desc": "Memperbarui access token OAuth yang kedaluwarsa.",
+      "example": "callbacks: {\n  async jwt({ token, account }) {\n    if (account) {\n      token.accessToken = account.access_token\n      token.refreshToken = account.refresh_token\n    }\n    // Refresh token jika expired\n    if (Date.now() < token.expires_at * 1000) {\n      return token\n    }\n    return refreshAccessToken(token)\n  }\n}",
+      "output": "Token selalu segar"
+    },
+    {
+      "name": "Role-Based Access Control (RBAC)",
+      "desc": "Membatasi akses berdasarkan role user.",
+      "example": "// Di middleware\nimport { auth } from \"@/auth\"\n\nexport default auth((req) => {\n  if (req.auth?.user?.role !== \"admin\") {\n    return Response.redirect(new URL(\"/403\", req.url))\n  }\n})",
+      "output": "Hanya admin yang bisa mengakses"
+    }
+  ]
+}

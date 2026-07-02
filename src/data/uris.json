@@ -1,0 +1,284 @@
+{
+  "components": [
+    {
+      "name": "URL",
+      "desc": "Uniform Resource Locator, subset URI yang mengidentifikasi lokasi resource dan cara mengambilnya.",
+      "example": "https://user:pass@example.com:443/path?query=1#fragment",
+      "output": "URL lengkap"
+    },
+    {
+      "name": "Scheme",
+      "desc": "Protokol yang digunakan (https, http, ftp, mailto, file, dll). Diikuti oleh :// atau :.",
+      "example": "https://",
+      "output": "https"
+    },
+    {
+      "name": "Authority",
+      "desc": "Bagian setelah scheme, terdiri dari userinfo@, host, dan port (opsional). Dipisahkan dari path dengan /.",
+      "example": "user:pass@example.com:443",
+      "output": "user:pass@example.com:443"
+    },
+    {
+      "name": "Host",
+      "desc": "Nama domain atau alamat IP server.",
+      "example": "example.com",
+      "output": "example.com"
+    },
+    {
+      "name": "Port",
+      "desc": "Port jaringan, opsional (default 80 untuk HTTP, 443 untuk HTTPS).",
+      "example": ":8080",
+      "output": "8080"
+    },
+    {
+      "name": "Path",
+      "desc": "Lokasi resource di server, dipisahkan oleh /. Dapat merefleksikan struktur file atau route.",
+      "example": "/blog/2024/my-post",
+      "output": "/blog/2024/my-post"
+    },
+    {
+      "name": "Query String",
+      "desc": "Parameter key=value dipisahkan &, dimulai setelah tanda tanya ?.",
+      "example": "?q=search&lang=id&page=2",
+      "output": "q=search, lang=id, page=2"
+    },
+    {
+      "name": "Fragment",
+      "desc": "Referensi ke sub-bagian resource, dimulai setelah tanda pagar #. Tidak dikirim ke server.",
+      "example": "#section-2",
+      "output": "Lompat ke elemen id='section-2'"
+    }
+  ],
+  "encoding": [
+    {
+      "name": "Percent-encoding",
+      "desc": "Mengganti karakter khusus dengan % diikuti dua digit heksadesimal UTF-8.",
+      "example": "Spasi → %20, # → %23, / → %2F",
+      "output": "URI yang valid"
+    },
+    {
+      "name": "encodeURI()",
+      "desc": "Mengenkode URI lengkap, tidak mengubah karakter yang memiliki makna khusus (:/?#[]@!$&'()*+,;=).",
+      "example": "encodeURI('https://example.com/path with spaces')",
+      "output": "https://example.com/path%20with%20spaces"
+    },
+    {
+      "name": "encodeURIComponent()",
+      "desc": "Mengenkode komponen URI (nilai query), mengkodekan lebih banyak karakter termasuk ?&=/.",
+      "example": "encodeURIComponent('key=value&other=another')",
+      "output": "key%3Dvalue%26other%3Danother"
+    },
+    {
+      "name": "decodeURI()",
+      "desc": "Mendekode URI yang telah di-encodeURI().",
+      "example": "decodeURI('https://example.com/path%20with%20spaces')",
+      "output": "https://example.com/path with spaces"
+    },
+    {
+      "name": "decodeURIComponent()",
+      "desc": "Mendekode komponen URI yang telah di-encodeURIComponent().",
+      "example": "decodeURIComponent('key%3Dvalue')",
+      "output": "key=value"
+    },
+    {
+      "name": "reserved characters",
+      "desc": "Karakter yang memiliki arti khusus dalam URI dan tidak boleh digunakan tanpa encoding: : / ? # [ ] @ ! $ & ' ( ) * + , ; =",
+      "example": "Digunakan untuk struktur URI, harus di-encode jika bagian dari data.",
+      "output": "Set karakter khusus"
+    },
+    {
+      "name": "unreserved characters",
+      "desc": "Karakter yang aman tanpa encoding: A-Z a-z 0-9 - _ . ~",
+      "example": "Dapat langsung digunakan dalam URI.",
+      "output": "Alfanumerik dan - _ . ~"
+    }
+  ],
+  "url-api": [
+    {
+      "name": "new URL()",
+      "desc": "Constructor untuk membuat dan memanipulasi URL. Dapat melempar TypeError jika URL tidak valid.",
+      "example": "const url = new URL('https://example.com:8080/path?q=test#hash')",
+      "output": "URL object"
+    },
+    {
+      "name": "url.href",
+      "desc": "URL lengkap sebagai string.",
+      "example": "url.href",
+      "output": "https://example.com:8080/path?q=test#hash"
+    },
+    {
+      "name": "url.origin",
+      "desc": "Origin URL (scheme + host + port).",
+      "example": "url.origin",
+      "output": "https://example.com:8080"
+    },
+    {
+      "name": "url.protocol",
+      "desc": "Scheme / protokol termasuk titik dua.",
+      "example": "url.protocol",
+      "output": "https:"
+    },
+    {
+      "name": "url.hostname",
+      "desc": "Nama host tanpa port.",
+      "example": "url.hostname",
+      "output": "example.com"
+    },
+    {
+      "name": "url.port",
+      "desc": "Port sebagai string.",
+      "example": "url.port",
+      "output": "8080"
+    },
+    {
+      "name": "url.pathname",
+      "desc": "Path termasuk awalan /.",
+      "example": "url.pathname",
+      "output": "/path"
+    },
+    {
+      "name": "url.search",
+      "desc": "Query string termasuk tanda tanya ?. Dapat di-set untuk memperbarui query.",
+      "example": "url.search",
+      "output": "?q=test"
+    },
+    {
+      "name": "url.hash",
+      "desc": "Fragment termasuk tanda pagar #.",
+      "example": "url.hash",
+      "output": "#hash"
+    },
+    {
+      "name": "url.searchParams",
+      "desc": "Objek URLSearchParams untuk manipulasi parameter query.",
+      "example": "url.searchParams.get('q')",
+      "output": "test"
+    },
+    {
+      "name": "URLSearchParams",
+      "desc": "Interface untuk bekerja dengan query string secara langsung.",
+      "example": "const params = new URLSearchParams('q=hello&page=1')",
+      "output": "params.get('page') = '1'"
+    },
+    {
+      "name": "params.get(key)",
+      "desc": "Mendapatkan nilai parameter pertama.",
+      "example": "params.get('q')",
+      "output": "'hello'"
+    },
+    {
+      "name": "params.getAll(key)",
+      "desc": "Mendapatkan semua nilai untuk parameter yang sama.",
+      "example": "params.getAll('tag')",
+      "output": "['js', 'css']"
+    },
+    {
+      "name": "params.set(key, value)",
+      "desc": "Mengatur nilai parameter (menimpa yang sudah ada).",
+      "example": "params.set('q', 'new')",
+      "output": "q=new"
+    },
+    {
+      "name": "params.append(key, value)",
+      "desc": "Menambahkan parameter (bisa ganda).",
+      "example": "params.append('tag', 'html')",
+      "output": "tag=js&tag=css&tag=html"
+    },
+    {
+      "name": "params.delete(key)",
+      "desc": "Menghapus parameter.",
+      "example": "params.delete('page')",
+      "output": "page dihapus"
+    },
+    {
+      "name": "params.toString()",
+      "desc": "Mengembalikan query string tanpa ?.",
+      "example": "params.toString()",
+      "output": "q=test&page=1"
+    }
+  ],
+  "data-urls": [
+    {
+      "name": "Data URL format",
+      "desc": "Menyematkan data kecil langsung di URI, tidak perlu HTTP request.",
+      "example": "data:[mediatype][;base64],data",
+      "output": "URI mandiri"
+    },
+    {
+      "name": "Plain text data URL",
+      "desc": "Data teks tanpa encoding base64.",
+      "example": "data:text/plain,Hello%20World!",
+      "output": "Teks 'Hello World!'"
+    },
+    {
+      "name": "Base64 data URL",
+      "desc": "Data binary dienkode base64.",
+      "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...",
+      "output": "Gambar inline"
+    },
+    {
+      "name": "Data URL in CSS",
+      "desc": "Gunakan sebagai nilai url() untuk background atau border-image.",
+      "example": "background-image: url('data:image/svg+xml,...');",
+      "output": "Gambar latar inline"
+    }
+  ],
+  "relative-absolute": [
+    {
+      "name": "Absolute URI",
+      "desc": "Mengandung scheme dan authority, dapat diakses secara mandiri.",
+      "example": "https://example.com/about",
+      "output": "URL lengkap"
+    },
+    {
+      "name": "Relative URI",
+      "desc": "Bergantung pada base URI. Tanpa scheme atau authority.",
+      "example": "../images/photo.jpg",
+      "output": "Diresolve terhadap base"
+    },
+    {
+      "name": "Root-relative URI",
+      "desc": "Dimulai dengan /, merujuk ke root dari origin yang sama.",
+      "example": "/css/style.css",
+      "output": "Relative terhadap root domain saat ini"
+    },
+    {
+      "name": "<base> element",
+      "desc": "Mendefinisikan base URI untuk semua relative URI dalam dokumen.",
+      "example": "<base href=\"https://example.com/app/\">",
+      "output": "Semua link relatif dari /app/"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan HTTPS",
+      "desc": "Selalu gunakan skema https untuk keamanan dan privasi.",
+      "example": "https://example.com",
+      "output": "Koneksi terenkripsi"
+    },
+    {
+      "name": "URL pendek dan deskriptif",
+      "desc": "Gunakan path yang mudah dibaca manusia dan hindari parameter tidak perlu.",
+      "example": "/blog/belajar-javascript",
+      "output": "User-friendly URL"
+    },
+    {
+      "name": "Validasi dan sanitasi input URL",
+      "desc": "Hindari SSRF dan open redirect dengan memvalidasi URL dari pengguna.",
+      "example": "Gunakan new URL() dengan try/catch, atau perpustakaan validasi.",
+      "output": "URL aman"
+    },
+    {
+      "name": "Encode komponen query dengan benar",
+      "desc": "Gunakan encodeURIComponent() untuk nilai parameter.",
+      "example": "const query = '?name=' + encodeURIComponent('Ridho Akbar')",
+      "output": "?name=Ridho%20Akbar"
+    },
+    {
+      "name": "Hindari menyertakan rahasia di URL",
+      "desc": "Token atau password di URL bisa terekspos di log server, history browser, dan referrer header.",
+      "example": "Gunakan POST body atau header Authorization.",
+      "output": "Rahasia tidak bocor"
+    }
+  ]
+}

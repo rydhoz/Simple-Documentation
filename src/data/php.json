@@ -1,0 +1,386 @@
+{
+  "sintaks-dasar": [
+    {
+      "name": "Tag PHP (<?php ?>)",
+      "desc": "Setiap kode PHP harus berada di dalam tag pembuka dan penutup (kecuali file murni PHP).",
+      "example": "<?php echo \"Hello World!\"; ?>",
+      "output": "Hello World!"
+    },
+    {
+      "name": "Variabel ($)",
+      "desc": "Diawali dengan tanda $. Case-sensitive. Langsung dikenali tipe datanya (loosely typed).",
+      "example": "$nama = \"Ridho\";\n$umur = 25;",
+      "output": "Variabel berisi string dan integer."
+    },
+    {
+      "name": "Tipe Data Dasar",
+      "desc": "String, Integer, Float, Boolean, Null, Array, Object.",
+      "example": "$str = \"teks\"; $int = 10; $float = 3.14; $bool = true; $arr = [1,2];",
+      "output": "Berbagai tipe data."
+    },
+    {
+      "name": "Konstanta (define / const)",
+      "desc": "define('NAMA', nilai) untuk global; const NAMA = nilai untuk di dalam class.",
+      "example": "define(\"SITE_NAME\", \"DokumentasiKu\");\necho SITE_NAME;",
+      "output": "DokumentasiKu"
+    },
+    {
+      "name": "Operator Aritmatika",
+      "desc": "+ - * / % ** (pangkat).",
+      "example": "$jumlah = 2 + 3 * 4; // 14",
+      "output": "14"
+    },
+    {
+      "name": "Operator Perbandingan",
+      "desc": "==, === (identik), !=, <>, !==, <, >, <=, >=.",
+      "example": "var_dump(5 == \"5\"); // true\nvar_dump(5 === \"5\"); // false",
+      "output": "bool(true)\nbool(false)"
+    },
+    {
+      "name": "Operator Logika",
+      "desc": "and, or, xor, &&, ||, !.",
+      "example": "if ($a && $b) { ... }",
+      "output": "True jika keduanya true."
+    },
+    {
+      "name": "String Concatenation (.)",
+      "desc": "Menggabungkan string dengan titik.",
+      "example": "$full = $nama . \" Akbar\";",
+      "output": "Ridho Akbar"
+    }
+  ],
+  "struktur-kontrol": [
+    {
+      "name": "if / elseif / else",
+      "desc": "Percabangan berdasarkan kondisi.",
+      "example": "if ($umur >= 18) {\n  echo \"Dewasa\";\n} else {\n  echo \"Anak-anak\";\n}",
+      "output": "Dewasa (jika umur 18+)"
+    },
+    {
+      "name": "switch / case",
+      "desc": "Percabangan multi-kondisi.",
+      "example": "switch ($hari) {\n  case \"Senin\": echo \"Awal minggu\"; break;\n  default: echo \"Hari lain\";\n}",
+      "output": "Sesuai nilai $hari"
+    },
+    {
+      "name": "match (PHP 8.0+)",
+      "desc": "Ekspresi yang lebih ketat (===). Hanya mengembalikan nilai.",
+      "example": "$status = match($kode) {\n  200, 201 => 'Sukses',\n  404 => 'Tidak Ditemukan',\n  default => 'Error'\n};",
+      "output": "String sesuai kode"
+    },
+    {
+      "name": "for loop",
+      "desc": "Perulangan dengan counter.",
+      "example": "for ($i=0; $i<5; $i++) {\n  echo $i;\n}",
+      "output": "01234"
+    },
+    {
+      "name": "while loop",
+      "desc": "Perulangan selama kondisi true.",
+      "example": "$i = 0;\nwhile ($i < 3) {\n  echo $i++;\n}",
+      "output": "012"
+    },
+    {
+      "name": "do-while loop",
+      "desc": "Dijalankan minimal sekali.",
+      "example": "do { echo \"Jalan\"; } while (false);",
+      "output": "Jalan"
+    },
+    {
+      "name": "foreach loop",
+      "desc": "Khusus untuk array atau objek iterable.",
+      "example": "$arr = [1,2,3];\nforeach ($arr as $key => $value) {\n  echo \"$key: $value \";\n}",
+      "output": "0: 1 1: 2 2: 3"
+    },
+    {
+      "name": "break / continue",
+      "desc": "Menghentikan atau melewati iterasi.",
+      "example": "for ($i=0;$i<5;$i++) { if ($i==2) continue; if ($i==4) break; echo $i; }",
+      "output": "013"
+    }
+  ],
+  "fungsi": [
+    {
+      "name": "Deklarasi Fungsi",
+      "desc": "function namaFungsi(param) { ... return ...; }",
+      "example": "function tambah($a, $b) {\n  return $a + $b;\n}",
+      "output": "Mengembalikan hasil penjumlahan."
+    },
+    {
+      "name": "Parameter Default",
+      "desc": "Nilai default jika tidak diberikan.",
+      "example": "function salam($nama = \"User\") { return \"Halo $nama\"; }",
+      "output": "Halo User"
+    },
+    {
+      "name": "Type Declaration",
+      "desc": "Menentukan tipe parameter dan return.",
+      "example": "function kali(float $a, float $b): float {\n  return $a * $b;\n}",
+      "output": "Memaksa parameter float, return float."
+    },
+    {
+      "name": "Anonymous Function (Closure)",
+      "desc": "Fungsi tanpa nama, bisa dimasukkan ke variabel.",
+      "example": "$kurang = function($a, $b) { return $a - $b; };\necho $kurang(5,3);",
+      "output": "2"
+    },
+    {
+      "name": "Arrow Function (PHP 7.4+)",
+      "desc": "Bentuk ringkas dari closure.",
+      "example": "$kali = fn($a, $b) => $a * $b;",
+      "output": "Mengembalikan hasil kali."
+    },
+    {
+      "name": "Variable-length Argument ( ... )",
+      "desc": "Menerima banyak parameter menjadi array.",
+      "example": "function jumlah(...$angka) { return array_sum($angka); }",
+      "output": "Jumlah semua argumen."
+    }
+  ],
+  "array": [
+    {
+      "name": "Array Indexed",
+      "desc": "Array dengan indeks numerik otomatis.",
+      "example": "$buah = [\"Apel\", \"Jeruk\", \"Mangga\"];",
+      "output": "Array(0=>Apel, 1=>Jeruk, 2=>Mangga)"
+    },
+    {
+      "name": "Array Asosiatif",
+      "desc": "Array dengan key string.",
+      "example": "$user = [\"nama\" => \"Ridho\", \"umur\" => 25];",
+      "output": "Array dengan key nama dan umur"
+    },
+    {
+      "name": "array_push / array_pop",
+      "desc": "Menambah (push) atau menghapus (pop) elemen akhir.",
+      "example": "array_push($buah, \"Anggur\");\n$terakhir = array_pop($buah);",
+      "output": "Menambah Anggur, menghapus Mangga."
+    },
+    {
+      "name": "array_shift / array_unshift",
+      "desc": "Menghapus (shift) atau menambah (unshift) elemen awal.",
+      "example": "$depan = array_shift($buah);\narray_unshift($buah, \"Pisang\");",
+      "output": "Menghapus Apel, menambah Pisang di depan."
+    },
+    {
+      "name": "array_merge",
+      "desc": "Menggabungkan dua atau lebih array.",
+      "example": "$gabung = array_merge([1,2], [3,4]);",
+      "output": "[1,2,3,4]"
+    },
+    {
+      "name": "array_map",
+      "desc": "Mengaplikasikan callback ke setiap elemen.",
+      "example": "$double = array_map(fn($n) => $n*2, [1,2,3]);",
+      "output": "[2,4,6]"
+    },
+    {
+      "name": "array_filter",
+      "desc": "Menyaring elemen dengan callback.",
+      "example": "$genap = array_filter([1,2,3,4], fn($n) => $n % 2 == 0);",
+      "output": "[2,4]"
+    },
+    {
+      "name": "in_array / array_search",
+      "desc": "Mencari nilai dalam array.",
+      "example": "in_array(\"Jeruk\", $buah); // true",
+      "output": "bool(true)"
+    }
+  ],
+  "string": [
+    {
+      "name": "strlen()",
+      "desc": "Panjang string.",
+      "example": "strlen(\"Halo\");",
+      "output": "4"
+    },
+    {
+      "name": "strtoupper / strtolower",
+      "desc": "Ubah ke huruf besar/kecil.",
+      "example": "strtoupper(\"halo\");",
+      "output": "HALO"
+    },
+    {
+      "name": "explode / implode",
+      "desc": "Pecah string ke array, gabung array ke string.",
+      "example": "$arr = explode(\",\", \"a,b,c\");\necho implode(\"-\", $arr);",
+      "output": "a-b-c"
+    },
+    {
+      "name": "str_replace",
+      "desc": "Mengganti substring.",
+      "example": "str_replace(\"merah\", \"biru\", \"mobil merah\");",
+      "output": "mobil biru"
+    }
+  ],
+  "superglobals": [
+    {
+      "name": "$_GET",
+      "desc": "Mengambil data dari query string URL (?key=value).",
+      "example": "// URL: page.php?id=123\necho $_GET['id'];",
+      "output": "123"
+    },
+    {
+      "name": "$_POST",
+      "desc": "Mengambil data dari form method POST.",
+      "example": "echo $_POST['email'];",
+      "output": "Isi input email"
+    },
+    {
+      "name": "$_REQUEST",
+      "desc": "Gabungan $_GET, $_POST, dan $_COOKIE.",
+      "example": "echo $_REQUEST['nama'];",
+      "output": "Nilai dari GET/POST/COOKIE"
+    },
+    {
+      "name": "$_SESSION",
+      "desc": "Menyimpan data sesi di server. Harus session_start() dulu.",
+      "example": "session_start();\n$_SESSION['login'] = true;",
+      "output": "Data tersimpan selama sesi."
+    },
+    {
+      "name": "$_COOKIE",
+      "desc": "Membaca cookie yang dikirim browser.",
+      "example": "echo $_COOKIE['theme'];",
+      "output": "dark"
+    },
+    {
+      "name": "$_FILES",
+      "desc": "Menangani file yang diupload.",
+      "example": "$_FILES['gambar']['name']; // nama asli file",
+      "output": "Nama file"
+    }
+  ],
+  "database-pdo": [
+    {
+      "name": "Koneksi PDO",
+      "desc": "Membuat koneksi database dengan PDO.",
+      "example": "$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', '');",
+      "output": "Objek PDO"
+    },
+    {
+      "name": "Query SELECT (fetch)",
+      "desc": "Mengambil data dengan query.",
+      "example": "$stmt = $pdo->query('SELECT * FROM users');\nwhile ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {\n  echo $row['name'];\n}",
+      "output": "Data user ditampilkan."
+    },
+    {
+      "name": "Prepared Statement (aman)",
+      "desc": "Query dengan parameter binding untuk mencegah SQL injection.",
+      "example": "$stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');\n$stmt->execute(['email' => $email]);\n$user = $stmt->fetch();",
+      "output": "User dengan email tertentu."
+    },
+    {
+      "name": "INSERT / UPDATE / DELETE",
+      "desc": "Menggunakan execute dengan prepared statement.",
+      "example": "$stmt = $pdo->prepare('INSERT INTO users (name) VALUES (:name)');\n$stmt->execute(['name' => 'Ridho']);",
+      "output": "Data berhasil ditambahkan."
+    }
+  ],
+  "oop": [
+    {
+      "name": "Class & Object",
+      "desc": "Mendefinisikan blueprint dan membuat instance.",
+      "example": "class User {\n  public $name;\n  function __construct($name) { $this->name = $name; }\n}\n$user = new User('Ridho');",
+      "output": "Objek User dengan name = Ridho"
+    },
+    {
+      "name": "Inheritance (extends)",
+      "desc": "Mewarisi properti dan method dari parent class.",
+      "example": "class Admin extends User {\n  public $role = 'admin';\n}",
+      "output": "Admin memiliki $name dan $role."
+    },
+    {
+      "name": "Interface",
+      "desc": "Kontrak method yang harus diimplementasikan class.",
+      "example": "interface Logger {\n  public function log($msg);\n}",
+      "output": "Class yang implements Logger wajib memiliki method log()."
+    },
+    {
+      "name": "Trait",
+      "desc": "Menyisipkan method ke dalam class (horizontal reuse).",
+      "example": "trait Loggable {\n  public function log($msg) { echo $msg; }\n}\nclass File { use Loggable; }",
+      "output": "Method log() tersedia di class File."
+    }
+  ],
+  "error": [
+    {
+      "name": "try-catch-finally",
+      "desc": "Menangani exception.",
+      "example": "try {\n  throw new Exception('Error');\n} catch (Exception $e) {\n  echo $e->getMessage();\n} finally {\n  echo 'Selesai';\n}",
+      "output": "Error\nSelesai"
+    },
+    {
+      "name": "Custom Exception",
+      "desc": "Membuat class exception sendiri.",
+      "example": "class ValidationException extends Exception {}",
+      "output": "Bisa throw new ValidationException('Pesan')"
+    }
+  ],
+  "keamanan": [
+    {
+      "name": "htmlspecialchars()",
+      "desc": "Mencegah XSS dengan mengkonversi karakter khusus HTML.",
+      "example": "echo htmlspecialchars($_POST['komentar']);",
+      "output": "Tag HTML tidak akan dieksekusi."
+    },
+    {
+      "name": "password_hash / password_verify",
+      "desc": "Hash password dengan bcrypt dan verifikasinya.",
+      "example": "$hash = password_hash('rahasia', PASSWORD_BCRYPT);\nif (password_verify('rahasia', $hash)) { echo 'Cocok'; }",
+      "output": "Cocok"
+    },
+    {
+      "name": "CSRF Token",
+      "desc": "Mencegah Cross-Site Request Forgery dengan token unik.",
+      "example": "// di form: <input type=\"hidden\" name=\"token\" value=\"<?= $token ?>\">\n// validasi: if ($_POST['token'] !== $_SESSION['token']) die('CSRF');",
+      "output": "Form hanya bisa dikirim dari halaman asli."
+    }
+  ],
+  "php8-fitur": [
+    {
+      "name": "Named Arguments",
+      "desc": "Memanggil fungsi dengan menyebut nama parameter.",
+      "example": "function profil($nama, $umur) { ... }\nprofil(umur: 25, nama: 'Ridho');",
+      "output": "Urutan tidak penting."
+    },
+    {
+      "name": "Match Expression",
+      "desc": "Struktur kondisional yang mengembalikan nilai (strict comparison).",
+      "example": "echo match(404) { 200 => 'OK', 404 => 'Not Found' };",
+      "output": "Not Found"
+    },
+    {
+      "name": "Nullsafe Operator (?->)",
+      "desc": "Memanggil method/properti hanya jika tidak null.",
+      "example": "echo $user?->profile?->name;",
+      "output": "Nilai atau null tanpa error."
+    },
+    {
+      "name": "Enum (PHP 8.1+)",
+      "desc": "Tipe data enumerasi.",
+      "example": "enum Status { case Draft; case Published; }",
+      "output": "Nilai terbatas."
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan Composer & Autoloading",
+      "desc": "Manajemen dependensi modern.",
+      "example": "composer init, composer require phpmailer/phpmailer",
+      "output": "Dependensi terkelola."
+    },
+    {
+      "name": "Pisahkan Logika dari Tampilan",
+      "desc": "Hindari campur aduk PHP dan HTML.",
+      "example": "Gunakan template engine (Blade, Twig) atau pisahkan file.",
+      "output": "Kode lebih bersih."
+    },
+    {
+      "name": "Validasi dan Sanitasi Input",
+      "desc": "Gunakan filter_var() atau library validasi.",
+      "example": "$email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);",
+      "output": "Email valid atau false."
+    }
+  ]
+}

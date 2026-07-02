@@ -1,0 +1,93 @@
+{
+  "dasar-jsx": [
+    { "name": "JSX Expression", "desc": "Menyisipkan ekspresi JavaScript dalam JSX.", "example": "const name = 'Ridho'; return <h1>Hello, {name}</h1>", "output": "Hello, Ridho" },
+    { "name": "JSX Attribute", "desc": "Memberi atribut HTML/JSX (camelCase).", "example": "<img src={avatar} alt=\"User\" className=\"avatar\" />", "output": "Elemen <img>" },
+    { "name": "Conditional Rendering", "desc": "Menggunakan ternary atau &&.", "example": "return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>", "output": "Komponen sesuai kondisi" },
+    { "name": "List Rendering", "desc": "Mapping array ke JSX dengan key.", "example": "users.map(user => <li key={user.id}>{user.name}</li>)", "output": "List <li>" },
+    { "name": "Fragment", "desc": "Mengelompokkan elemen tanpa node tambahan.", "example": "<><ChildA /><ChildB /></>", "output": "Tanpa wrapper DOM" },
+    { "name": "Comments in JSX", "desc": "Menulis komentar di dalam JSX.", "example": "{/* Ini komentar */}", "output": "Komentar" }
+  ],
+  "komponen": [
+    { "name": "Functional Component", "desc": "Komponen berbasis fungsi.", "example": "function Greeting({ name }) { return <h1>Halo {name}</h1>; }", "output": "Greeting" },
+    { "name": "Props", "desc": "Menerima data dari parent (read-only).", "example": "<User name=\"Ridho\" age={25} />", "output": "name='Ridho', age=25" },
+    { "name": "Children Prop", "desc": "Menerima konten di antara tag.", "example": "function Card({ children }) { return <div>{children}</div>; }", "output": "Membungkus konten" },
+    { "name": "defaultProps (optional)", "desc": "Nilai default properti (bisa juga destructuring default).", "example": "function Hello({ name = 'User' }) { return <p>Hello {name}</p>; }", "output": "Hello User" },
+    { "name": "React.memo", "desc": "Mencegah render ulang jika props tidak berubah.", "example": "const MemoComp = React.memo(MyComponent);", "output": "Komponen di-memo" },
+    { "name": "forwardRef", "desc": "Meneruskan ref ke komponen anak.", "example": "const Input = React.forwardRef((props, ref) => <input ref={ref} />)", "output": "Ref diteruskan" },
+    { "name": "lazy", "desc": "Lazy load komponen (code splitting).", "example": "const LazyComp = React.lazy(() => import('./Comp'));", "output": "Komponen lazy" },
+    { "name": "Suspense", "desc": "Menampilkan fallback saat lazy loading.", "example": "<Suspense fallback={<Loader />}><LazyComp /></Suspense>", "output": "Fallback muncul saat loading" }
+  ],
+  "hooks-state": [
+    { "name": "useState", "desc": "State lokal komponen.", "example": "const [count, setCount] = useState(0);", "output": "count=0" },
+    { "name": "useState (functional update)", "desc": "Update berdasarkan state sebelumnya.", "example": "setCount(prev => prev + 1);", "output": "count bertambah 1" },
+    { "name": "useReducer", "desc": "State kompleks dengan reducer (Redux pattern).", "example": "const [state, dispatch] = useReducer(reducer, initialState);", "output": "state, dispatch" },
+    { "name": "useOptimistic (React 19)", "desc": "Update optimistik untuk UI interaktif.", "example": "const [optimisticMessages, addOptimistic] = useOptimistic(messages, (state, newMsg) => [...state, newMsg]);", "output": "UI optimistik" },
+    { "name": "useActionState (React 19)", "desc": "State untuk form action (sebelumnya useFormState).", "example": "const [state, formAction] = useActionState(action, initialState);", "output": "State form action" }
+  ],
+  "hooks-effect": [
+    { "name": "useEffect", "desc": "Efek samping setelah render (data fetching, subscription).", "example": "useEffect(() => { document.title = count; }, [count]);", "output": "Judul berubah" },
+    { "name": "useLayoutEffect", "desc": "Efek yang berjalan setelah DOM siap, sinkron.", "example": "useLayoutEffect(() => { measure(); }, []);", "output": "Diukur sebelum paint" },
+    { "name": "useInsertionEffect (React 18+)", "desc": "Efek untuk CSS-in-JS styling, berjalan sebelum DOM mutations.", "example": "useInsertionEffect(() => { styleRef.current = document.createElement('style'); }, []);", "output": "Style diinjeksi lebih awal" }
+  ],
+  "hooks-ref": [
+    { "name": "useRef", "desc": "Ref yang mutable, tidak memicu render ulang.", "example": "const inputRef = useRef(null);", "output": "Referensi input DOM" },
+    { "name": "useImperativeHandle", "desc": "Menentukan nilai yang diekspos oleh ref (dengan forwardRef).", "example": "useImperativeHandle(ref, () => ({ focus() { inputRef.current.focus() } }));", "output": "Ref kustom" }
+  ],
+  "hooks-context": [
+    { "name": "useContext", "desc": "Mengkonsumsi context tanpa Consumer.", "example": "const theme = useContext(ThemeContext);", "output": "Nilai context" },
+    { "name": "createContext", "desc": "Membuat context object.", "example": "const ThemeContext = React.createContext('light');", "output": "Context" },
+    { "name": "Provider", "desc": "Menyediakan nilai context ke komponen anak.", "example": "<ThemeContext.Provider value=\"dark\"><App /></ThemeContext.Provider>", "output": "Anak mendapat value dark" }
+  ],
+  "hooks-performance": [
+    { "name": "useMemo", "desc": "Memoize nilai (hanya hitung ulang jika dependency berubah).", "example": "const expensive = useMemo(() => compute(a, b), [a, b]);", "output": "Nilai di-cache" },
+    { "name": "useCallback", "desc": "Memoize fungsi (menghindari rekreasi).", "example": "const handleClick = useCallback(() => { doSomething(a); }, [a]);", "output": "Fungsi stabil" },
+    { "name": "useTransition (React 18)", "desc": "Menandai update state sebagai transisi non-urgent.", "example": "const [isPending, startTransition] = useTransition(); startTransition(() => { setQuery(next); });", "output": "UI tetap responsif" },
+    { "name": "useDeferredValue (React 18)", "desc": "Menunda pembaruan nilai hingga komputasi selesai.", "example": "const deferredQuery = useDeferredValue(query);", "output": "Nilai tertunda" }
+  ],
+  "hooks-lainnya": [
+    { "name": "useId (React 18)", "desc": "ID unik untuk aksesibilitas (SSR/hydration aman).", "example": "const id = useId();", "output": ":r0:" },
+    { "name": "useDebugValue", "desc": "Label untuk custom hook di React DevTools.", "example": "useDebugValue(isOnline ? 'Online' : 'Offline');", "output": "Label DevTools" },
+    { "name": "useSyncExternalStore (React 18)", "desc": "Subscribe ke store eksternal (Redux, Zustand).", "example": "const state = useSyncExternalStore(subscribe, getSnapshot);", "output": "Data store" },
+    { "name": "useFormStatus (React 19)", "desc": "Status form (pending) untuk komponen dalam <form>.", "example": "const { pending } = useFormStatus();", "output": "true/false" },
+    { "name": "use (React 19)", "desc": "Membaca resource seperti Promise atau context di dalam komponen (tanpa hook rules ketat).", "example": "const data = use(fetchPromise);", "output": "Data" }
+  ],
+  "events": [
+    { "name": "onClick", "desc": "Handler klik.", "example": "<button onClick={() => alert('Hello')}>Klik</button>", "output": "Alert" },
+    { "name": "onChange", "desc": "Handler perubahan input/select/textarea.", "example": "<input onChange={e => setName(e.target.value)} />", "output": "name terupdate" },
+    { "name": "onSubmit", "desc": "Handler submit form.", "example": "<form onSubmit={handleSubmit}>...</form>", "output": "Submit" },
+    { "name": "onKeyDown", "desc": "Handler keyboard press.", "example": "<input onKeyDown={e => e.key === 'Enter' && search()} />", "output": "Enter trigger search" },
+    { "name": "preventDefault", "desc": "Mencegah perilaku default event.", "example": "e.preventDefault();", "output": "Aksi default dibatalkan" },
+    { "name": "stopPropagation", "desc": "Menghentikan propagasi event.", "example": "e.stopPropagation();", "output": "Parent tidak menerima event" },
+    { "name": "SyntheticEvent", "desc": "React membungkus event asli (cross-browser).", "example": "onClick = (event: React.MouseEvent<HTMLButtonElement>) => {}", "output": "Event React" }
+  ],
+  "formulir": [
+    { "name": "Controlled Component", "desc": "Nilai input dikendalikan oleh state React.", "example": "<input value={name} onChange={e => setName(e.target.value)} />", "output": "Input terkontrol" },
+    { "name": "Uncontrolled Component", "desc": "Nilai input diakses via ref (tidak di-state).", "example": "const inputRef = useRef(); <input ref={inputRef} />", "output": "inputRef.current.value" },
+    { "name": "Form Action (React 19)", "desc": "Mengirim form menggunakan action (bisa server action).", "example": "<form action={async (formData) => { await save(formData); }}>", "output": "Submit server action" }
+  ],
+  "server-components": [
+    { "name": "\"use client\"", "desc": "Direktif untuk Client Component (interactive).", "example": "'use client'; function LikeButton() { ... }", "output": "Client Component" },
+    { "name": "\"use server\"", "desc": "Direktif untuk Server Action (mutasi data di server).", "example": "'use server'; async function deletePost(id) { ... }", "output": "Server Action" },
+    { "name": "React Server Component", "desc": "Komponen yang dirender di server (tidak ada state/effect).", "example": "export default async function ServerComp() { const data = await fetch(...); return <div>{data}</div>; }", "output": "Rendered di server" }
+  ],
+  "rendering": [
+    { "name": "createRoot (React 18)", "desc": "Root untuk rendering aplikasi React.", "example": "import { createRoot } from 'react-dom/client'; createRoot(document.getElementById('root')).render(<App />);", "output": "App ter-render" },
+    { "name": "hydrateRoot (React 18)", "desc": "Hydrate aplikasi SSR.", "example": "hydrateRoot(document.getElementById('root'), <App />);", "output": "Aplikasi terhidrasi" },
+    { "name": "StrictMode", "desc": "Membantu mendeteksi masalah dengan rendering ganda di development.", "example": "<StrictMode><App /></StrictMode>", "output": "Double render dev" }
+  ],
+  "portal": [
+    { "name": "createPortal", "desc": "Merender komponen di luar hirarki DOM.", "example": "createPortal(<Modal />, document.getElementById('modal-root'));", "output": "Modal di luar root" }
+  ],
+  "lainnya": [
+    { "name": "Profiler", "desc": "Mengukur performa render.", "example": "<Profiler id=\"App\" onRender={callback}><App /></Profiler>", "output": "Data performa" },
+    { "name": "cloneElement", "desc": "Mengkloning elemen dengan props baru (jarang digunakan).", "example": "React.cloneElement(child, { newProp: true });", "output": "Elemen baru" },
+    { "name": "isValidElement", "desc": "Cek apakah sebuah objek adalah elemen React.", "example": "React.isValidElement(<div />);", "output": "true" },
+    { "name": "Children utilities", "desc": "Memanipulasi children (Children.map, toArray).", "example": "React.Children.map(children, child => cloneElement(child, { extra: true }));", "output": "Array child yang dimodifikasi" }
+  ],
+  "custom-hooks": [
+    { "name": "Custom Hook", "desc": "Fungsi yang menggunakan hook lain (nama diawali use).", "example": "function useOnlineStatus() { const [online, setOnline] = useState(navigator.onLine); useEffect(() => { ... }, []); return online; }", "output": "Status online" }
+  ],
+  "testing": [
+    { "name": "act (from react-dom/test-utils)", "desc": "Membungkus kode yang memicu update state agar test bisa menunggu selesai.", "example": "await act(async () => { render(<App />); });", "output": "Render selesai" }
+  ]
+}

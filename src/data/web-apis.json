@@ -1,0 +1,368 @@
+{
+  "dom-core": [
+    {
+      "name": "document.querySelector()",
+      "desc": "Mengembalikan elemen pertama yang cocok dengan selector CSS.",
+      "example": "const el = document.querySelector('.my-class')",
+      "output": "Element | null"
+    },
+    {
+      "name": "document.querySelectorAll()",
+      "desc": "Mengembalikan NodeList statis dari semua elemen yang cocok dengan selector CSS.",
+      "example": "const els = document.querySelectorAll('div.item')",
+      "output": "NodeList"
+    },
+    {
+      "name": "document.getElementById()",
+      "desc": "Mengembalikan elemen berdasarkan atribut id.",
+      "example": "const el = document.getElementById('header')",
+      "output": "Element | null"
+    },
+    {
+      "name": "document.createElement()",
+      "desc": "Membuat elemen HTML baru.",
+      "example": "const div = document.createElement('div')",
+      "output": "HTMLDivElement"
+    },
+    {
+      "name": "element.innerHTML",
+      "desc": "Mendapatkan atau mengatur konten HTML dalam elemen.",
+      "example": "div.innerHTML = '<p>Hello</p>'",
+      "output": "Konten HTML"
+    },
+    {
+      "name": "element.textContent",
+      "desc": "Mendapatkan atau mengatur teks dalam elemen (tanpa HTML).",
+      "example": "div.textContent = 'Hello'",
+      "output": "Teks murni"
+    },
+    {
+      "name": "element.addEventListener()",
+      "desc": "Menambahkan event listener ke elemen.",
+      "example": "button.addEventListener('click', () => { console.log('Klik') })",
+      "output": "Handler terdaftar"
+    },
+    {
+      "name": "element.removeEventListener()",
+      "desc": "Menghapus event listener.",
+      "example": "button.removeEventListener('click', handler)",
+      "output": "Handler dihapus"
+    },
+    {
+      "name": "element.classList",
+      "desc": "Objek DOMTokenList untuk memanipulasi class (add, remove, toggle, contains).",
+      "example": "el.classList.add('active')",
+      "output": "Class ditambahkan"
+    },
+    {
+      "name": "element.dataset",
+      "desc": "Membaca/menulis atribut data-*.",
+      "example": "const id = el.dataset.userId",
+      "output": "Nilai dari data-user-id"
+    },
+    {
+      "name": "element.getBoundingClientRect()",
+      "desc": "Mengembalikan ukuran dan posisi elemen relatif terhadap viewport.",
+      "example": "const rect = el.getBoundingClientRect()",
+      "output": "{ x: 100, y: 200, width: 300, height: 150, ... }"
+    },
+    {
+      "name": "element.scrollIntoView()",
+      "desc": "Menggulir halaman hingga elemen terlihat.",
+      "example": "el.scrollIntoView({ behavior: 'smooth', block: 'center' })",
+      "output": "Tergulir ke elemen"
+    }
+  ],
+  "fetch-api": [
+    {
+      "name": "fetch()",
+      "desc": "Melakukan permintaan jaringan dan mengembalikan Promise yang resolve ke Response.",
+      "example": "const res = await fetch('/api/data')",
+      "output": "Response object"
+    },
+    {
+      "name": "Response.json()",
+      "desc": "Mengurai body respons sebagai JSON.",
+      "example": "const data = await res.json()",
+      "output": "Objek JavaScript"
+    },
+    {
+      "name": "Response.text()",
+      "desc": "Mengurai body respons sebagai teks.",
+      "example": "const text = await res.text()",
+      "output": "String"
+    },
+    {
+      "name": "Response.blob()",
+      "desc": "Mengurai body respons sebagai Blob (gambar, file).",
+      "example": "const blob = await res.blob()",
+      "output": "Blob"
+    },
+    {
+      "name": "Response.status",
+      "desc": "Kode status HTTP respons (200, 404, dll).",
+      "example": "res.status",
+      "output": "200"
+    },
+    {
+      "name": "Response.ok",
+      "desc": "Boolean, true jika status antara 200-299.",
+      "example": "if (res.ok) { ... }",
+      "output": "true"
+    },
+    {
+      "name": "Request options (method, headers, body)",
+      "desc": "Objek opsi untuk fetch: method, headers, body, mode, credentials.",
+      "example": "fetch('/api', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })",
+      "output": "POST request"
+    },
+    {
+      "name": "AbortController",
+      "desc": "Membatalkan permintaan fetch yang sedang berjalan.",
+      "example": "const controller = new AbortController()\nfetch(url, { signal: controller.signal })\ncontroller.abort()",
+      "output": "Permintaan dibatalkan"
+    }
+  ],
+  "storage": [
+    {
+      "name": "localStorage",
+      "desc": "Penyimpanan persisten per origin, tidak kadaluarsa.",
+      "example": "localStorage.setItem('key', 'value')\nconst val = localStorage.getItem('key')",
+      "output": "Data tersimpan"
+    },
+    {
+      "name": "sessionStorage",
+      "desc": "Penyimpanan per sesi tab, hilang saat tab ditutup.",
+      "example": "sessionStorage.setItem('temp', 'data')",
+      "output": "Data sesi"
+    },
+    {
+      "name": "IndexedDB (basic)",
+      "desc": "Database NoSQL yang kuat di browser untuk data terstruktur.",
+      "example": "const request = indexedDB.open('myDB', 1)\nrequest.onsuccess = () => { const db = request.result }",
+      "output": "Database terbuka"
+    },
+    {
+      "name": "Cache API",
+      "desc": "Penyimpanan untuk pasangan Request/Response, biasanya digunakan di Service Worker.",
+      "example": "const cache = await caches.open('v1')\nawait cache.put(request, response)\nconst res = await cache.match(request)",
+      "output": "Data di-cache"
+    },
+    {
+      "name": "Cookies (document.cookie)",
+      "desc": "String yang berisi semua cookie untuk halaman (baca/tulis). Gunakan HttpOnly untuk keamanan.",
+      "example": "document.cookie = 'theme=dark; max-age=86400; path=/'",
+      "output": "Cookie diatur"
+    }
+  ],
+  "geolocation": [
+    {
+      "name": "navigator.geolocation.getCurrentPosition()",
+      "desc": "Mendapatkan posisi geografis pengguna sekali.",
+      "example": "navigator.geolocation.getCurrentPosition(\n  (pos) => console.log(pos.coords.latitude, pos.coords.longitude),\n  (err) => console.error(err)\n)",
+      "output": "Koordinat"
+    },
+    {
+      "name": "navigator.geolocation.watchPosition()",
+      "desc": "Memantau perubahan posisi secara terus menerus.",
+      "example": "const watchId = navigator.geolocation.watchPosition(success, error)",
+      "output": "ID pemantau"
+    },
+    {
+      "name": "Position.coords.latitude / longitude",
+      "desc": "Nilai latitude dan longitude dalam derajat desimal.",
+      "example": "position.coords.latitude",
+      "output": "-6.2088"
+    }
+  ],
+  "canvas": [
+    {
+      "name": "HTMLCanvasElement.getContext()",
+      "desc": "Mendapatkan konteks rendering (2d, webgl, webgpu).",
+      "example": "const ctx = canvas.getContext('2d')",
+      "output": "CanvasRenderingContext2D"
+    },
+    {
+      "name": "ctx.fillRect()",
+      "desc": "Menggambar persegi panjang terisi.",
+      "example": "ctx.fillRect(10, 10, 100, 50)",
+      "output": "Kotak hitam"
+    },
+    {
+      "name": "ctx.fillStyle",
+      "desc": "Warna atau gaya isian.",
+      "example": "ctx.fillStyle = 'red'",
+      "output": "Warna merah"
+    },
+    {
+      "name": "ctx.strokeRect()",
+      "desc": "Menggambar kerangka persegi panjang.",
+      "example": "ctx.strokeRect(10, 70, 100, 50)",
+      "output": "Kotak tanpa isi"
+    },
+    {
+      "name": "ctx.beginPath() / moveTo / lineTo / stroke",
+      "desc": "Menggambar jalur kustom.",
+      "example": "ctx.beginPath()\nctx.moveTo(10, 10)\nctx.lineTo(100, 100)\nctx.stroke()",
+      "output": "Garis diagonal"
+    },
+    {
+      "name": "ctx.drawImage()",
+      "desc": "Menggambar gambar ke canvas.",
+      "example": "ctx.drawImage(image, 0, 0)",
+      "output": "Gambar ditampilkan"
+    }
+  ],
+  "web-animation": [
+    {
+      "name": "element.animate()",
+      "desc": "Membuat animasi langsung menggunakan JavaScript.",
+      "example": "el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, easing: 'ease-in-out' })",
+      "output": "Animasi berjalan"
+    },
+    {
+      "name": "Animation.finished",
+      "desc": "Promise yang resolve saat animasi selesai.",
+      "example": "await animation.finished",
+      "output": "Animasi selesai"
+    },
+    {
+      "name": "requestAnimationFrame()",
+      "desc": "Menjadwalkan fungsi sebelum repaint berikutnya (untuk animasi halus).",
+      "example": "function animate() { /* update */ requestAnimationFrame(animate) }",
+      "output": "Loop animasi"
+    }
+  ],
+  "web-audio": [
+    {
+      "name": "AudioContext",
+      "desc": "Antarmuka utama untuk pemrosesan audio.",
+      "example": "const audioCtx = new AudioContext()",
+      "output": "AudioContext"
+    },
+    {
+      "name": "OscillatorNode",
+      "desc": "Menghasilkan gelombang suara periodik.",
+      "example": "const osc = audioCtx.createOscillator()\nosc.type = 'sine'\nosc.frequency.value = 440\nosc.connect(audioCtx.destination)\nosc.start()",
+      "output": "Nada 440Hz"
+    },
+    {
+      "name": "GainNode",
+      "desc": "Mengontrol volume.",
+      "example": "const gain = audioCtx.createGain()\ngain.gain.value = 0.5",
+      "output": "Volume setengah"
+    },
+    {
+      "name": "decodeAudioData()",
+      "desc": "Mendekode file audio (MP3, WAV) menjadi AudioBuffer.",
+      "example": "const buffer = await audioCtx.decodeAudioData(arrayBuffer)",
+      "output": "AudioBuffer"
+    }
+  ],
+  "web-rtc": [
+    {
+      "name": "RTCPeerConnection",
+      "desc": "Membuat koneksi peer-to-peer untuk audio/video/data.",
+      "example": "const pc = new RTCPeerConnection(configuration)",
+      "output": "PeerConnection"
+    },
+    {
+      "name": "getUserMedia()",
+      "desc": "Meminta akses kamera dan mikrofon.",
+      "example": "const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true })",
+      "output": "MediaStream"
+    },
+    {
+      "name": "addTrack() / addStream()",
+      "desc": "Menambahkan track media ke koneksi.",
+      "example": "stream.getTracks().forEach(track => pc.addTrack(track, stream))",
+      "output": "Track ditambahkan"
+    },
+    {
+      "name": "createOffer() / createAnswer()",
+      "desc": "Membuat SDP offer/answer.",
+      "example": "const offer = await pc.createOffer()\nawait pc.setLocalDescription(offer)",
+      "output": "SDP dihasilkan"
+    },
+    {
+      "name": "RTCDataChannel",
+      "desc": "Mengirim data arbitrer melalui koneksi peer.",
+      "example": "const channel = pc.createDataChannel('chat')\nchannel.send('Hello')",
+      "output": "Data terkirim"
+    }
+  ],
+  "observers": [
+    {
+      "name": "IntersectionObserver",
+      "desc": "Mengamati visibilitas elemen relatif terhadap viewport/ancestor (lazy loading, infinite scroll).",
+      "example": "const observer = new IntersectionObserver(cb, { threshold: 0.5 })\nobserver.observe(el)",
+      "output": "Callback dipanggil saat visibilitas berubah"
+    },
+    {
+      "name": "MutationObserver",
+      "desc": "Mengamati perubahan pada DOM (childList, attributes, characterData).",
+      "example": "const observer = new MutationObserver(mutations => { ... })\nobserver.observe(el, { childList: true, attributes: true })",
+      "output": "Callback dipanggil saat DOM berubah"
+    },
+    {
+      "name": "ResizeObserver",
+      "desc": "Mengamati perubahan ukuran elemen.",
+      "example": "const observer = new ResizeObserver(entries => { ... })\nobserver.observe(el)",
+      "output": "Callback dipanggil saat elemen di-resize"
+    }
+  ],
+  "clipboard": [
+    {
+      "name": "navigator.clipboard.writeText()",
+      "desc": "Menulis teks ke clipboard (perlu izin pengguna).",
+      "example": "await navigator.clipboard.writeText('Hello')",
+      "output": "Teks disalin"
+    },
+    {
+      "name": "navigator.clipboard.readText()",
+      "desc": "Membaca teks dari clipboard (perlu izin).",
+      "example": "const text = await navigator.clipboard.readText()",
+      "output": "Teks dari clipboard"
+    }
+  ],
+  "notifications": [
+    {
+      "name": "Notification.requestPermission()",
+      "desc": "Meminta izin untuk menampilkan notifikasi.",
+      "example": "const permission = await Notification.requestPermission()",
+      "output": "'granted' | 'denied' | 'default'"
+    },
+    {
+      "name": "new Notification()",
+      "desc": "Menampilkan notifikasi sistem.",
+      "example": "new Notification('Halo', { body: 'Pesan baru', icon: '/icon.png' })",
+      "output": "Notifikasi muncul"
+    }
+  ],
+  "other-apis": [
+    {
+      "name": "history.pushState() / replaceState()",
+      "desc": "Mengubah URL tanpa reload halaman.",
+      "example": "history.pushState({ id: 1 }, '', '/page/1')",
+      "output": "URL berubah, state ditambahkan"
+    },
+    {
+      "name": "Web Workers",
+      "desc": "Menjalankan skrip di background thread.",
+      "example": "const worker = new Worker('worker.js')\nworker.postMessage('data')\nworker.onmessage = (e) => console.log(e.data)",
+      "output": "Pemrosesan di latar belakang"
+    },
+    {
+      "name": "Intl.DateTimeFormat",
+      "desc": "Internationalization API untuk format tanggal.",
+      "example": "new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date())",
+      "output": "'27 Juni 2025'"
+    },
+    {
+      "name": "Intl.NumberFormat",
+      "desc": "Format angka dengan lokal.",
+      "example": "new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(100000)",
+      "output": "'Rp 100.000,00'"
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "prinsip-dasar": [
+    {
+      "name": "Kontras (Contrast)",
+      "desc": "Membuat perbedaan mencolok antar elemen untuk menarik perhatian dan menciptakan hierarki visual.",
+      "example": "Tombol utama berwarna terang di latar belakang gelap; judul besar vs. isi teks kecil.",
+      "output": "Fokus pengguna langsung tertuju pada elemen kontras."
+    },
+    {
+      "name": "Pengulangan (Repetition)",
+      "desc": "Mengulang elemen desain (warna, tipografi, bentuk) di seluruh antarmuka untuk konsistensi.",
+      "example": "Semua tombol primer memiliki warna dan padding yang sama; semua heading menggunakan font yang sama.",
+      "output": "Antarmuka terasa kohesif dan mudah dipelajari."
+    },
+    {
+      "name": "Penjajaran (Alignment)",
+      "desc": "Elemen harus memiliki koneksi visual dengan elemen lain (rata kiri, kanan, tengah).",
+      "example": "Teks dalam form selalu rata kiri; ikon di dalam button sejajar vertikal.",
+      "output": "Tatanan rapi dan profesional, mengurangi beban kognitif."
+    },
+    {
+      "name": "Kedekatan (Proximity)",
+      "desc": "Elemen yang berhubungan dikelompokkan berdekatan. Elemen yang tidak berhubungan dipisahkan.",
+      "example": "Label di atas input; gambar profil dekat nama pengguna; bagian form yang berbeda dipisahkan whitespace.",
+      "output": "Hubungan antar informasi langsung terlihat."
+    },
+    {
+      "name": "Whitespace (Ruang Kosong)",
+      "desc": "Ruang negatif di antara elemen. Memberi ruang bernapas, meningkatkan keterbacaan, dan menonjolkan elemen penting.",
+      "example": "Padding di dalam card, margin antar section, line-height teks.",
+      "output": "Desain tidak sumpek, elemen penting menonjol."
+    },
+    {
+      "name": "Hirarki Visual (Visual Hierarchy)",
+      "desc": "Mengatur elemen sehingga pengguna melihat yang paling penting dulu. Bisa lewat ukuran, warna, kontras, posisi.",
+      "example": "Judul besar > subjudul > body text. Tombol CTA warna mencolok.",
+      "output": "Panduan alami bagi mata pengguna."
+    }
+  ],
+  "tipografi": [
+    {
+      "name": "Font Size (Ukuran Font)",
+      "desc": "Ukuran teks dalam piksel (px) atau rem. Gunakan skala modular untuk konsistensi (12, 14, 16, 18, 20, 24, 32, 48).",
+      "example": "Body text: 16px, Heading H1: 32px, Caption: 12px.",
+      "output": "Hirarki teks yang jelas dan mudah dibaca."
+    },
+    {
+      "name": "Line Height (Tinggi Baris)",
+      "desc": "Jarak vertikal antar baris teks. Idealnya 1.5 (150%) untuk body text, lebih kecil untuk heading (1.2 - 1.3).",
+      "example": "Body: line-height: 1.6; Heading: line-height: 1.2;",
+      "output": "Teks mengalir nyaman, tidak terlalu rapat atau renggang."
+    },
+    {
+      "name": "Font Weight (Ketebalan)",
+      "desc": "Ketebalan karakter (100 = Thin, 400 = Regular, 700 = Bold, 900 = Black).",
+      "example": "Heading: font-weight: 700; Body: font-weight: 400;",
+      "output": "Kontras antar elemen teks, heading terlihat lebih dominan."
+    },
+    {
+      "name": "Font Pairing",
+      "desc": "Menggabungkan dua font yang saling melengkapi (biasanya satu untuk heading, satu untuk body).",
+      "example": "Heading: 'Poppins' (sans-serif) + Body: 'Merriweather' (serif).",
+      "output": "Kombinasi harmonis dan tidak membosankan."
+    },
+    {
+      "name": "Letter Spacing",
+      "desc": "Jarak antar huruf. Biasanya negatif untuk heading besar, sedikit positif untuk teks uppercase kecil.",
+      "example": "Heading: letter-spacing: -0.5px; Button: letter-spacing: 0.5px;",
+      "output": "Menjaga keterbacaan pada ukuran dan konteks yang berbeda."
+    },
+    {
+      "name": "Text Align (Rata Teks)",
+      "desc": "Posisi horizontal teks: left, right, center, justify. Left paling umum untuk readability.",
+      "example": "Paragraf: text-align: left; Judul halaman: text-align: center;",
+      "output": "Konsistensi membaca; justify sering menghasilka ruang antar kata aneh."
+    }
+  ],
+  "warna": [
+    {
+      "name": "Color Wheel / Teori Warna",
+      "desc": "Roda warna untuk melihat hubungan: komplementer (berlawanan), analogous (bersebelahan), triadik (segitiga).",
+      "example": "Komplementer: Biru + Oranye. Analogous: Biru + Ungu.",
+      "output": "Palet warna yang harmonis."
+    },
+    {
+      "name": "Primary, Secondary, Accent",
+      "desc": "Primary: warna utama brand. Secondary: pendukung. Accent: untuk aksi/CTA (biasanya kontras).",
+      "example": "Primary: #6C5CE7, Secondary: #A29BFE, Accent: #FF7675 (untuk tombol penting).",
+      "output": "Peran warna jelas dalam UI."
+    },
+    {
+      "name": "Neutral Colors",
+      "desc": "Abu-abu, putih, hitam untuk latar belakang, teks, border.",
+      "example": "Background: #F8F9FA, Text: #212529, Border: #DEE2E6.",
+      "output": "Fleksibel untuk elemen non-aksi."
+    },
+    {
+      "name": "Semantic Colors",
+      "desc": "Warna dengan makna: Merah untuk error/hapus, Hijau untuk sukses, Kuning untuk peringatan.",
+      "example": "Error: #E74C3C, Success: #2ECC71, Warning: #F39C12.",
+      "output": "Pengguna langsung memahami konteks."
+    },
+    {
+      "name": "Color Contrast (Aksesibilitas)",
+      "desc": "Rasio kontras teks terhadap latar belakang minimal 4.5:1 (AA) untuk teks normal, 3:1 untuk teks besar.",
+      "example": "Teks #333 pada latar #FFF (rasio 12.6:1) lulus AAA. #999 pada #FFF (2.85:1) gagal.",
+      "output": "Konten bisa dibaca semua orang, termasuk low vision."
+    },
+    {
+      "name": "CSS Variables untuk Warna",
+      "desc": "Menggunakan variabel CSS untuk mengelola palet dan tema (dark mode).",
+      "example": ":root { --primary: #6C5CE7; } .dark { --primary: #A29BFE; }",
+      "output": "Tema mudah diganti secara dinamis."
+    }
+  ],
+  "spacing-sizing": [
+    {
+      "name": "8px Grid System",
+      "desc": "Semua ukuran dan jarak menggunakan kelipatan 8 (4, 8, 12, 16, 24, 32, 48, 64, 96).",
+      "example": "padding: 16px (2x8); margin: 24px (3x8); width: 320px (40x8).",
+      "output": "Ritme vertikal dan horizontal konsisten di seluruh aplikasi."
+    },
+    {
+      "name": "Padding vs Margin",
+      "desc": "Padding: ruang di dalam elemen (border ke konten). Margin: ruang di luar elemen (jarak antar elemen).",
+      "example": "Card: padding: 24px; Jarak antar dua card: margin-bottom: 16px;",
+      "output": "Pemisahan tanggung jawab spasi."
+    },
+    {
+      "name": "Max-Width untuk Keterbacaan",
+      "desc": "Lebar teks sebaiknya dibatasi 65-75 karakter per baris (sekitar 600-720px).",
+      "example": "Artikel: max-width: 680px; margin: 0 auto;",
+      "output": "Mata tidak cepat lelah saat membaca teks panjang."
+    },
+    {
+      "name": "Responsive Spacing",
+      "desc": "Gunakan unit relatif (%, vw, clamp) atau Tailwind responsive prefixes untuk spacing di berbagai layar.",
+      "example": "Tailwind: p-4 md:p-8 lg:p-12. CSS: padding: clamp(16px, 5vw, 64px);",
+      "output": "Spasi menyesuaikan ukuran layar tanpa patah."
+    }
+  ],
+  "ikonografi": [
+    {
+      "name": "Konsistensi Gaya Ikon",
+      "desc": "Semua ikon harus dari set yang sama (outline/filled, stroke width, sudut membulat).",
+      "example": "Gunakan Lucide (stroke-width: 2, width: 24, height: 24) untuk semua ikon.",
+      "output": "Tidak ada ikon yang terlihat asing."
+    },
+    {
+      "name": "Ukuran Ikon",
+      "desc": "Umumnya 16px (inline dgn teks), 20px (tombol kecil), 24px (standar UI), 32px+ (dekoratif).",
+      "example": "Ikon di dalam tombol: size={16}; Ikon di navbar: size={24};",
+      "output": "Proporsional dengan elemen sekitarnya."
+    },
+    {
+      "name": "Label pada Ikon",
+      "desc": "Ikon tanpa teks harus memiliki label untuk aksesibilitas (aria-label) atau tooltip.",
+      "example": "<button aria-label=\"Tutup\"><XIcon /></button>",
+      "output": "Bisa diakses oleh screen reader."
+    },
+    {
+      "name": "SVG vs Icon Font",
+      "desc": "Sebaiknya gunakan SVG inline atau sebagai komponen (React) untuk kontrol penuh dan performa. Hindari icon font.",
+      "example": "import { SearchIcon } from 'lucide-react'; <SearchIcon className=\"w-5 h-5\" />",
+      "output": "Tajam di semua resolusi, mudah diwarnai dan dianimasikan."
+    }
+  ],
+  "responsive-layout": [
+    {
+      "name": "Mobile-First Design",
+      "desc": "Desain untuk layar kecil dulu, lalu tambahkan kompleksitas untuk layar lebih besar dengan min-width media queries.",
+      "example": "/* Mobile */ .grid { cols: 1 } /* Tablet */ @media (min-width: 768px) { .grid { cols: 2 } }",
+      "output": "Konten prioritas ditampilkan baik di semua perangkat."
+    },
+    {
+      "name": "Breakpoints Umum (Tailwind)",
+      "desc": "sm: 640px, md: 768px, lg: 1024px, xl: 1280px, 2xl: 1536px.",
+      "example": "class=\"w-full md:w-1/2 lg:w-1/3\"",
+      "output": "Layout beradaptasi secara halus."
+    },
+    {
+      "name": "Container Queries",
+      "desc": "Mengatur gaya berdasarkan ukuran container, bukan viewport.",
+      "example": "@container (min-width: 300px) { .card { display: flex; } }",
+      "output": "Komponen yang benar-benar reusable di berbagai konteks."
+    },
+    {
+      "name": "Flexbox & Grid",
+      "desc": "Flexbox: 1 dimensi (baris/kolom). Grid: 2 dimensi (baris dan kolom). Gunakan sesuai kebutuhan.",
+      "example": "Navbar: flex; Halaman dengan sidebar dan konten: grid-template-columns: 250px 1fr;",
+      "output": "Kontrol tata letak yang presisi."
+    }
+  ],
+  "design-tools": [
+    {
+      "name": "Figma (UI/UX Design)",
+      "desc": "Tools desain berbasis web untuk membuat UI, prototype, dan kolaborasi real-time.",
+      "example": "Akses mode 'Dev Mode' untuk melihat spesifikasi CSS (warna, spacing, font).",
+      "output": "Pengembang mendapatkan kode yang siap diimplementasikan."
+    },
+    {
+      "name": "Canva (Grafis Cepat)",
+      "desc": "Untuk membuat aset pemasaran, posting media sosial, presentasi dengan template siap pakai.",
+      "example": "Mendesain banner blog atau thumbnail YouTube dengan drag-and-drop.",
+      "output": "Cepat menghasilkan visual tanpa keahlian desain."
+    },
+    {
+      "name": "Excalidraw / tldraw",
+      "desc": "Whiteboarding untuk wireframe kasar atau diagram alur.",
+      "example": "Buat sketsa layout halaman sebelum coding.",
+      "output": "Ide tervisualisasi dengan cepat."
+    },
+    {
+      "name": "Color Pickers & Palettes",
+      "desc": "Coolors.co, Adobe Color: untuk membangun dan mengeksplorasi palet warna.",
+      "example": "Generate palet dari satu warna primer, kunci palet, lalu ekspor sebagai CSS variables.",
+      "output": "Palet siap pakai yang harmonis."
+    },
+    {
+      "name": "Stock Photos & Illustrations",
+      "desc": "Unsplash, Pexels, Freepik, unDraw: sumber gambar dan ilustrasi bebas royalti.",
+      "example": "Gunakan ilustrasi dari unDraw (format SVG) untuk halaman error atau onboarding.",
+      "output": "UI lebih hidup tanpa melanggar hak cipta."
+    }
+  ],
+  "ux-dasar": [
+    {
+      "name": "User-Centered Design (UCD)",
+      "desc": "Proses desain yang berfokus pada kebutuhan, keinginan, dan keterbatasan pengguna akhir.",
+      "example": "Lakukan user interview sebelum mendesain fitur, uji coba prototype.",
+      "output": "Produk yang benar-benar memecahkan masalah pengguna."
+    },
+    {
+      "name": "Law of Proximity (Hukum Kedekatan)",
+      "desc": "Objek yang berdekatan dianggap memiliki hubungan. (Prinsip Gestalt)",
+      "example": "Group label dengan input di dalam fieldset, pisahkan section dengan whitespace.",
+      "output": "Hubungan elemen mudah dipahami."
+    },
+    {
+      "name": "Fitts's Law",
+      "desc": "Waktu untuk mencapai target (tombol) dipengaruhi oleh jarak dan ukuran target. Tombol penting dibuat besar dan dekat.",
+      "example": "Tombol 'Kirim' besar dan diletakkan di bawah form, jangan di pojok jauh.",
+      "output": "Interaksi lebih cepat dan minim kesalahan klik."
+    },
+    {
+      "name": "Hick's Law",
+      "desc": "Semakin banyak pilihan, semakin lama waktu pengambilan keputusan. Kurangi opsi yang tidak perlu.",
+      "example": "Jangan tampilkan 10 CTA sekaligus; gunakan satu primary CTA dan satu secondary.",
+      "output": "Pengguna tidak kebingungan."
+    },
+    {
+      "name": "User Feedback",
+      "desc": "Beritahu pengguna tentang hasil aksi mereka (loading spinner, toast sukses, pesan error).",
+      "example": "Setelah menyimpan data, tampilkan toast 'Data berhasil disimpan'.",
+      "output": "Pengguna yakin aksinya berhasil."
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Jangan Hanya Mengandalkan Warna",
+      "desc": "Informasi penting harus disampaikan dengan ikon atau teks tambahan, bukan hanya warna (untuk aksesibilitas buta warna).",
+      "example": "Error state: border merah + ikon 'X' + teks 'Email tidak valid'.",
+      "output": "Semua pengguna memahami informasi penting."
+    },
+    {
+      "name": "Hindari Lorem Ipsum",
+      "desc": "Gunakan konten nyata atau semi-nyata sedini mungkin untuk melihat apakah desain berfungsi.",
+      "example": "Ganti 'Lorem ipsum dolor sit amet' dengan deskripsi produk asli.",
+      "output": "Masalah spacing atau overflow bisa terdeteksi."
+    },
+    {
+      "name": "Responsif Sejak Awal",
+      "desc": "Jangan desain desktop dulu lalu dipaksakan ke mobile. Mulai dari mobile (mobile-first).",
+      "example": "Mulai dengan single column layout, perluas ke multi-column jika perlu.",
+      "output": "Tidak perlu redesign besar di akhir."
+    },
+    {
+      "name": "Gunakan System Font Stack",
+      "desc": "Font bawaan sistem (San Francisco, Segoe UI, Roboto) memuat cepat tanpa request tambahan.",
+      "example": "font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;",
+      "output": "Performa optimal, tampilan konsisten dengan OS."
+    }
+  ]
+}

@@ -1,0 +1,632 @@
+{
+  "string": [
+    {
+      "name": ".length",
+      "desc": "Mengembalikan panjang string.",
+      "example": "\"hello\".length",
+      "output": "5"
+    },
+    {
+      "name": ".charAt(index)",
+      "desc": "Mengembalikan karakter pada posisi index.",
+      "example": "\"hello\".charAt(1)",
+      "output": "\"e\""
+    },
+    {
+      "name": ".at(index)",
+      "desc": "Mengembalikan karakter pada index. Bisa negatif.",
+      "example": "\"hello\".at(-1)",
+      "output": "\"o\""
+    },
+    {
+      "name": ".concat(str)",
+      "desc": "Menggabungkan string.",
+      "example": "\"Hello\".concat(\" World\")",
+      "output": "\"Hello World\""
+    },
+    {
+      "name": ".includes(str)",
+      "desc": "Mengecek apakah string mengandung substring.",
+      "example": "\"hello\".includes(\"ll\")",
+      "output": "true"
+    },
+    {
+      "name": ".indexOf(str)",
+      "desc": "Index pertama substring. -1 jika tidak ditemukan.",
+      "example": "\"hello\".indexOf(\"l\")",
+      "output": "2"
+    },
+    {
+      "name": ".lastIndexOf(str)",
+      "desc": "Index terakhir substring. -1 jika tidak ditemukan.",
+      "example": "\"hello\".lastIndexOf(\"l\")",
+      "output": "3"
+    },
+    {
+      "name": ".slice(start, end)",
+      "desc": "Potong string. Support negatif.",
+      "example": "\"hello\".slice(1, 3)",
+      "output": "\"el\""
+    },
+    {
+      "name": ".substring(start, end)",
+      "desc": "Potong string dari start sampai end.",
+      "example": "\"hello\".substring(1, 3)",
+      "output": "\"el\""
+    },
+    {
+      "name": ".substr(start, length)",
+      "desc": "Potong string mulai dari start sebanyak length karakter. (Deprecated)",
+      "example": "\"hello\".substr(1, 3)",
+      "output": "\"ell\""
+    },
+    {
+      "name": ".toUpperCase()",
+      "desc": "Ubah ke huruf besar.",
+      "example": "\"hello\".toUpperCase()",
+      "output": "\"HELLO\""
+    },
+    {
+      "name": ".toLowerCase()",
+      "desc": "Ubah ke huruf kecil.",
+      "example": "\"HELLO\".toLowerCase()",
+      "output": "\"hello\""
+    },
+    {
+      "name": ".trim()",
+      "desc": "Hapus spasi awal dan akhir.",
+      "example": "\"  hi  \".trim()",
+      "output": "\"hi\""
+    },
+    {
+      "name": ".trimStart()",
+      "desc": "Hapus spasi di awal.",
+      "example": "\"  hi  \".trimStart()",
+      "output": "\"hi  \""
+    },
+    {
+      "name": ".trimEnd()",
+      "desc": "Hapus spasi di akhir.",
+      "example": "\"  hi  \".trimEnd()",
+      "output": "\"  hi\""
+    },
+    {
+      "name": ".split(separator)",
+      "desc": "Pecah string jadi array.",
+      "example": "\"a,b,c\".split(\",\")",
+      "output": "[\"a\",\"b\",\"c\"]"
+    },
+    {
+      "name": ".replace(old, new)",
+      "desc": "Ganti substring pertama ditemukan.",
+      "example": "\"haha\".replace(\"ha\", \"he\")",
+      "output": "\"heha\""
+    },
+    {
+      "name": ".replaceAll(old, new)",
+      "desc": "Ganti semua substring.",
+      "example": "\"haha\".replaceAll(\"ha\", \"he\")",
+      "output": "\"hehe\""
+    },
+    {
+      "name": ".startsWith(str)",
+      "desc": "Mengecek apakah string diawali substring tertentu.",
+      "example": "\"hello\".startsWith(\"he\")",
+      "output": "true"
+    },
+    {
+      "name": ".endsWith(str)",
+      "desc": "Mengecek apakah string diakhiri substring tertentu.",
+      "example": "\"hello\".endsWith(\"lo\")",
+      "output": "true"
+    },
+    {
+      "name": ".padStart(targetLength, padString)",
+      "desc": "Menambah karakter di awal sampai panjang tertentu.",
+      "example": "\"5\".padStart(3, \"0\")",
+      "output": "\"005\""
+    },
+    {
+      "name": ".padEnd(targetLength, padString)",
+      "desc": "Menambah karakter di akhir sampai panjang tertentu.",
+      "example": "\"5\".padEnd(3, \"0\")",
+      "output": "\"500\""
+    },
+    {
+      "name": ".repeat(count)",
+      "desc": "Mengulang string beberapa kali.",
+      "example": "\"ha\".repeat(3)",
+      "output": "\"hahaha\""
+    },
+    {
+      "name": ".match(regex)",
+      "desc": "Mencari kecocokan string dengan regex.",
+      "example": "\"hello\".match(/l/g)",
+      "output": "[\"l\",\"l\"]"
+    },
+    {
+      "name": ".matchAll(regex)",
+      "desc": "Mencari semua kecocokan regex (iterator).",
+      "example": "for (const m of \"hello\".matchAll(/l/g)) console.log(m)",
+      "output": "iterator"
+    },
+    {
+      "name": ".search(regex)",
+      "desc": "Mencari index pertama yang cocok dengan regex.",
+      "example": "\"hello\".search(/ll/)",
+      "output": "2"
+    }
+  ],
+  "array": {
+    "static": [
+      {
+        "name": "Array.from(iterable)",
+        "desc": "Membuat array dari iterable atau array-like.",
+        "example": "Array.from('hello')",
+        "output": "['h','e','l','l','o']"
+      },
+      {
+        "name": "Array.isArray(val)",
+        "desc": "Mengecek apakah nilai adalah array.",
+        "example": "Array.isArray([1,2])",
+        "output": "true"
+      },
+      {
+        "name": "Array.of(...items)",
+        "desc": "Membuat array dari argumen.",
+        "example": "Array.of(1,2,3)",
+        "output": "[1,2,3]"
+      }
+    ],
+    "instance": [
+      {
+        "name": ".length",
+        "desc": "Jumlah elemen array.",
+        "example": "[1,2,3].length",
+        "output": "3",
+        "mutates": false
+      },
+      {
+        "name": ".push(item)",
+        "desc": "Tambah elemen ke akhir. (Mutasi)",
+        "example": "const arr = [1]; arr.push(2); arr",
+        "output": "[1, 2]",
+        "mutates": true
+      },
+      {
+        "name": ".pop()",
+        "desc": "Hapus elemen terakhir. (Mutasi)",
+        "example": "const arr = [1,2]; arr.pop(); arr",
+        "output": "[1]",
+        "mutates": true
+      },
+      {
+        "name": ".shift()",
+        "desc": "Hapus elemen pertama. (Mutasi)",
+        "example": "const arr = [1,2]; arr.shift(); arr",
+        "output": "[2]",
+        "mutates": true
+      },
+      {
+        "name": ".unshift(item)",
+        "desc": "Tambah elemen ke awal. (Mutasi)",
+        "example": "const arr = [2]; arr.unshift(1); arr",
+        "output": "[1, 2]",
+        "mutates": true
+      },
+      {
+        "name": ".splice(start, deleteCount, ...items)",
+        "desc": "Menghapus/menambah elemen di tengah. (Mutasi)",
+        "example": "const arr = [1,2,3]; arr.splice(1,1); arr",
+        "output": "[1,3]",
+        "mutates": true
+      },
+      {
+        "name": ".reverse()",
+        "desc": "Membalik urutan array. (Mutasi)",
+        "example": "const arr = [1,2,3]; arr.reverse(); arr",
+        "output": "[3,2,1]",
+        "mutates": true
+      },
+      {
+        "name": ".sort(compareFn)",
+        "desc": "Mengurutkan array. (Mutasi)",
+        "example": "const arr = [3,1,2]; arr.sort((a,b) => a-b); arr",
+        "output": "[1,2,3]",
+        "mutates": true
+      },
+      {
+        "name": ".fill(value, start?, end?)",
+        "desc": "Mengisi elemen dengan nilai statis. (Mutasi)",
+        "example": "const arr = [1,2,3]; arr.fill(0, 1, 3); arr",
+        "output": "[1,0,0]",
+        "mutates": true
+      },
+      {
+        "name": ".copyWithin(target, start, end?)",
+        "desc": "Salin bagian array ke posisi lain. (Mutasi)",
+        "example": "const arr = [1,2,3,4]; arr.copyWithin(0, 2); arr",
+        "output": "[3,4,3,4]",
+        "mutates": true
+      },
+      {
+        "name": ".map(cb)",
+        "desc": "Transform tiap elemen, return array baru.",
+        "example": "[1,2].map(v => v*2)",
+        "output": "[2,4]",
+        "mutates": false
+      },
+      {
+        "name": ".filter(cb)",
+        "desc": "Filter elemen, return array baru.",
+        "example": "[1,2,3].filter(v => v>1)",
+        "output": "[2,3]",
+        "mutates": false
+      },
+      {
+        "name": ".find(cb)",
+        "desc": "Cari elemen pertama yang cocok.",
+        "example": "[{id:1},{id:2}].find(v => v.id>1)",
+        "output": "{id:2}",
+        "mutates": false
+      },
+      {
+        "name": ".findIndex(cb)",
+        "desc": "Cari index elemen pertama yang cocok.",
+        "example": "[{id:1},{id:2}].findIndex(v => v.id>1)",
+        "output": "1",
+        "mutates": false
+      },
+      {
+        "name": ".findLast(cb)",
+        "desc": "Cari elemen terakhir yang cocok.",
+        "example": "[1,2,3,2].findLast(v => v===2)",
+        "output": "2",
+        "mutates": false
+      },
+      {
+        "name": ".findLastIndex(cb)",
+        "desc": "Cari index elemen terakhir yang cocok.",
+        "example": "[1,2,3,2].findLastIndex(v => v===2)",
+        "output": "3",
+        "mutates": false
+      },
+      {
+        "name": ".reduce(cb, init?)",
+        "desc": "Akumulasi nilai. cb(acc, val, idx, arr).",
+        "example": "[1,2,3].reduce((sum, v) => sum+v, 0)",
+        "output": "6",
+        "mutates": false
+      },
+      {
+        "name": ".reduceRight(cb, init?)",
+        "desc": "Akumulasi dari kanan.",
+        "example": "[[1,2],[3,4]].reduceRight((flat, arr) => flat.concat(arr), [])",
+        "output": "[3,4,1,2]",
+        "mutates": false
+      },
+      {
+        "name": ".forEach(cb)",
+        "desc": "Menjalankan fungsi untuk setiap elemen. Tidak menghasilkan array baru.",
+        "example": "[1,2].forEach(v => console.log(v))",
+        "output": "void",
+        "mutates": false
+      },
+      {
+        "name": ".some(cb)",
+        "desc": "Cek apakah minimal satu elemen cocok.",
+        "example": "[1,2,3].some(v => v>2)",
+        "output": "true",
+        "mutates": false
+      },
+      {
+        "name": ".every(cb)",
+        "desc": "Cek apakah semua elemen cocok.",
+        "example": "[1,2,3].every(v => v>0)",
+        "output": "true",
+        "mutates": false
+      },
+      {
+        "name": ".includes(item)",
+        "desc": "Mengecek apakah array mengandung elemen tertentu.",
+        "example": "[1,2,3].includes(2)",
+        "output": "true",
+        "mutates": false
+      },
+      {
+        "name": ".indexOf(item)",
+        "desc": "Index pertama elemen. -1 jika tidak ditemukan.",
+        "example": "[1,2,3].indexOf(2)",
+        "output": "1",
+        "mutates": false
+      },
+      {
+        "name": ".lastIndexOf(item)",
+        "desc": "Index terakhir elemen. -1 jika tidak ditemukan.",
+        "example": "[1,2,3,2].lastIndexOf(2)",
+        "output": "3",
+        "mutates": false
+      },
+      {
+        "name": ".slice(start?, end?)",
+        "desc": "Potong array, return array baru.",
+        "example": "[1,2,3].slice(0, 2)",
+        "output": "[1,2]",
+        "mutates": false
+      },
+      {
+        "name": ".concat(arr)",
+        "desc": "Menggabungkan array, return array baru.",
+        "example": "[1,2].concat([3,4])",
+        "output": "[1,2,3,4]",
+        "mutates": false
+      },
+      {
+        "name": ".join(separator)",
+        "desc": "Menggabungkan array menjadi string.",
+        "example": "['a','b'].join('-')",
+        "output": "\"a-b\"",
+        "mutates": false
+      },
+      {
+        "name": ".flat(depth?)",
+        "desc": "Meratakan array bertingkat.",
+        "example": "[1,[2,[3]]].flat(2)",
+        "output": "[1,2,3]",
+        "mutates": false
+      },
+      {
+        "name": ".flatMap(cb)",
+        "desc": "Map lalu flat satu tingkat.",
+        "example": "[1,2].flatMap(v => [v, v*2])",
+        "output": "[1,2,2,4]",
+        "mutates": false
+      },
+      {
+        "name": ".entries()",
+        "desc": "Iterator pasangan [index, value].",
+        "example": "for (const [i,v] of ['a','b'].entries()) console.log(i,v)",
+        "output": "0 'a' , 1 'b'",
+        "mutates": false
+      },
+      {
+        "name": ".keys()",
+        "desc": "Iterator index.",
+        "example": "Array.from(['a','b'].keys())",
+        "output": "[0,1]",
+        "mutates": false
+      },
+      {
+        "name": ".values()",
+        "desc": "Iterator nilai.",
+        "example": "Array.from(['a','b'].values())",
+        "output": "['a','b']",
+        "mutates": false
+      }
+    ]
+  },
+  "object": [
+    {
+      "name": "Object.keys(obj)",
+      "desc": "Array dari semua key.",
+      "example": "Object.keys({a:1,b:2})",
+      "output": "[\"a\",\"b\"]"
+    },
+    {
+      "name": "Object.values(obj)",
+      "desc": "Array dari semua value.",
+      "example": "Object.values({a:1,b:2})",
+      "output": "[1, 2]"
+    },
+    {
+      "name": "Object.entries(obj)",
+      "desc": "Array pasangan [key, value].",
+      "example": "Object.entries({a:1})",
+      "output": "[[\"a\", 1]]"
+    },
+    {
+      "name": "Object.assign(target, src)",
+      "desc": "Copy properti ke target.",
+      "example": "Object.assign({}, {a:1})",
+      "output": "{a: 1}"
+    },
+    {
+      "name": "Object.fromEntries(entries)",
+      "desc": "Ubah array entries jadi object.",
+      "example": "Object.fromEntries([[\"a\", 1]])",
+      "output": "{a: 1}"
+    },
+    {
+      "name": "Object.hasOwn(obj, prop)",
+      "desc": "Cek properti milik sendiri (modern).",
+      "example": "Object.hasOwn({a:1}, 'a')",
+      "output": "true"
+    },
+    {
+      "name": "Object.freeze(obj)",
+      "desc": "Membekukan object (tidak bisa diubah).",
+      "example": "const obj = Object.freeze({a:1}); obj.a = 2; obj.a",
+      "output": "1"
+    },
+    {
+      "name": "Object.seal(obj)",
+      "desc": "Menyegel object (properti tidak bisa ditambah/hapus).",
+      "example": "const obj = Object.seal({a:1}); delete obj.a; obj.a",
+      "output": "1"
+    },
+    {
+      "name": "Object.create(proto)",
+      "desc": "Membuat object baru dengan prototipe tertentu.",
+      "example": "Object.create(null)",
+      "output": "{} (tanpa prototype)"
+    }
+  ],
+  "number": [
+    {
+      "name": "Number.isInteger(val)",
+      "desc": "Cek bilangan bulat.",
+      "example": "Number.isInteger(5)",
+      "output": "true"
+    },
+    {
+      "name": "Number.parseInt(str)",
+      "desc": "Ubah string ke integer.",
+      "example": "Number.parseInt(\"42px\")",
+      "output": "42"
+    },
+    {
+      "name": "Number.parseFloat(str)",
+      "desc": "Ubah string ke float.",
+      "example": "Number.parseFloat(\"3.14px\")",
+      "output": "3.14"
+    },
+    {
+      "name": ".toFixed(digits)",
+      "desc": "Format desimal menjadi string.",
+      "example": "(3.14159).toFixed(2)",
+      "output": "\"3.14\""
+    },
+    {
+      "name": ".toPrecision(digits)",
+      "desc": "Format angka ke panjang signifikan.",
+      "example": "(3.14159).toPrecision(2)",
+      "output": "\"3.1\""
+    }
+  ],
+  "math": [
+    { "name": "Math.PI", "desc": "Nilai pi.", "example": "Math.PI", "output": "3.14159..." },
+    { "name": "Math.floor(x)", "desc": "Bulatkan ke bawah.", "example": "Math.floor(3.9)", "output": "3" },
+    { "name": "Math.ceil(x)", "desc": "Bulatkan ke atas.", "example": "Math.ceil(3.1)", "output": "4" },
+    { "name": "Math.round(x)", "desc": "Bulatkan ke terdekat.", "example": "Math.round(3.5)", "output": "4" },
+    { "name": "Math.abs(x)", "desc": "Nilai mutlak.", "example": "Math.abs(-5)", "output": "5" },
+    { "name": "Math.random()", "desc": "Random 0 sampai <1.", "example": "Math.random()", "output": "0.1234..." },
+    { "name": "Math.max(...nums)", "desc": "Nilai terbesar.", "example": "Math.max(1,5,3)", "output": "5" },
+    { "name": "Math.min(...nums)", "desc": "Nilai terkecil.", "example": "Math.min(1,5,3)", "output": "1" },
+    { "name": "Math.sqrt(x)", "desc": "Akar kuadrat.", "example": "Math.sqrt(9)", "output": "3" },
+    { "name": "Math.pow(x, y)", "desc": "Pangkat.", "example": "Math.pow(2, 3)", "output": "8" },
+    { "name": "Math.trunc(x)", "desc": "Buang desimal tanpa pembulatan.", "example": "Math.trunc(3.9)", "output": "3" }
+  ],
+  "map": [
+    { "name": "new Map()", "desc": "Membuat map baru.", "example": "new Map()", "output": "Map(0)" },
+    { "name": ".set(key, value)", "desc": "Menambah atau mengubah pasangan kunci-nilai.", "example": "const m = new Map(); m.set('a',1)", "output": "Map(1)" },
+    { "name": ".get(key)", "desc": "Mengambil nilai berdasarkan kunci.", "example": "m.get('a')", "output": "1" },
+    { "name": ".has(key)", "desc": "Mengecek keberadaan kunci.", "example": "m.has('a')", "output": "true" },
+    { "name": ".delete(key)", "desc": "Menghapus kunci.", "example": "m.delete('a')", "output": "true" },
+    { "name": ".clear()", "desc": "Menghapus semua pasangan.", "example": "m.clear()", "output": "void" },
+    { "name": ".size", "desc": "Jumlah pasangan kunci-nilai.", "example": "m.size", "output": "0" },
+    { "name": ".forEach(cb)", "desc": "Iterasi dengan callback.", "example": "m.forEach((v,k) => console.log(k,v))", "output": "void" },
+    { "name": ".keys()", "desc": "Iterator kunci.", "example": "Array.from(m.keys())", "output": "['a']" },
+    { "name": ".values()", "desc": "Iterator nilai.", "example": "Array.from(m.values())", "output": "[1]" }
+  ],
+  "set": [
+    { "name": "new Set()", "desc": "Membuat set baru.", "example": "new Set()", "output": "Set(0)" },
+    { "name": ".add(value)", "desc": "Menambah nilai unik.", "example": "const s = new Set(); s.add(1)", "output": "Set(1)" },
+    { "name": ".has(value)", "desc": "Mengecek keberadaan nilai.", "example": "s.has(1)", "output": "true" },
+    { "name": ".delete(value)", "desc": "Menghapus nilai.", "example": "s.delete(1)", "output": "true" },
+    { "name": ".clear()", "desc": "Menghapus semua nilai.", "example": "s.clear()", "output": "void" },
+    { "name": ".size", "desc": "Jumlah nilai.", "example": "s.size", "output": "0" }
+  ],
+  "promise": [
+    { "name": "new Promise(executor)", "desc": "Membuat promise.", "example": "new Promise((resolve) => resolve(1))", "output": "Promise{1}" },
+    { "name": "Promise.resolve(val)", "desc": "Promise sukses langsung.", "example": "Promise.resolve(42)", "output": "Promise{42}" },
+    { "name": "Promise.reject(err)", "desc": "Promise gagal langsung.", "example": "Promise.reject('error')", "output": "Promise{<rejected>}" },
+    { "name": ".then(onFulfilled, onRejected?)", "desc": "Menangani hasil sukses.", "example": "Promise.resolve(1).then(v => v+1)", "output": "Promise{2}" },
+    { "name": ".catch(onRejected)", "desc": "Menangani error.", "example": "Promise.reject('err').catch(e => e)", "output": "Promise{'err'}" },
+    { "name": ".finally(onFinally)", "desc": "Dijalankan apapun hasilnya.", "example": "Promise.resolve().finally(() => console.log('done'))", "output": "void" },
+    { "name": "Promise.all([...])", "desc": "Tunggu semua selesai, error jika ada yang gagal.", "example": "Promise.all([Promise.resolve(1), Promise.resolve(2)])", "output": "Promise{[1,2]}" },
+    { "name": "Promise.allSettled([...])", "desc": "Tunggu semua selesai (selalu sukses).", "example": "Promise.allSettled([Promise.reject('e')])", "output": "Promise{[{status:'rejected', reason:'e'}]}" },
+    { "name": "Promise.race([...])", "desc": "Hasil dari promise pertama yang selesai.", "example": "Promise.race([new Promise(r => setTimeout(r,100,'a')), Promise.resolve('b')])", "output": "Promise{'b'}" },
+    { "name": "Promise.any([...])", "desc": "Promise pertama yang sukses, error jika semua gagal.", "example": "Promise.any([Promise.reject('e'), Promise.resolve(2)])", "output": "Promise{2}" }
+  ],
+  "date": [
+    { "name": "new Date()", "desc": "Tanggal & waktu saat ini.", "example": "new Date()", "output": "2026-01-01T00:00:00.000Z" },
+    { "name": "new Date(timestamp)", "desc": "Dari milliseconds sejak epoch.", "example": "new Date(0)", "output": "1970-01-01T00:00:00.000Z" },
+    { "name": "new Date(dateString)", "desc": "Parsing string tanggal.", "example": "new Date('2026-01-01')", "output": "2026-01-01T00:00:00.000Z" },
+    { "name": ".getFullYear()", "desc": "Tahun (4 digit).", "example": "new Date().getFullYear()", "output": "2026" },
+    { "name": ".getMonth()", "desc": "Bulan (0-11).", "example": "new Date(2026,0,1).getMonth()", "output": "0" },
+    { "name": ".getDate()", "desc": "Tanggal (1-31).", "example": "new Date(2026,0,1).getDate()", "output": "1" },
+    { "name": ".getHours()", "desc": "Jam (0-23).", "example": "new Date(2026,0,1,13).getHours()", "output": "13" },
+    { "name": ".getMinutes()", "desc": "Menit (0-59).", "example": "new Date(2026,0,1,0,30).getMinutes()", "output": "30" },
+    { "name": ".getSeconds()", "desc": "Detik (0-59).", "example": "new Date(2026,0,1,0,0,45).getSeconds()", "output": "45" },
+    { "name": ".toISOString()", "desc": "Format ISO 8601.", "example": "new Date(2026,0,1).toISOString()", "output": "\"2026-01-01T00:00:00.000Z\"" },
+    { "name": ".toLocaleDateString(locale)", "desc": "Format tanggal lokal.", "example": "new Date(2026,0,1).toLocaleDateString('id-ID')", "output": "\"1/1/2026\"" }
+  ],
+  "dom-selection": [
+    { "name": "document.querySelector(selector)", "desc": "Ambil elemen pertama yang cocok.", "example": "document.querySelector('.card')", "output": "Element | null" },
+    { "name": "document.querySelectorAll(selector)", "desc": "Ambil semua elemen yang cocok (NodeList).", "example": "document.querySelectorAll('.card')", "output": "NodeList" },
+    { "name": "document.getElementById(id)", "desc": "Ambil elemen berdasarkan id.", "example": "document.getElementById('app')", "output": "Element | null" },
+    { "name": "document.getElementsByClassName(class)", "desc": "Ambil elemen berdasarkan class (HTMLCollection live).", "example": "document.getElementsByClassName('item')", "output": "HTMLCollection" },
+    { "name": "document.getElementsByTagName(tag)", "desc": "Ambil elemen berdasarkan tag (HTMLCollection live).", "example": "document.getElementsByTagName('p')", "output": "HTMLCollection" }
+  ],
+  "dom-manipulation": [
+    { "name": "document.createElement(tag)", "desc": "Buat elemen baru.", "example": "document.createElement('div')", "output": "Element" },
+    { "name": ".appendChild(node)", "desc": "Tambah node sebagai anak terakhir.", "example": "parent.appendChild(child)", "output": "Node" },
+    { "name": ".append(...nodes)", "desc": "Tambah node atau teks di akhir.", "example": "parent.append('Hello', child)", "output": "void" },
+    { "name": ".prepend(...nodes)", "desc": "Tambah node atau teks di awal.", "example": "parent.prepend(child)", "output": "void" },
+    { "name": ".remove()", "desc": "Hapus elemen dari DOM.", "example": "element.remove()", "output": "void" },
+    { "name": ".replaceChild(newChild, oldChild)", "desc": "Ganti child lama dengan child baru.", "example": "parent.replaceChild(newNode, oldNode)", "output": "Node" },
+    { "name": ".innerHTML", "desc": "Isi HTML dalam elemen (bisa diset/dibaca).", "example": "element.innerHTML = '<p>Hi</p>'", "output": "string" },
+    { "name": ".innerText", "desc": "Teks yang terlihat (mempertimbangkan CSS).", "example": "element.innerText = 'Hi'", "output": "string" },
+    { "name": ".textContent", "desc": "Semua teks di dalam elemen.", "example": "element.textContent = 'Hi'", "output": "string" },
+    { "name": ".classList", "desc": "Objek untuk mengelola class (add, remove, toggle, contains).", "example": "element.classList.add('active')", "output": "DOMTokenList" },
+    { "name": ".setAttribute(name, value)", "desc": "Menambah/mengubah atribut.", "example": "element.setAttribute('data-id', '1')", "output": "void" },
+    { "name": ".getAttribute(name)", "desc": "Mengambil nilai atribut.", "example": "element.getAttribute('data-id')", "output": "\"1\"" },
+    { "name": ".removeAttribute(name)", "desc": "Menghapus atribut.", "example": "element.removeAttribute('data-id')", "output": "void" },
+    { "name": ".style", "desc": "Mengubah/membaca inline style.", "example": "element.style.color = 'red'", "output": "void" }
+  ],
+  "event": [
+    { "name": ".addEventListener(event, handler)", "desc": "Pasang event listener.", "example": "btn.addEventListener('click', () => {})", "output": "void" },
+    { "name": ".removeEventListener(event, handler)", "desc": "Lepas event listener.", "example": "btn.removeEventListener('click', handler)", "output": "void" },
+    { "name": ".preventDefault()", "desc": "Cegah aksi default browser.", "example": "event.preventDefault()", "output": "void" },
+    { "name": "click", "desc": "Saat elemen diklik.", "example": "element.addEventListener('click', ...)", "output": "event" },
+    { "name": "input", "desc": "Saat nilai input berubah (setiap ketik).", "example": "input.addEventListener('input', ...)", "output": "event" },
+    { "name": "change", "desc": "Saat nilai input berubah dan fokus hilang.", "example": "select.addEventListener('change', ...)", "output": "event" },
+    { "name": "submit", "desc": "Saat form dikirim.", "example": "form.addEventListener('submit', ...)", "output": "event" },
+    { "name": "keydown", "desc": "Tombol keyboard ditekan.", "example": "document.addEventListener('keydown', ...)", "output": "event" },
+    { "name": "keyup", "desc": "Tombol keyboard dilepas.", "example": "document.addEventListener('keyup', ...)", "output": "event" }
+  ],
+  "bom": [
+    { "name": "alert(msg)", "desc": "Tampilkan dialog alert.", "example": "alert('Hello')", "output": "void" },
+    { "name": "confirm(msg)", "desc": "Dialog konfirmasi (OK/Cancel).", "example": "confirm('Yakin?')", "output": "boolean" },
+    { "name": "prompt(msg, default?)", "desc": "Minta input teks.", "example": "prompt('Nama?')", "output": "string | null" },
+    { "name": "setTimeout(cb, delay)", "desc": "Jalankan fungsi setelah delay ms.", "example": "setTimeout(() => {}, 1000)", "output": "timer id" },
+    { "name": "setInterval(cb, delay)", "desc": "Jalankan fungsi berulang tiap delay ms.", "example": "setInterval(() => {}, 1000)", "output": "timer id" },
+    { "name": "clearTimeout(id)", "desc": "Hentikan timeout.", "example": "clearTimeout(id)", "output": "void" },
+    { "name": "clearInterval(id)", "desc": "Hentikan interval.", "example": "clearInterval(id)", "output": "void" },
+    { "name": "location", "desc": "Objek URL (href, reload, replace).", "example": "location.href = '/new-page'", "output": "void" },
+    { "name": "history", "desc": "Riwayat navigasi (back, forward, go).", "example": "history.back()", "output": "void" },
+    { "name": "navigator", "desc": "Info browser & perangkat (userAgent, clipboard).", "example": "navigator.userAgent", "output": "string" }
+  ],
+  "json": [
+    { "name": "JSON.stringify(value)", "desc": "Ubah nilai JS ke JSON string.", "example": "JSON.stringify({a:1})", "output": "{\"a\":1}" },
+    { "name": "JSON.parse(text)", "desc": "Ubah JSON string ke nilai JS.", "example": "JSON.parse('{\"a\":1}')", "output": "{a:1}" }
+  ],
+  "storage": [
+    { "name": "localStorage.setItem(key, val)", "desc": "Simpan string ke localStorage.", "example": "localStorage.setItem('name', 'Ridho')", "output": "void" },
+    { "name": "localStorage.getItem(key)", "desc": "Baca string dari localStorage.", "example": "localStorage.getItem('name')", "output": "\"Ridho\"" },
+    { "name": "localStorage.removeItem(key)", "desc": "Hapus item.", "example": "localStorage.removeItem('name')", "output": "void" },
+    { "name": "localStorage.clear()", "desc": "Hapus semua.", "example": "localStorage.clear()", "output": "void" },
+    { "name": "sessionStorage.setItem(key, val)", "desc": "Simpan string ke sessionStorage.", "example": "sessionStorage.setItem('token', 'abc')", "output": "void" },
+    { "name": "sessionStorage.getItem(key)", "desc": "Baca string dari sessionStorage.", "example": "sessionStorage.getItem('token')", "output": "\"abc\"" },
+    { "name": "sessionStorage.removeItem(key)", "desc": "Hapus item.", "example": "sessionStorage.removeItem('token')", "output": "void" },
+    { "name": "sessionStorage.clear()", "desc": "Hapus semua.", "example": "sessionStorage.clear()", "output": "void" }
+  ],
+  "console": [
+    { "name": "console.log(...args)", "desc": "Cetak pesan biasa.", "example": "console.log('Hello', 123)", "output": "Hello 123" },
+    { "name": "console.table(data)", "desc": "Cetak data dalam bentuk tabel.", "example": "console.table([{a:1},{a:2}])", "output": "Tabel" },
+    { "name": "console.error(...args)", "desc": "Cetak pesan error (warna merah).", "example": "console.error('Gagal!')", "output": "Gagal!" },
+    { "name": "console.warn(...args)", "desc": "Cetak peringatan (kuning).", "example": "console.warn('Hati-hati')", "output": "Hati-hati" },
+    { "name": "console.group(label)", "desc": "Mulai grup log.", "example": "console.group('Detail')", "output": "void" },
+    { "name": "console.groupEnd()", "desc": "Akhiri grup log.", "example": "console.groupEnd()", "output": "void" }
+  ],
+  "fetch": [
+    { "name": "fetch(url, options?)", "desc": "Kirim HTTP request.", "example": "fetch('/api/users')", "output": "Promise<Response>" },
+    { "name": "response.json()", "desc": "Parse body sebagai JSON.", "example": "fetch('/api').then(r => r.json())", "output": "Promise<any>" },
+    { "name": "response.text()", "desc": "Parse body sebagai teks.", "example": "fetch('/api').then(r => r.text())", "output": "Promise<string>" },
+    { "name": "response.status", "desc": "HTTP status code.", "example": "response.status", "output": "200" }
+  ],
+  "error": [
+    { "name": "try { ... } catch (err) { ... } finally { ... }", "desc": "Tangani error.", "example": "try { throw new Error('fail') } catch(e) { e.message }", "output": "'fail'" },
+    { "name": "throw new Error(msg)", "desc": "Lempar error baru.", "example": "throw new Error('something wrong')", "output": "Error" }
+  ]
+}

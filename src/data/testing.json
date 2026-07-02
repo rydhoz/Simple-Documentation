@@ -1,0 +1,190 @@
+{
+  "unit-testing": [
+    {
+      "name": "Jest - test() / it()",
+      "desc": "Mendefinisikan sebuah unit test.",
+      "example": "test('menjumlahkan 1 + 2 sama dengan 3', () => {\n  expect(1 + 2).toBe(3)\n})",
+      "output": "✓ menjumlahkan 1 + 2 sama dengan 3"
+    },
+    {
+      "name": "Vitest - test() / it()",
+      "desc": "Unit test dengan Vitest (API kompatibel Jest).",
+      "example": "import { test, expect } from 'vitest'\ntest('perkalian 2 * 3 = 6', () => {\n  expect(2 * 3).toBe(6)\n})",
+      "output": "✓ perkalian 2 * 3 = 6"
+    },
+    {
+      "name": "describe() block",
+      "desc": "Mengelompokkan beberapa test.",
+      "example": "describe('Math operations', () => {\n  test('add', () => { ... })\n  test('subtract', () => { ... })\n})",
+      "output": "Math operations > add ✓, subtract ✓"
+    }
+  ],
+  "matchers": [
+    {
+      "name": "toBe()",
+      "desc": "Membandingkan nilai primitive secara strict (===).",
+      "example": "expect(2 + 2).toBe(4)",
+      "output": "Pass jika hasil 4"
+    },
+    {
+      "name": "toEqual()",
+      "desc": "Deep equality untuk objek/array.",
+      "example": "expect({ a: 1 }).toEqual({ a: 1 })",
+      "output": "Pass jika struktur sama"
+    },
+    {
+      "name": "toBeTruthy / toBeFalsy",
+      "desc": "Memeriksa apakah nilai truthy atau falsy.",
+      "example": "expect(true).toBeTruthy()\nexpect(0).toBeFalsy()",
+      "output": "Pass sesuai kondisi"
+    },
+    {
+      "name": "toContain()",
+      "desc": "Memeriksa apakah array/string mengandung nilai.",
+      "example": "expect(['apel', 'jeruk']).toContain('apel')",
+      "output": "Pass"
+    },
+    {
+      "name": "toHaveLength()",
+      "desc": "Memeriksa panjang array/string.",
+      "example": "expect('hello').toHaveLength(5)",
+      "output": "Pass"
+    },
+    {
+      "name": "toThrow()",
+      "desc": "Memastikan fungsi melempar error.",
+      "example": "expect(() => { throw new Error('fail') }).toThrow('fail')",
+      "output": "Pass"
+    },
+    {
+      "name": "toMatchSnapshot()",
+      "desc": "Membandingkan dengan snapshot yang tersimpan.",
+      "example": "expect(component).toMatchSnapshot()",
+      "output": "Snapshot cocok atau baru dibuat"
+    }
+  ],
+  "react-component-testing": [
+    {
+      "name": "render()",
+      "desc": "Merender komponen React untuk testing (React Testing Library).",
+      "example": "import { render } from '@testing-library/react'\nrender(<Button label=\"Click\" />)",
+      "output": "Komponen terender di JSDOM"
+    },
+    {
+      "name": "screen.getByText()",
+      "desc": "Mencari elemen berdasarkan teks.",
+      "example": "expect(screen.getByText('Click')).toBeInTheDocument()",
+      "output": "Pass jika teks ditemukan"
+    },
+    {
+      "name": "screen.getByRole()",
+      "desc": "Mencari elemen berdasarkan ARIA role.",
+      "example": "screen.getByRole('button', { name: /click/i })",
+      "output": "Elemen tombol"
+    },
+    {
+      "name": "fireEvent.click()",
+      "desc": "Mensimulasikan event klik pada elemen.",
+      "example": "fireEvent.click(screen.getByRole('button'))",
+      "output": "Handler onClick terpicu"
+    },
+    {
+      "name": "userEvent (Testing Library)",
+      "desc": "Simulasi interaksi user yang lebih realistis.",
+      "example": "import userEvent from '@testing-library/user-event'\nawait userEvent.click(button)",
+      "output": "Klik diproses"
+    }
+  ],
+  "e2e-testing": [
+    {
+      "name": "Playwright - Test",
+      "desc": "E2E testing dengan browser nyata.",
+      "example": "import { test, expect } from '@playwright/test'\ntest('homepage memiliki judul', async ({ page }) => {\n  await page.goto('http://localhost:3000')\n  await expect(page).toHaveTitle(/Dokumentasi/)\n})",
+      "output": "Pass"
+    },
+    {
+      "name": "Playwright - locator",
+      "desc": "Mencari elemen di halaman.",
+      "example": "page.locator('button#submit')",
+      "output": "Locator siap digunakan"
+    },
+    {
+      "name": "Cypress - Test",
+      "desc": "E2E testing dengan Cypress.",
+      "example": "describe('Homepage', () => {\n  it('menampilkan judul', () => {\n    cy.visit('/')\n    cy.contains('Dokumentasi')\n  })\n})",
+      "output": "Pass"
+    },
+    {
+      "name": "Cypress - cy.get() / cy.contains()",
+      "desc": "Mencari elemen di halaman.",
+      "example": "cy.get('.btn').click()",
+      "output": "Klik tombol"
+    }
+  ],
+  "mocking": [
+    {
+      "name": "jest.fn()",
+      "desc": "Membuat fungsi mock.",
+      "example": "const mockFn = jest.fn()\nmockFn()\nexpect(mockFn).toHaveBeenCalled()",
+      "output": "Pass"
+    },
+    {
+      "name": "vi.fn() (Vitest)",
+      "desc": "Fungsi mock di Vitest.",
+      "example": "import { vi } from 'vitest'\nconst mockFn = vi.fn()",
+      "output": "Fungsi mock"
+    },
+    {
+      "name": "jest.spyOn()",
+      "desc": "Memata-matai method pada objek.",
+      "example": "const spy = jest.spyOn(console, 'log')\nexpect(spy).toHaveBeenCalledWith('hello')",
+      "output": "Spy aktif"
+    },
+    {
+      "name": "Mock Module",
+      "desc": "Mengganti module dengan versi mock.",
+      "example": "jest.mock('axios', () => ({\n  get: jest.fn(() => Promise.resolve({ data: {} }))\n}))",
+      "output": "Axios diganti mock"
+    }
+  ],
+  "snapshot-testing": [
+    {
+      "name": "toMatchSnapshot()",
+      "desc": "Membandingkan output dengan file snapshot.",
+      "example": "expect(tree).toMatchSnapshot()",
+      "output": "File .snap diperbarui jika berbeda"
+    },
+    {
+      "name": "toMatchInlineSnapshot()",
+      "desc": "Snapshot disimpan langsung dalam kode tes.",
+      "example": "expect(result).toMatchInlineSnapshot(`\"expected value\"`)",
+      "output": "Snapshot inline"
+    }
+  ],
+  "configuration": [
+    {
+      "name": "vitest.config.ts",
+      "desc": "Konfigurasi Vitest di proyek.",
+      "example": "import { defineConfig } from 'vitest/config'\nexport default defineConfig({\n  test: {\n    globals: true,\n    environment: 'jsdom',\n    setupFiles: './src/test/setup.ts'\n  }\n})",
+      "output": "Vitest siap"
+    },
+    {
+      "name": "jest.config.ts",
+      "desc": "Konfigurasi Jest.",
+      "example": "import type { Config } from 'jest'\nconst config: Config = {\n  testEnvironment: 'jsdom',\n  setupFilesAfterSetup: ['<rootDir>/jest.setup.ts']\n}\nexport default config",
+      "output": "Jest siap"
+    },
+    {
+      "name": "playwright.config.ts",
+      "desc": "Konfigurasi Playwright.",
+      "example": "import { defineConfig } from '@playwright/test'\nexport default defineConfig({\n  use: { baseURL: 'http://localhost:3000' },\n  webServer: { command: 'pnpm dev', port: 3000 }\n})",
+      "output": "Playwright siap"
+    },
+    {
+      "name": "cypress.config.ts",
+      "desc": "Konfigurasi Cypress.",
+      "example": "import { defineConfig } from 'cypress'\nexport default defineConfig({\n  e2e: { baseUrl: 'http://localhost:3000' }\n})",
+      "output": "Cypress siap"
+    }
+  ]
+}

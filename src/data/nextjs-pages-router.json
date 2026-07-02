@@ -1,0 +1,212 @@
+{
+  "routing-pages": [
+    {
+      "name": "pages/index.tsx",
+      "desc": "Halaman utama (/) di folder pages.",
+      "example": "// pages/index.tsx\nexport default function Home() { return <h1>Home</h1> }",
+      "output": "localhost:3000/"
+    },
+    {
+      "name": "pages/about.tsx",
+      "desc": "Halaman statis dengan nama file sebagai rute.",
+      "example": "// pages/about.tsx\nexport default function About() { return <h1>About</h1> }",
+      "output": "/about"
+    },
+    {
+      "name": "pages/[slug].tsx",
+      "desc": "Rute dinamis dengan parameter.",
+      "example": "// pages/posts/[id].tsx\nexport default function Post({ id }) { return <p>Post {id}</p> }",
+      "output": "/posts/123"
+    },
+    {
+      "name": "pages/[...slug].tsx",
+      "desc": "Catch-all route.",
+      "example": "// pages/docs/[...params].tsx\nexport default function Docs({ params }) { return <p>{params.join('/')}</p> }",
+      "output": "/docs/a/b/c"
+    },
+    {
+      "name": "pages/api/hello.ts",
+      "desc": "API route di Pages Router.",
+      "example": "// pages/api/hello.ts\nexport default function handler(req, res) { res.status(200).json({ name: 'John' }) }",
+      "output": "/api/hello"
+    }
+  ],
+  "data-fetching": [
+    {
+      "name": "getServerSideProps",
+      "desc": "Fetch data setiap request (SSR).",
+      "example": "export async function getServerSideProps() { const data = await fetch(...); return { props: { data } } }",
+      "output": "Props di halaman"
+    },
+    {
+      "name": "getStaticProps",
+      "desc": "Fetch data saat build time (SSG).",
+      "example": "export async function getStaticProps() { const data = await fetch(...); return { props: { data }, revalidate: 60 } }",
+      "output": "Props statik + ISR"
+    },
+    {
+      "name": "getStaticPaths",
+      "desc": "Tentukan path dinamis yang akan di-generate static.",
+      "example": "export async function getStaticPaths() { const posts = await fetch(...); const paths = posts.map(p => ({ params: { id: p.id } })); return { paths, fallback: false } }",
+      "output": "Path static"
+    },
+    {
+      "name": "getInitialProps",
+      "desc": "Cara lama (bisa digunakan di _app). Masih ada tapi tidak disarankan.",
+      "example": "Page.getInitialProps = async (ctx) => { return { data: '...' } }",
+      "output": "Props awal"
+    }
+  ],
+  "rendering": [
+    {
+      "name": "Server-Side Rendering (SSR)",
+      "desc": "Halaman dirender di server per request menggunakan getServerSideProps.",
+      "example": "export async function getServerSideProps() { ... }",
+      "output": "HTML segar per request"
+    },
+    {
+      "name": "Static Site Generation (SSG)",
+      "desc": "Halaman di-generate saat build dengan getStaticProps.",
+      "example": "export async function getStaticProps() { ... }",
+      "output": "HTML statik"
+    },
+    {
+      "name": "Incremental Static Regeneration (ISR)",
+      "desc": "Perbarui halaman statis di background setelah build.",
+      "example": "return { props: { ... }, revalidate: 60 }",
+      "output": "Diperbarui tiap 60 detik"
+    },
+    {
+      "name": "Client-Side Rendering (CSR)",
+      "desc": "Fetch data dari client menggunakan useEffect atau SWR.",
+      "example": "useEffect(() => { fetch('/api/data').then(...) }, [])",
+      "output": "Data muncul setelah load"
+    }
+  ],
+  "components": [
+    {
+      "name": "next/head",
+      "desc": "Komponen untuk mengisi tag <head>.",
+      "example": "import Head from 'next/head';\n<Head><title>My Page</title></Head>",
+      "output": "Judul halaman"
+    },
+    {
+      "name": "next/image",
+      "desc": "Komponen gambar yang dioptimasi (wajib properti width/height).",
+      "example": "import Image from 'next/image';\n<Image src=\"/hero.jpg\" width={800} height={600} alt=\"Hero\" />",
+      "output": "Gambar optimal"
+    },
+    {
+      "name": "next/link",
+      "desc": "Navigasi client-side dengan prefetch otomatis.",
+      "example": "import Link from 'next/link';\n<Link href=\"/about\">About</Link>",
+      "output": "Navigasi SPA"
+    },
+    {
+      "name": "next/script",
+      "desc": "Memuat script eksternal dengan strategi tertentu.",
+      "example": "import Script from 'next/script';\n<Script src=\"https://example.com/script.js\" strategy=\"lazyOnload\" />",
+      "output": "Script tertunda"
+    }
+  ],
+  "router": [
+    {
+      "name": "useRouter",
+      "desc": "Hook untuk mengakses router (push, replace, query, dll).",
+      "example": "import { useRouter } from 'next/router';\nconst router = useRouter();\nrouter.push('/login')",
+      "output": "Navigasi programatik"
+    },
+    {
+      "name": "withRouter",
+      "desc": "HOC untuk menyuntikkan router ke komponen (class component).",
+      "example": "import { withRouter } from 'next/router';\nfunction Page({ router }) { ... }\nexport default withRouter(Page);",
+      "output": "Props router"
+    },
+    {
+      "name": "router.query",
+      "desc": "Mendapatkan query string dari URL.",
+      "example": "const { id } = router.query;",
+      "output": "Parameter URL"
+    }
+  ],
+  "api-routes": [
+    {
+      "name": "req.method",
+      "desc": "Cek HTTP method di API route.",
+      "example": "if (req.method === 'POST') { ... }",
+      "output": "GET, POST, dll"
+    },
+    {
+      "name": "req.query",
+      "desc": "Akses query string di API.",
+      "example": "req.query.id",
+      "output": "Nilai query"
+    },
+    {
+      "name": "req.body",
+      "desc": "Body request (sudah di-parse).",
+      "example": "const { name } = req.body;",
+      "output": "Data yang dikirim"
+    },
+    {
+      "name": "res.status(code).json(data)",
+      "desc": "Kirim respons JSON dengan status code.",
+      "example": "res.status(200).json({ ok: true })",
+      "output": "Respons JSON"
+    }
+  ],
+  "configuration": [
+    {
+      "name": "next.config.js",
+      "desc": "File konfigurasi Next.js.",
+      "example": "module.exports = { reactStrictMode: true, swcMinify: true }",
+      "output": "Konfigurasi diaktifkan"
+    },
+    {
+      "name": "Environment Variables",
+      "desc": "Gunakan .env.local untuk menyimpan variabel.",
+      "example": "NEXT_PUBLIC_API_URL=https://api.example.com",
+      "output": "process.env.NEXT_PUBLIC_API_URL"
+    },
+    {
+      "name": "Custom App (`_app.tsx`)",
+      "desc": "Komponen pembungkus semua halaman.",
+      "example": "// pages/_app.tsx\nexport default function MyApp({ Component, pageProps }) { return <Layout><Component {...pageProps} /></Layout> }",
+      "output": "Layout global"
+    },
+    {
+      "name": "Custom Document (`_document.tsx`)",
+      "desc": "Kustomisasi struktur HTML (misal menambah lang, font).",
+      "example": "// pages/_document.tsx\nexport default function Document() { return <Html lang=\"id\">...</Html> }",
+      "output": "Struktur HTML"
+    }
+  ],
+  "middleware": [
+    {
+      "name": "Middleware (Pages Router)",
+      "desc": "File `_middleware.ts` di dalam folder pages untuk menjalankan logika sebelum request.",
+      "example": "// pages/_middleware.ts\nexport function middleware(req) { return NextResponse.next() }",
+      "output": "Middleware berjalan"
+    }
+  ],
+  "error-handling": [
+    {
+      "name": "pages/404.tsx",
+      "desc": "Halaman kustom untuk 404.",
+      "example": "// pages/404.tsx\nexport default function NotFound() { return <h1>404 - Not Found</h1> }",
+      "output": "Halaman 404"
+    },
+    {
+      "name": "pages/_error.tsx",
+      "desc": "Halaman error kustom untuk server/client error.",
+      "example": "// pages/_error.tsx\nexport default function Error({ statusCode }) { return <p>{statusCode} error</p> }",
+      "output": "Halaman error"
+    },
+    {
+      "name": "getStaticProps fallback",
+      "desc": "fallback: true atau 'blocking' untuk halaman yang belum di-generate.",
+      "example": "return { paths, fallback: 'blocking' }",
+      "output": "Halaman di-generate on-demand"
+    }
+  ]
+}

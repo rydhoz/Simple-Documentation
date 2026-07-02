@@ -1,0 +1,264 @@
+{
+  "clean-code": [
+    {
+      "name": "Nama Variabel yang Bermakna",
+      "desc": "Gunakan nama yang menjelaskan maksud, bukan singkatan misterius.",
+      "example": "// ❌\nconst d = 30\n// ✅\nconst daysSinceLastLogin = 30",
+      "output": "Kode langsung dipahami"
+    },
+    {
+      "name": "Fungsi Kecil (Single Responsibility)",
+      "desc": "Setiap fungsi hanya melakukan satu hal dengan baik.",
+      "example": "// ❌\nfunction processAndSave(data) { ... }\n// ✅\nfunction validate(data) { ... }\nfunction save(data) { ... }",
+      "output": "Mudah diuji dan dipelihara"
+    },
+    {
+      "name": "Hindari Magic Numbers",
+      "desc": "Ganti angka mentah dengan konstanta bernama.",
+      "example": "// ❌\nif (user.age > 17)\n// ✅\nconst MINIMUM_ADULT_AGE = 18\nif (user.age >= MINIMUM_ADULT_AGE)",
+      "output": "Makna jelas"
+    },
+    {
+      "name": "Komentar Menjelaskan 'Kenapa', bukan 'Apa'",
+      "desc": "Kode yang baik sudah menjelaskan apa yang dilakukan.",
+      "example": "// ❌\n// set x ke 5\nlet x = 5\n// ✅\n// Batas throttle agar tidak membanjiri API\nconst THROTTLE_LIMIT = 5",
+      "output": "Komentar bernilai"
+    },
+    {
+      "name": "Gunakan Early Return",
+      "desc": "Kurangi nesting dengan validasi di awal dan return cepat.",
+      "example": "// ❌\nfunction getData(user) {\n  if (user) {\n    if (user.active) {\n      return user.data\n    }\n  }\n}\n// ✅\nfunction getData(user) {\n  if (!user || !user.active) return null\n  return user.data\n}",
+      "output": "Kode rata, mudah dibaca"
+    }
+  ],
+  "solid-principles": [
+    {
+      "name": "S - Single Responsibility",
+      "desc": "Kelas / modul hanya punya satu alasan untuk berubah.",
+      "example": "class UserRepository { ... }\nclass EmailService { ... }",
+      "output": "Pemisahan tanggung jawab"
+    },
+    {
+      "name": "O - Open/Closed",
+      "desc": "Terbuka untuk ekstensi, tertutup untuk modifikasi.",
+      "example": "class Discount {\n  getDiscount() { return 0 }\n}\nclass SeasonalDiscount extends Discount {\n  getDiscount() { return 10 }\n}",
+      "output": "Tambah diskon tanpa ubah kode lama"
+    },
+    {
+      "name": "L - Liskov Substitution",
+      "desc": "Subclass harus bisa menggantikan parent class tanpa mengubah perilaku.",
+      "example": "function printArea(shape: Shape) {\n  console.log(shape.area())\n}",
+      "output": "Setiap turunan Shape aman dipakai"
+    },
+    {
+      "name": "I - Interface Segregation",
+      "desc": "Jangan paksa client mengimplementasi method yang tidak dipakai.",
+      "example": "interface Printer { print() }\ninterface Scanner { scan() }\nclass AllInOne implements Printer, Scanner {}",
+      "output": "Interface terpisah"
+    },
+    {
+      "name": "D - Dependency Inversion",
+      "desc": "Modul tingkat tinggi tidak bergantung pada modul tingkat rendah, tapi pada abstraksi.",
+      "example": "class Service {\n  constructor(private repo: Repository) {}\n}",
+      "output": "Ganti database tanpa ubah Service"
+    }
+  ],
+  "design-patterns": [
+    {
+      "name": "Module Pattern",
+      "desc": "Enkapsulasi kode dalam modul ES6/CommonJS.",
+      "example": "export function helper() { ... }",
+      "output": "Kode terisolasi"
+    },
+    {
+      "name": "Singleton",
+      "desc": "Satu instance untuk seluruh aplikasi (Prisma client).",
+      "example": "import { PrismaClient } from '@prisma/client'\nexport const prisma = new PrismaClient()",
+      "output": "Satu koneksi database"
+    },
+    {
+      "name": "Repository Pattern",
+      "desc": "Abstraksi akses data di balik interface.",
+      "example": "class UserRepo {\n  async findById(id) { ... }\n}",
+      "output": "Ganti ORM tanpa ubah service"
+    },
+    {
+      "name": "Observer / Pub-Sub",
+      "desc": "Objek memberi tahu subscriber ketika terjadi perubahan.",
+      "example": "eventEmitter.on('order.placed', sendEmail)\neventEmitter.emit('order.placed', order)",
+      "output": "Reaksi terpisah dari pemicu"
+    }
+  ],
+  "git-best-practices": [
+    {
+      "name": "Conventional Commits",
+      "desc": "Format commit: type(scope): message.",
+      "example": "feat(auth): add login with Google\nfix(cart): resolve zero quantity bug",
+      "output": "Changelog otomatis"
+    },
+    {
+      "name": "Branch Naming Convention",
+      "desc": "Nama cabang: type/description.",
+      "example": "feature/user-profile\nbugfix/login-error\nchore/update-deps",
+      "output": "CI/CD terpicu tepat"
+    },
+    {
+      "name": "Commit Kecil & Fokus",
+      "desc": "Satu commit satu perubahan logis.",
+      "example": "git commit -m 'add email validation'\ngit commit -m 'style: format with prettier'",
+      "output": "Mudah di-review & revert"
+    },
+    {
+      "name": "Pull Request Template",
+      "desc": "Gunakan template PR untuk konsistensi.",
+      "example": "## Deskripsi\n\n## Cara Test\n\n## Screenshot",
+      "output": "Informasi lengkap"
+    }
+  ],
+  "security-best-practices": [
+    {
+      "name": "Jangan Commit Secret",
+      "desc": "Simpan semua kredensial di environment variable.",
+      "example": "# .env\nDATABASE_URL=postgres://...\n# jangan commit .env",
+      "output": "Kredensial aman"
+    },
+    {
+      "name": "Validasi Input Pengguna",
+      "desc": "Selalu validasi & sanitasi input dari client.",
+      "example": "import { z } from 'zod'\nconst schema = z.object({ email: z.string().email() })\nschema.parse(req.body)",
+      "output": "Input aman diproses"
+    },
+    {
+      "name": "HTTPS Everywhere",
+      "desc": "Semua komunikasi harus melalui HTTPS.",
+      "example": "vercel.json: { \"headers\": [...] }",
+      "output": "Data terenkripsi"
+    },
+    {
+      "name": "CORS yang Ketat",
+      "desc": "Batasi origin yang boleh mengakses API.",
+      "example": "Access-Control-Allow-Origin: https://appkamu.com",
+      "output": "Hanya domainmu"
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "Gunakan Semantic HTML",
+      "desc": "Gunakan <header>, <main>, <nav>, <footer>.",
+      "example": "<header><h1>Logo</h1><nav>...</nav></header>",
+      "output": "Screen reader paham struktur"
+    },
+    {
+      "name": "Alt pada Gambar",
+      "desc": "Setiap gambar harus punya alt yang deskriptif.",
+      "example": "<img src=\"chart.png\" alt=\"Grafik penjualan kuartal 3\" />",
+      "output": "Dibaca screen reader"
+    },
+    {
+      "name": "Label pada Form",
+      "desc": "Semua input harus memiliki label.",
+      "example": "<label htmlFor=\"email\">Email</label>\n<input id=\"email\" type=\"email\" />",
+      "output": "Terhubung dengan input"
+    },
+    {
+      "name": "Kontras Warna Cukup",
+      "desc": "Rasio kontras minimal 4.5:1 untuk teks normal.",
+      "example": "Warna teks #333 di atas background #fff → rasio 12.6:1",
+      "output": "Terbaca oleh semua"
+    }
+  ],
+  "performance": [
+    {
+      "name": "Lazy Loading Komponen",
+      "desc": "Gunakan dynamic import untuk komponen berat.",
+      "example": "const Heavy = dynamic(() => import('./Heavy'))",
+      "output": "Bundle lebih kecil"
+    },
+    {
+      "name": "Optimasi Gambar",
+      "desc": "Gunakan format modern (WebP) dan resize sesuai kebutuhan.",
+      "example": "next/image secara otomatis mengoptimasi",
+      "output": "Page load cepat"
+    },
+    {
+      "name": "Caching Data",
+      "desc": "Cache fetch atau database query yang jarang berubah.",
+      "example": "fetch(url, { next: { revalidate: 3600 } })",
+      "output": "Respons instan"
+    },
+    {
+      "name": "Hindari Bundle Berlebih",
+      "desc": "Analisis bundle dengan @next/bundle-analyzer.",
+      "example": "const withBundleAnalyzer = require('@next/bundle-analyzer')()",
+      "output": "Hapus library tidak terpakai"
+    }
+  ],
+  "soft-skills": [
+    {
+      "name": "Komunikasi yang Jelas",
+      "desc": "Tulis pesan commit, deskripsi PR, dan komentar yang informatif.",
+      "example": "PR: 'Menambahkan validasi email pada form registrasi'",
+      "output": "Tim langsung paham"
+    },
+    {
+      "name": "Pair Programming",
+      "desc": "Kerjakan masalah rumit bersama-sama.",
+      "example": "Satu menulis kode, satu meninjau langsung",
+      "output": "Bug lebih sedikit"
+    },
+    {
+      "name": "Terima Feedback",
+      "desc": "Code review adalah sarana belajar, bukan kritik pribadi.",
+      "example": "'Oh iya, ternary ini bisa dibuat lebih jelas, terima kasih masukannya'",
+      "output": "Tim tumbuh bersama"
+    }
+  ],
+  "folder-structure": [
+    {
+      "name": "Feature-based Structure",
+      "desc": "Kelompokkan berdasarkan fitur: user, product, order.",
+      "example": "src/features/user/components/\nsrc/features/user/hooks/",
+      "output": "Navigasi cepat"
+    },
+    {
+      "name": "Pisahkan Server & Client",
+      "desc": "Server component di root, client component di subfolder.",
+      "example": "app/page.tsx (server)\napp/ui/button.tsx ('use client')",
+      "output": "Batas jelas"
+    }
+  ],
+  "naming-conventions": [
+    {
+      "name": "camelCase untuk Variabel & Fungsi",
+      "desc": "let userName = 'ridho'",
+      "example": "function getUserById(id: string) {}",
+      "output": "Konsisten"
+    },
+    {
+      "name": "PascalCase untuk Komponen & Class",
+      "desc": "export default function UserProfile() {}",
+      "example": "class DatabaseConnection {}",
+      "output": "Mudah dikenali"
+    },
+    {
+      "name": "UPPER_CASE untuk Konstanta",
+      "desc": "const API_TIMEOUT = 5000",
+      "example": "const MAX_RETRY_ATTEMPTS = 3",
+      "output": "Konstanta global"
+    }
+  ],
+  "code-review": [
+    {
+      "name": "Review dengan Empati",
+      "desc": "Fokus pada kode, bukan orangnya. Beri saran, bukan perintah.",
+      "example": "'Mungkin kita bisa...' daripada 'Harusnya...'",
+      "output": "Tim nyaman"
+    },
+    {
+      "name": "Cek Tes Terlebih Dahulu",
+      "desc": "Pastikan semua test lulus sebelum review logic.",
+      "example": "pnpm test -- --coverage",
+      "output": "Kualitas terjaga"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "xml-fundamentals": [
+    {
+      "name": "XML Declaration",
+      "desc": "Baris opsional di awal dokumen XML yang mendefinisikan versi XML dan encoding karakter.",
+      "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+      "output": "Deklarasi dokumen XML"
+    },
+    {
+      "name": "XML Elements",
+      "desc": "Struktur utama XML yang terdiri dari tag pembuka, konten, dan tag penutup. Bersifat case-sensitive.",
+      "example": "<title>Belajar XML</title>",
+      "output": "Elemen 'title' berisi teks"
+    },
+    {
+      "name": "XML Attributes",
+      "desc": "Informasi tambahan dalam tag pembuka, pasangan nama-nilai dalam tanda kutip.",
+      "example": "<book category=\"programming\" lang=\"id\">...</book>",
+      "output": "Atribut 'category' dan 'lang'"
+    },
+    {
+      "name": "XML Tree Structure",
+      "desc": "Dokumen XML membentuk struktur pohon dengan satu elemen root.",
+      "example": "<library><book>...</book></library>",
+      "output": "Hierarki parent-child"
+    },
+    {
+      "name": "Well-Formed XML",
+      "desc": "XML harus memenuhi aturan dasar: satu root, tag tertutup semua, case-sensitive, nesting benar.",
+      "example": "Setiap tag pembuka harus memiliki tag penutup: <p>...</p>",
+      "output": "Dokumen dapat diparsing"
+    },
+    {
+      "name": "Valid XML",
+      "desc": "XML yang sesuai dengan skema tertentu (DTD, XSD, Relax NG).",
+      "example": "Dokumen XML yang lulus validasi terhadap schema.xsd.",
+      "output": "Valid sesuai skema"
+    }
+  ],
+  "dtd": [
+    {
+      "name": "Internal DTD",
+      "desc": "Definisi DTD di dalam dokumen XML.",
+      "example": "<!DOCTYPE note [\n<!ELEMENT note (to,from,heading,body)>\n<!ELEMENT to (#PCDATA)>\n... ]>",
+      "output": "DTD internal"
+    },
+    {
+      "name": "External DTD",
+      "desc": "Mereferensikan file DTD eksternal.",
+      "example": "<!DOCTYPE note SYSTEM \"note.dtd\">",
+      "output": "Validasi dari file eksternal"
+    },
+    {
+      "name": "ELEMENT Declaration",
+      "desc": "Mendefinisikan elemen dan konten yang diperbolehkan.",
+      "example": "<!ELEMENT book (title, author, year)>\n<!ELEMENT title (#PCDATA)>",
+      "output": "Definisi elemen"
+    },
+    {
+      "name": "ATTLIST Declaration",
+      "desc": "Mendefinisikan atribut untuk suatu elemen (tipe, default, required).",
+      "example": "<!ATTLIST book category CDATA #REQUIRED lang CDATA \"en\">",
+      "output": "Atribut 'category' wajib, 'lang' default 'en'"
+    },
+    {
+      "name": "ENTITY Declaration",
+      "desc": "Mendefinisikan entitas untuk digunakan sebagai pengganti teks atau konten eksternal.",
+      "example": "<!ENTITY company \"Tech Corp\">",
+      "output": "&company; akan diganti 'Tech Corp'"
+    }
+  ],
+  "xsd": [
+    {
+      "name": "XML Schema Definition (XSD)",
+      "desc": "Alternatif modern untuk DTD, mendukung tipe data kompleks dan namespace.",
+      "example": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">",
+      "output": "Namespace XSD"
+    },
+    {
+      "name": "Simple Type",
+      "desc": "Elemen dengan tipe data sederhana (string, integer, date).",
+      "example": "<xs:element name=\"age\" type=\"xs:integer\"/>",
+      "output": "Elemen harus integer"
+    },
+    {
+      "name": "Complex Type",
+      "desc": "Elemen yang memiliki anak atau atribut.",
+      "example": "<xs:element name=\"person\"><xs:complexType><xs:sequence><xs:element name=\"name\" type=\"xs:string\"/></xs:sequence></xs:complexType></xs:element>",
+      "output": "Tipe kompleks dengan child 'name'"
+    },
+    {
+      "name": "Restrictions",
+      "desc": "Membatasi nilai (min, max, pattern, enumeration).",
+      "example": "<xs:restriction base=\"xs:string\"><xs:maxLength value=\"10\"/></xs:restriction>",
+      "output": "String maksimal 10 karakter"
+    }
+  ],
+  "namespaces": [
+    {
+      "name": "XML Namespaces",
+      "desc": "Menghindari konflik nama elemen dengan memberikan awalan unik.",
+      "example": "<root xmlns:h=\"http://www.w3.org/TR/html4/\" xmlns:f=\"http://www.w3.org/TR/1999/xhtml\">",
+      "output": "Prefix h: dan f:"
+    },
+    {
+      "name": "Default Namespace",
+      "desc": "Namespace yang berlaku untuk semua elemen tanpa prefiks dalam lingkupnya.",
+      "example": "<table xmlns=\"http://www.w3.org/1999/xhtml\"><tr><td>Data</td></tr></table>",
+      "output": "Semua elemen dianggap dari namespace xhtml"
+    }
+  ],
+  "xpath": [
+    {
+      "name": "XPath Expression",
+      "desc": "Bahasa untuk menavigasi dan memilih node dalam dokumen XML.",
+      "example": "/library/book/title",
+      "output": "Node <title> di dalam <book>"
+    },
+    {
+      "name": "Absolute Path (/...)",
+      "desc": "Memulai seleksi dari root.",
+      "example": "/catalog/book[1]",
+      "output": "Buku pertama"
+    },
+    {
+      "name": "Relative Path (./... atau hanya ...)",
+      "desc": "Relatif terhadap node saat ini.",
+      "example": "./price atau price",
+      "output": "Node <price> di bawah konteks saat ini"
+    },
+    {
+      "name": "Predicates",
+      "desc": "Kondisi penyaringan di dalam kurung siku.",
+      "example": "/catalog/book[price>35]",
+      "output": "Buku dengan harga di atas 35"
+    },
+    {
+      "name": "Functions",
+      "desc": "Fungsi bawaan seperti text(), contains(), starts-with(), sum().",
+      "example": "//book[contains(title, 'XML')]",
+      "output": "Buku yang judulnya mengandung 'XML'"
+    }
+  ],
+  "xslt": [
+    {
+      "name": "XSLT Transformation",
+      "desc": "Mengubah dokumen XML menjadi format lain (HTML, XML lain, teks).",
+      "example": "<?xml-stylesheet type=\"text/xsl\" href=\"transform.xsl\"?>",
+      "output": "Dokumen akan ditransformasi"
+    },
+    {
+      "name": "<xsl:template>",
+      "desc": "Mendefinisikan template untuk mencocokkan dan mentransformasi node.",
+      "example": "<xsl:template match=\"/\"><html><body><xsl:apply-templates/></body></html></xsl:template>",
+      "output": "Template untuk root"
+    },
+    {
+      "name": "<xsl:value-of>",
+      "desc": "Mengambil nilai dari node yang dipilih.",
+      "example": "<xsl:value-of select=\"book/title\"/>",
+      "output": "Teks judul buku"
+    },
+    {
+      "name": "<xsl:for-each>",
+      "desc": "Iterasi melalui node yang dipilih.",
+      "example": "<xsl:for-each select=\"catalog/book\"><p><xsl:value-of select=\"title\"/></p></xsl:for-each>",
+      "output": "Daftar buku dalam paragraf"
+    },
+    {
+      "name": "<xsl:if> / <xsl:choose>",
+      "desc": "Kondisional dalam XSLT.",
+      "example": "<xsl:if test=\"price>30\">Diskon!</xsl:if>",
+      "output": "Teks kondisional"
+    }
+  ],
+  "xml-in-browser": [
+    {
+      "name": "DOMParser",
+      "desc": "Memparsing string XML menjadi dokumen DOM.",
+      "example": "const parser = new DOMParser();\nconst xmlDoc = parser.parseFromString(xmlString, 'text/xml');",
+      "output": "XML Document"
+    },
+    {
+      "name": "XMLSerializer",
+      "desc": "Mengubah dokumen DOM menjadi string XML.",
+      "example": "const serializer = new XMLSerializer();\nconst xmlString = serializer.serializeToString(xmlDoc);",
+      "output": "String XML"
+    },
+    {
+      "name": "XMLHttpRequest (XML)",
+      "desc": "Mengambil dan memparsing file XML melalui HTTP.",
+      "example": "const xhr = new XMLHttpRequest();\nxhr.open('GET', '/data.xml');\nxhr.onload = () => { const xmlDoc = xhr.responseXML };",
+      "output": "Document XML dari server"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan encoding UTF-8",
+      "desc": "Encoding universal yang mendukung semua karakter internasional.",
+      "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+      "output": "Kompatibilitas penuh"
+    },
+    {
+      "name": "Validasi dengan Schema",
+      "desc": "Gunakan XSD untuk memastikan struktur dan tipe data benar sebelum diproses.",
+      "example": "Validasi dokumen XML sebelum parsing.",
+      "output": "Data konsisten"
+    },
+    {
+      "name": "Hindari parsing XML dari sumber tidak tepercaya",
+      "desc": "XML External Entity (XXE) attack bisa terjadi jika parser tidak dikonfigurasi dengan aman.",
+      "example": "Nonaktifkan eksternal entity dan DTD processing di parser.",
+      "output": "Terhindar dari XXE"
+    },
+    {
+      "name": "Gunakan Namespace untuk integrasi",
+      "desc": "Saat menggabungkan XML dari berbagai sumber, namespace mencegah konflik.",
+      "example": "<root xmlns:ns1=\"...\" xmlns:ns2=\"...\">",
+      "output": "Tidak ada konflik elemen"
+    }
+  ]
+}

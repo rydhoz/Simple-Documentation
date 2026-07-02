@@ -1,0 +1,368 @@
+{
+  "pwa-introduction": [
+    {
+      "name": "Progressive Web App (PWA)",
+      "desc": "Aplikasi web yang menggunakan API modern untuk memberikan pengalaman seperti aplikasi native (offline, push notification, installable).",
+      "example": "Menggabungkan HTTPS, Service Worker, dan Web App Manifest.",
+      "output": "Aplikasi web yang dapat diinstal"
+    },
+    {
+      "name": "HTTPS Required",
+      "desc": "Service Worker dan banyak API PWA hanya berfungsi melalui koneksi aman (HTTPS) atau localhost untuk development.",
+      "example": "Pastikan website di-deploy dengan sertifikat SSL/TLS.",
+      "output": "Koneksi aman"
+    }
+  ],
+  "web-app-manifest": [
+    {
+      "name": "<link rel=\"manifest\">",
+      "desc": "Menghubungkan file manifest.json ke halaman HTML.",
+      "example": "<link rel=\"manifest\" href=\"/manifest.json\">",
+      "output": "Browser membaca metadata PWA"
+    },
+    {
+      "name": "name",
+      "desc": "Nama lengkap aplikasi (digunakan di splash screen dan Add to Home Screen).",
+      "example": "\"name\": \"My Awesome App\"",
+      "output": "Judul panjang"
+    },
+    {
+      "name": "short_name",
+      "desc": "Nama pendek untuk ikon aplikasi (di bawah ikon).",
+      "example": "\"short_name\": \"Awesome\"",
+      "output": "Nama pendek di homescreen"
+    },
+    {
+      "name": "start_url",
+      "desc": "URL yang dibuka saat aplikasi dijalankan. Biasanya root.",
+      "example": "\"start_url\": \"/?utm_source=homescreen\"",
+      "output": "Halaman awal"
+    },
+    {
+      "name": "display",
+      "desc": "Mode tampilan: standalone, fullscreen, minimal-ui, browser.",
+      "example": "\"display\": \"standalone\"",
+      "output": "Tampilan seperti aplikasi native (tanpa URL bar)"
+    },
+    {
+      "name": "background_color",
+      "desc": "Warna latar belakang splash screen saat aplikasi diluncurkan.",
+      "example": "\"background_color\": \"#ffffff\"",
+      "output": "Putih di splash screen"
+    },
+    {
+      "name": "theme_color",
+      "desc": "Warna tema browser (toolbar/address bar).",
+      "example": "\"theme_color\": \"#6c5ce7\"",
+      "output": "Toolbar ungu"
+    },
+    {
+      "name": "orientation",
+      "desc": "Mengunci orientasi layar: any, natural, portrait, landscape, dll.",
+      "example": "\"orientation\": \"portrait\"",
+      "output": "Hanya potret"
+    },
+    {
+      "name": "icons",
+      "desc": "Daftar ikon untuk berbagai ukuran dan tujuan (homescreen, splash).",
+      "example": "\"icons\": [{ \"src\": \"/icon-192x192.png\", \"sizes\": \"192x192\", \"type\": \"image/png\", \"purpose\": \"any maskable\" }]",
+      "output": "Ikon 192px"
+    },
+    {
+      "name": "purpose: maskable",
+      "desc": "Ikon dapat dipotong menjadi bentuk yang aman (Android adaptive icons).",
+      "example": "\"purpose\": \"maskable\"",
+      "output": "Ikon adaptif"
+    },
+    {
+      "name": "scope",
+      "desc": "Batasan navigasi yang dianggap dalam aplikasi. Di luar scope akan dibuka di browser.",
+      "example": "\"scope\": \"/app/\"",
+      "output": "Hanya URL di dalam /app/"
+    },
+    {
+      "name": "description",
+      "desc": "Deskripsi aplikasi (opsional).",
+      "example": "\"description\": \"Aplikasi catatan terbaik\"",
+      "output": "Metadata deskripsi"
+    },
+    {
+      "name": "screenshots",
+      "desc": "Array gambar tangkapan layar untuk promosi di instalasi (Chrome 88+).",
+      "example": "\"screenshots\": [{ \"src\": \"/screenshot.jpg\", \"sizes\": \"1280x720\", \"type\": \"image/jpeg\" }]",
+      "output": "Galeri di dialog instalasi"
+    },
+    {
+      "name": "categories",
+      "desc": "Kategori aplikasi (biasanya untuk toko aplikasi).",
+      "example": "\"categories\": [\"productivity\", \"utilities\"]",
+      "output": "Kategori produktivitas"
+    },
+    {
+      "name": "iarc_rating_id",
+      "desc": "ID rating konten IARC.",
+      "example": "\"iarc_rating_id\": \"...\"",
+      "output": "Rating konten"
+    },
+    {
+      "name": "shortcuts",
+      "desc": "Daftar shortcut ke halaman tertentu di dalam aplikasi (long press ikon).",
+      "example": "\"shortcuts\": [{ \"name\": \"New Note\", \"short_name\": \"New\", \"url\": \"/new\", \"icons\": [...] }]",
+      "output": "Menu pintasan"
+    },
+    {
+      "name": "protocol_handlers",
+      "desc": "Mendaftarkan aplikasi untuk menangani skema URI tertentu (web+...).",
+      "example": "\"protocol_handlers\": [{ \"protocol\": \"web+myapp\", \"url\": \"/handle?uri=%s\" }]",
+      "output": "Aplikasi membuka URI khusus"
+    },
+    {
+      "name": "file_handlers (experimental)",
+      "desc": "Mendaftarkan tipe file yang bisa dibuka oleh PWA.",
+      "example": "\"file_handlers\": [{ \"action\": \"/open\", \"accept\": { \"text/*\": [\".txt\"] } }]",
+      "output": "Aplikasi dapat membuka file .txt"
+    },
+    {
+      "name": "related_applications",
+      "desc": "Daftar aplikasi native terkait (untuk menghindari duplikat instalasi).",
+      "example": "\"related_applications\": [{ \"platform\": \"play\", \"url\": \"...\", \"id\": \"...\" }]",
+      "output": "Terkait dengan aplikasi Android"
+    },
+    {
+      "name": "prefer_related_applications",
+      "desc": "Jika true, browser menyarankan aplikasi native terlebih dahulu.",
+      "example": "\"prefer_related_applications\": false",
+      "output": "PWA diprioritaskan"
+    }
+  ],
+  "service-worker-lifecycle": [
+    {
+      "name": "navigator.serviceWorker.register()",
+      "desc": "Mendaftarkan file service worker.",
+      "example": "navigator.serviceWorker.register('/sw.js')",
+      "output": "Promise registrasi"
+    },
+    {
+      "name": "install event",
+      "desc": "Dipicu saat service worker pertama kali diinstal. Tempat pre-caching.",
+      "example": "self.addEventListener('install', event => {\n  event.waitUntil(caches.open('v1').then(cache => cache.addAll(['/offline.html'])))\n})",
+      "output": "Cache awal terbentuk"
+    },
+    {
+      "name": "activate event",
+      "desc": "Dipicu setelah service worker diaktifkan. Tempat membersihkan cache lama.",
+      "example": "self.addEventListener('activate', event => {\n  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== 'v1').map(k => caches.delete(k)))))\n})",
+      "output": "Cache lama dibersihkan"
+    },
+    {
+      "name": "fetch event",
+      "desc": "Intersep semua request. Tempat strategi caching.",
+      "example": "self.addEventListener('fetch', event => {\n  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)))\n})",
+      "output": "Respon dari cache atau jaringan"
+    },
+    {
+      "name": "skipWaiting()",
+      "desc": "Memaksa service worker baru untuk langsung aktif tanpa menunggu tab lama ditutup.",
+      "example": "self.addEventListener('install', event => { self.skipWaiting() })",
+      "output": "Aktivasi instan"
+    },
+    {
+      "name": "claim()",
+      "desc": "Mengambil alih semua klien yang sudah ada dalam scope service worker.",
+      "example": "self.addEventListener('activate', event => { event.waitUntil(self.clients.claim()) })",
+      "output": "Kontrol penuh"
+    }
+  ],
+  "caching-strategies": [
+    {
+      "name": "Cache First",
+      "desc": "Ambil dari cache dulu, fallback ke network. Cocok untuk asset statis.",
+      "example": "event.respondWith(caches.match(event.request).then(r => r || fetch(event.request).then(res => { cache.put(event.request, res.clone()); return res })))",
+      "output": "Cache diutamakan"
+    },
+    {
+      "name": "Network First",
+      "desc": "Ambil dari network dulu, fallback ke cache. Cocok untuk data dinamis.",
+      "example": "event.respondWith(fetch(event.request).catch(() => caches.match(event.request)))",
+      "output": "Network diutamakan, cache fallback"
+    },
+    {
+      "name": "Cache Only",
+      "desc": "Hanya dari cache. Cocok untuk konten offline-only.",
+      "example": "event.respondWith(caches.match(event.request))",
+      "output": "Hanya cache"
+    },
+    {
+      "name": "Network Only",
+      "desc": "Hanya dari network. Cocok untuk hal yang tidak bisa di-cache.",
+      "example": "event.respondWith(fetch(event.request))",
+      "output": "Hanya network"
+    },
+    {
+      "name": "Stale-While-Revalidate",
+      "desc": "Ambil dari cache, lalu fetch network untuk update cache di background.",
+      "example": "event.respondWith(caches.open('v1').then(cache => {\n  return cache.match(event.request).then(cached => {\n    const fetchPromise = fetch(event.request).then(networkResponse => {\n      cache.put(event.request, networkResponse.clone());\n      return networkResponse;\n    });\n    return cached || fetchPromise;\n  });\n}))",
+      "output": "Cepat dari cache, update di belakang"
+    }
+  ],
+  "workbox": [
+    {
+      "name": "Workbox Setup",
+      "desc": "Library Google untuk mempermudah service worker.",
+      "example": "importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.0.0/workbox-sw.js')\n\nif (workbox) {\n  workbox.routing.registerRoute(...)\n}",
+      "output": "Workbox siap"
+    },
+    {
+      "name": "workbox.precaching.precacheAndRoute",
+      "desc": "Precache file yang dihasilkan oleh build tool (Webpack, Vite).",
+      "example": "workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)",
+      "output": "Manifest precache"
+    },
+    {
+      "name": "workbox.routing.registerRoute",
+      "desc": "Mendaftarkan rute dengan strategi tertentu.",
+      "example": "workbox.routing.registerRoute(\n  ({ request }) => request.destination === 'image',\n  new workbox.strategies.CacheFirst()\n)",
+      "output": "Gambar di-cache"
+    },
+    {
+      "name": "workbox.strategies.CacheFirst",
+      "desc": "Strategi Cache First siap pakai.",
+      "example": "new workbox.strategies.CacheFirst({ cacheName: 'images' })",
+      "output": "CacheFirst"
+    },
+    {
+      "name": "workbox.strategies.NetworkFirst",
+      "desc": "Strategi Network First.",
+      "example": "new workbox.strategies.NetworkFirst({ cacheName: 'api' })",
+      "output": "NetworkFirst"
+    },
+    {
+      "name": "workbox.strategies.StaleWhileRevalidate",
+      "desc": "Strategi Stale-While-Revalidate.",
+      "example": "new workbox.strategies.StaleWhileRevalidate({ cacheName: 'pages' })",
+      "output": "SWR"
+    },
+    {
+      "name": "workbox.backgroundSync.BackgroundSyncPlugin",
+      "desc": "Menyimpan request yang gagal saat offline dan mengirimnya saat online kembali.",
+      "example": "new workbox.strategies.NetworkOnly({\n  plugins: [new BackgroundSyncPlugin('myQueue', { maxRetentionTime: 24 * 60 })]\n})",
+      "output": "Request gagal diantrekan"
+    },
+    {
+      "name": "workbox.expiration.ExpirationPlugin",
+      "desc": "Membatasi jumlah item atau usia cache.",
+      "example": "new CacheFirst({ plugins: [new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 })] })",
+      "output": "Cache maks 50 item, 30 hari"
+    }
+  ],
+  "offline-capabilities": [
+    {
+      "name": "Offline Fallback Page",
+      "desc": "Menampilkan halaman kustom saat tidak ada koneksi.",
+      "example": "self.addEventListener('fetch', event => {\n  event.respondWith(fetch(event.request).catch(() => caches.match('/offline.html')))\n})",
+      "output": "Halaman offline"
+    },
+    {
+      "name": "IndexedDB for Offline Data",
+      "desc": "Menyimpan data terstruktur di sisi klien untuk digunakan offline.",
+      "example": "const db = await openDB('myDB', 1, { upgrade(db) { db.createObjectStore('items') } })\nawait db.put('items', data, 'key')",
+      "output": "Data tersimpan lokal"
+    },
+    {
+      "name": "Background Sync",
+      "desc": "Menyinkronkan data saat koneksi kembali meskipun tab sudah ditutup.",
+      "example": "navigator.serviceWorker.ready.then(reg => reg.sync.register('sync-queue'))\n// Di service worker:\nself.addEventListener('sync', event => { if (event.tag === 'sync-queue') { event.waitUntil(processQueue()) } })",
+      "output": "Sinkronisasi di latar belakang"
+    },
+    {
+      "name": "Periodic Background Sync",
+      "desc": "Memperbarui konten secara berkala di latar belakang (terbatas).",
+      "example": "navigator.serviceWorker.ready.then(reg => reg.periodicSync.register('update-feed', { minInterval: 60 * 60 * 1000 }))\n// Di service worker:\nself.addEventListener('periodicsync', event => { if (event.tag === 'update-feed') { event.waitUntil(fetchNewContent()) } })",
+      "output": "Update berkala"
+    }
+  ],
+  "notifications-push": [
+    {
+      "name": "Notification.requestPermission()",
+      "desc": "Meminta izin untuk menampilkan notifikasi.",
+      "example": "Notification.requestPermission().then(permission => { if (permission === 'granted') { ... } })",
+      "output": "Izin granted / denied / default"
+    },
+    {
+      "name": "Push API (subscription)",
+      "desc": "Mendaftarkan pengguna untuk menerima push notification.",
+      "example": "navigator.serviceWorker.ready.then(reg => reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: vapidPublicKey }))",
+      "output": "PushSubscription"
+    },
+    {
+      "name": "push event (service worker)",
+      "desc": "Menerima push event dari server dan menampilkan notifikasi.",
+      "example": "self.addEventListener('push', event => {\n  const data = event.data.json()\n  event.waitUntil(self.registration.showNotification(data.title, { body: data.body, icon: '/icon.png' }))\n})",
+      "output": "Notifikasi muncul"
+    },
+    {
+      "name": "notificationclick event",
+      "desc": "Menangani klik pada notifikasi (membuka URL atau fokus aplikasi).",
+      "example": "self.addEventListener('notificationclick', event => {\n  event.notification.close()\n  event.waitUntil(clients.openWindow(event.notification.data.url))\n})",
+      "output": "Aplikasi terbuka"
+    }
+  ],
+  "installability": [
+    {
+      "name": "beforeinstallprompt event",
+      "desc": "Disela sebelum dialog instalasi muncul. Bisa digunakan untuk menunda atau menampilkan tombol install kustom.",
+      "example": "window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; showInstallButton() })",
+      "output": "Tombol install kustom"
+    },
+    {
+      "name": "prompt() pada deferredPrompt",
+      "desc": "Menampilkan dialog instalasi atas permintaan tombol kustom.",
+      "example": "deferredPrompt.prompt().then(result => { console.log(result.outcome) })",
+      "output": "Dialog muncul"
+    },
+    {
+      "name": "appinstalled event",
+      "desc": "Dipicu setelah PWA berhasil diinstal.",
+      "example": "window.addEventListener('appinstalled', () => { console.log('PWA installed') })",
+      "output": "Log instalasi"
+    },
+    {
+      "name": "navigator.standalone (iOS)",
+      "desc": "Mendeteksi apakah aplikasi dibuka dalam mode standalone di iOS.",
+      "example": "if (window.navigator.standalone) { /* iOS standalone */ }",
+      "output": "true jika di homescreen"
+    },
+    {
+      "name": "display-mode media query",
+      "desc": "Mendeteksi mode tampilan aplikasi melalui CSS.",
+      "example": "@media (display-mode: standalone) { /* Gaya untuk mode standalone */ }",
+      "output": "CSS khusus PWA"
+    }
+  ],
+  "tools-testing": [
+    {
+      "name": "Lighthouse PWA Audit",
+      "desc": "Memeriksa skor PWA dan persyaratan installability.",
+      "example": "Chrome DevTools > Lighthouse > PWA",
+      "output": "Skor dan daftar perbaikan"
+    },
+    {
+      "name": "Chrome DevTools Application Panel",
+      "desc": "Melihat service worker, cache storage, indexedDB, manifest.",
+      "example": "DevTools > Application > Service Workers",
+      "output": "Status SW, update, unregister"
+    },
+    {
+      "name": "pwabuilder.com",
+      "desc": "Tool online untuk memvalidasi dan mengemas PWA menjadi paket aplikasi store (Google Play, Microsoft Store).",
+      "example": "Buka pwabuilder.com, masukkan URL.",
+      "output": "Laporan dan paket"
+    },
+    {
+      "name": "Workbox CLI",
+      "desc": "Tool untuk menghasilkan service worker dengan Workbox tanpa perlu menulis kode manual.",
+      "example": "npx workbox-cli generateSW",
+      "output": "File sw.js siap pakai"
+    }
+  ]
+}

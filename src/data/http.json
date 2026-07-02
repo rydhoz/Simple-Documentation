@@ -1,0 +1,438 @@
+{
+  "http-methods": [
+    {
+      "name": "GET",
+      "desc": "Mengambil representasi resource. Hanya mengambil data, tidak mengubah state. Aman dan idempoten.",
+      "example": "GET /api/users HTTP/1.1\nHost: example.com",
+      "output": "200 OK\n[{...}, {...}]"
+    },
+    {
+      "name": "POST",
+      "desc": "Membuat resource baru. Tidak aman, tidak idempoten.",
+      "example": "POST /api/users HTTP/1.1\nContent-Type: application/json\n\n{\"name\":\"Ridho\"}",
+      "output": "201 Created\nLocation: /api/users/123"
+    },
+    {
+      "name": "PUT",
+      "desc": "Mengganti seluruh resource atau membuat jika belum ada. Idempoten.",
+      "example": "PUT /api/users/123 HTTP/1.1\nContent-Type: application/json\n\n{\"name\":\"Ridho\",\"age\":30}",
+      "output": "200 OK (atau 204 No Content)"
+    },
+    {
+      "name": "PATCH",
+      "desc": "Memperbarui sebagian resource. Tidak idempoten (bisa idempoten tergantung implementasi).",
+      "example": "PATCH /api/users/123 HTTP/1.1\nContent-Type: application/json\n\n{\"age\":31}",
+      "output": "200 OK"
+    },
+    {
+      "name": "DELETE",
+      "desc": "Menghapus resource. Idempoten.",
+      "example": "DELETE /api/users/123 HTTP/1.1",
+      "output": "204 No Content"
+    },
+    {
+      "name": "HEAD",
+      "desc": "Sama seperti GET tetapi hanya mengembalikan header, tanpa body. Aman dan idempoten.",
+      "example": "HEAD /api/users HTTP/1.1",
+      "output": "200 OK (hanya header)"
+    },
+    {
+      "name": "OPTIONS",
+      "desc": "Mendeskripsikan opsi komunikasi untuk resource target. Digunakan untuk CORS preflight.",
+      "example": "OPTIONS /api/users HTTP/1.1",
+      "output": "204 No Content\nAllow: GET, POST, OPTIONS"
+    },
+    {
+      "name": "TRACE",
+      "desc": "Melakukan loop-back test di sepanjang jalur ke resource. Jarang digunakan, sering dinonaktifkan.",
+      "example": "TRACE /api/users HTTP/1.1",
+      "output": "200 OK (echo request)"
+    },
+    {
+      "name": "CONNECT",
+      "desc": "Membuat terowongan ke server (biasanya untuk HTTPS melalui proxy).",
+      "example": "CONNECT example.com:443 HTTP/1.1",
+      "output": "200 Connection Established"
+    }
+  ],
+  "status-codes": [
+    {
+      "name": "1xx – Informational",
+      "desc": "Menandakan permintaan diterima dan dilanjutkan.",
+      "example": "100 Continue, 101 Switching Protocols",
+      "output": "Respons sementara"
+    },
+    {
+      "name": "100 Continue",
+      "desc": "Klien harus melanjutkan permintaan atau mengabaikan respons ini jika sudah selesai.",
+      "example": "HTTP/1.1 100 Continue",
+      "output": "Klien dapat mengirim body"
+    },
+    {
+      "name": "101 Switching Protocols",
+      "desc": "Server setuju untuk mengganti protokol sesuai permintaan klien (misal WebSocket).",
+      "example": "HTTP/1.1 101 Switching Protocols\nUpgrade: websocket",
+      "output": "Koneksi berubah protokol"
+    },
+    {
+      "name": "2xx – Success",
+      "desc": "Permintaan berhasil diterima, dipahami, dan diterima.",
+      "example": "200 OK, 201 Created, 204 No Content",
+      "output": "Berhasil"
+    },
+    {
+      "name": "200 OK",
+      "desc": "Respons sukses standar untuk GET, PUT, atau PATCH.",
+      "example": "HTTP/1.1 200 OK",
+      "output": "Body respons"
+    },
+    {
+      "name": "201 Created",
+      "desc": "Resource baru berhasil dibuat (biasanya dari POST).",
+      "example": "HTTP/1.1 201 Created\nLocation: /users/123",
+      "output": "Lokasi resource baru"
+    },
+    {
+      "name": "204 No Content",
+      "desc": "Sukses tetapi tidak ada konten di body (umum untuk DELETE).",
+      "example": "HTTP/1.1 204 No Content",
+      "output": "Body kosong"
+    },
+    {
+      "name": "3xx – Redirection",
+      "desc": "Dibutuhkan aksi tambahan dari klien untuk menyelesaikan permintaan.",
+      "example": "301 Moved Permanently, 302 Found, 304 Not Modified",
+      "output": "Redirect atau cache"
+    },
+    {
+      "name": "301 Moved Permanently",
+      "desc": "Resource telah dipindahkan secara permanen ke URL baru. Klien harus menggunakan URL baru di masa depan.",
+      "example": "HTTP/1.1 301 Moved Permanently\nLocation: https://new.example.com/page",
+      "output": "Redirect permanen"
+    },
+    {
+      "name": "302 Found",
+      "desc": "Redirect sementara. Klien tetap menggunakan URL asli untuk permintaan berikutnya.",
+      "example": "HTTP/1.1 302 Found\nLocation: /login",
+      "output": "Redirect sementara"
+    },
+    {
+      "name": "304 Not Modified",
+      "desc": "Resource tidak berubah sejak versi yang diminta. Klien dapat menggunakan versi cache.",
+      "example": "HTTP/1.1 304 Not Modified",
+      "output": "Gunakan cache"
+    },
+    {
+      "name": "307 Temporary Redirect / 308 Permanent Redirect",
+      "desc": "Mirip 302/301 tetapi tidak mengubah metode HTTP (POST tetap POST).",
+      "example": "HTTP/1.1 307 Temporary Redirect\nLocation: /new-url",
+      "output": "Redirect dengan metode dipertahankan"
+    },
+    {
+      "name": "4xx – Client Error",
+      "desc": "Kesalahan di sisi klien.",
+      "example": "400 Bad Request, 401 Unauthorized, 404 Not Found",
+      "output": "Error klien"
+    },
+    {
+      "name": "400 Bad Request",
+      "desc": "Server tidak memahami permintaan karena sintaks yang salah.",
+      "example": "HTTP/1.1 400 Bad Request",
+      "output": "Body kosong atau format salah"
+    },
+    {
+      "name": "401 Unauthorized",
+      "desc": "Autentikasi diperlukan (belum login atau token salah).",
+      "example": "HTTP/1.1 401 Unauthorized\nWWW-Authenticate: Bearer",
+      "output": "Harus menyertakan kredensial"
+    },
+    {
+      "name": "403 Forbidden",
+      "desc": "Server memahami permintaan tetapi menolak mengotorisasi (akses ditolak).",
+      "example": "HTTP/1.1 403 Forbidden",
+      "output": "Tidak ada izin"
+    },
+    {
+      "name": "404 Not Found",
+      "desc": "Server tidak dapat menemukan resource yang diminta.",
+      "example": "HTTP/1.1 404 Not Found",
+      "output": "Resource tidak ada"
+    },
+    {
+      "name": "429 Too Many Requests",
+      "desc": "Pengguna telah mengirim terlalu banyak permintaan dalam waktu tertentu (rate limiting).",
+      "example": "HTTP/1.1 429 Too Many Requests\nRetry-After: 60",
+      "output": "Coba lagi nanti"
+    },
+    {
+      "name": "5xx – Server Error",
+      "desc": "Kesalahan di sisi server.",
+      "example": "500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable",
+      "output": "Error server"
+    },
+    {
+      "name": "500 Internal Server Error",
+      "desc": "Kesalahan generik server yang tidak terduga.",
+      "example": "HTTP/1.1 500 Internal Server Error",
+      "output": "Body error"
+    },
+    {
+      "name": "502 Bad Gateway",
+      "desc": "Server bertindak sebagai gateway/proxy dan menerima respons tidak valid dari upstream.",
+      "example": "HTTP/1.1 502 Bad Gateway",
+      "output": "Upstream error"
+    },
+    {
+      "name": "503 Service Unavailable",
+      "desc": "Server sementara tidak tersedia (kelebihan beban atau maintenance).",
+      "example": "HTTP/1.1 503 Service Unavailable\nRetry-After: 120",
+      "output": "Coba lagi nanti"
+    }
+  ],
+  "general-headers": [
+    {
+      "name": "Cache-Control",
+      "desc": "Mengontrol caching di browser dan CDN. Directives: max-age, no-cache, no-store, must-revalidate.",
+      "example": "Cache-Control: public, max-age=31536000, immutable",
+      "output": "Di-cache 1 tahun"
+    },
+    {
+      "name": "Connection",
+      "desc": "Mengontrol apakah koneksi jaringan tetap terbuka setelah transaksi selesai.",
+      "example": "Connection: keep-alive",
+      "output": "Koneksi persisten"
+    },
+    {
+      "name": "Date",
+      "desc": "Tanggal dan waktu saat pesan dibuat.",
+      "example": "Date: Mon, 28 Jun 2025 12:00:00 GMT",
+      "output": "Timestamp"
+    },
+    {
+      "name": "Transfer-Encoding",
+      "desc": "Bentuk encoding yang digunakan untuk mengirim body ke klien (chunked).",
+      "example": "Transfer-Encoding: chunked",
+      "output": "Body dikirim bertahap"
+    }
+  ],
+  "request-headers": [
+    {
+      "name": "Accept",
+      "desc": "Memberi tahu server tipe konten yang dapat diterima klien (MIME type).",
+      "example": "Accept: application/json",
+      "output": "Prioritas JSON"
+    },
+    {
+      "name": "Authorization",
+      "desc": "Kredensial autentikasi (Basic, Bearer token).",
+      "example": "Authorization: Bearer eyJhbGciOiJIUzI1NiIs...",
+      "output": "Token JWT"
+    },
+    {
+      "name": "Content-Type",
+      "desc": "Tipe media dari body permintaan.",
+      "example": "Content-Type: application/json",
+      "output": "Body dalam format JSON"
+    },
+    {
+      "name": "Cookie",
+      "desc": "Mengirim cookie yang tersimpan ke server.",
+      "example": "Cookie: session_id=abc123; theme=dark",
+      "output": "Data cookie"
+    },
+    {
+      "name": "Host",
+      "desc": "Nama domain server (wajib di HTTP/1.1).",
+      "example": "Host: example.com",
+      "output": "Server target"
+    },
+    {
+      "name": "User-Agent",
+      "desc": "Informasi tentang browser atau aplikasi klien.",
+      "example": "User-Agent: Mozilla/5.0 ...",
+      "output": "Identitas klien"
+    }
+  ],
+  "response-headers": [
+    {
+      "name": "Access-Control-Allow-Origin",
+      "desc": "Mengizinkan asal lintas domain untuk mengakses resource (CORS).",
+      "example": "Access-Control-Allow-Origin: *",
+      "output": "Semua origin diizinkan"
+    },
+    {
+      "name": "ETag",
+      "desc": "Identifier versi resource untuk validasi cache.",
+      "example": "ETag: \"33a64df551...\"",
+      "output": "Digunakan dengan If-None-Match"
+    },
+    {
+      "name": "Location",
+      "desc": "URL untuk redirect atau resource yang baru dibuat.",
+      "example": "Location: https://example.com/new-page",
+      "output": "URL tujuan"
+    },
+    {
+      "name": "Set-Cookie",
+      "desc": "Mengirim cookie ke klien untuk disimpan.",
+      "example": "Set-Cookie: session=abc; Secure; HttpOnly; SameSite=Lax",
+      "output": "Cookie diset"
+    },
+    {
+      "name": "WWW-Authenticate",
+      "desc": "Menunjukkan metode autentikasi yang diperlukan (bersama 401).",
+      "example": "WWW-Authenticate: Bearer realm=\"API\"",
+      "output": "Metode autentikasi"
+    }
+  ],
+  "cors": [
+    {
+      "name": "Same-Origin Policy",
+      "desc": "Batasan browser yang mencegah halaman mengakses resource dari origin berbeda (protocol, domain, port).",
+      "example": "fetch('https://other.com/api') → diblokir",
+      "output": "Diblokir oleh browser"
+    },
+    {
+      "name": "Simple Request",
+      "desc": "Request yang tidak memicu preflight: GET, POST, HEAD dengan content-type tertentu.",
+      "example": "POST dengan Content-Type: application/x-www-form-urlencoded",
+      "output": "Langsung dikirim"
+    },
+    {
+      "name": "Preflight Request (OPTIONS)",
+      "desc": "Request pendahuluan untuk memeriksa izin CORS sebelum request sebenarnya.",
+      "example": "OPTIONS /api HTTP/1.1\nAccess-Control-Request-Method: DELETE",
+      "output": "Respons berisi header izin"
+    },
+    {
+      "name": "Access-Control-Max-Age",
+      "desc": "Berapa lama hasil preflight dapat di-cache (dalam detik).",
+      "example": "Access-Control-Max-Age: 86400",
+      "output": "Cache 24 jam"
+    }
+  ],
+  "caching-mechanisms": [
+    {
+      "name": "ETag / If-None-Match",
+      "desc": "Validasi cache: server mengirim ETag, klien mengirim If-None-Match. Jika cocok, server balas 304.",
+      "example": "Request: If-None-Match: \"abc\"\nResponse: 304 Not Modified",
+      "output": "Menghemat bandwidth"
+    },
+    {
+      "name": "Last-Modified / If-Modified-Since",
+      "desc": "Validasi berdasarkan waktu modifikasi terakhir.",
+      "example": "Request: If-Modified-Since: Mon, 28 Jun 2025 10:00:00 GMT\nResponse: 304 Not Modified",
+      "output": "Cache valid"
+    },
+    {
+      "name": "Cache-Control: no-store",
+      "desc": "Tidak menyimpan cache sama sekali. Setiap request harus ke server.",
+      "example": "Cache-Control: no-store",
+      "output": "Cache dinonaktifkan"
+    },
+    {
+      "name": "Cache-Control: no-cache",
+      "desc": "Boleh cache, tapi harus divalidasi ulang ke server sebelum digunakan.",
+      "example": "Cache-Control: no-cache",
+      "output": "Validasi setiap kali"
+    }
+  ],
+  "authentication-schemes": [
+    {
+      "name": "Basic Authentication",
+      "desc": "Mengirim username:password dalam header Authorization, diencode base64.",
+      "example": "Authorization: Basic dXNlcjpwYXNz",
+      "output": "Kredensial base64 (tidak aman tanpa HTTPS)"
+    },
+    {
+      "name": "Bearer Token",
+      "desc": "Mengirim token (JWT, OAuth2) di header Authorization.",
+      "example": "Authorization: Bearer eyJhbGciOi...",
+      "output": "Token terverifikasi"
+    },
+    {
+      "name": "Digest Authentication",
+      "desc": "Lebih aman dari Basic, tidak mengirim password secara langsung.",
+      "example": "Authorization: Digest username=\"user\", realm=\"API\", nonce=\"...\"",
+      "output": "Hash password"
+    },
+    {
+      "name": "API Key",
+      "desc": "Mengirim kunci API di header kustom (X-API-Key) atau query parameter.",
+      "example": "X-API-Key: sk_live_abc123",
+      "output": "API key terautentikasi"
+    }
+  ],
+  "content-negotiation": [
+    {
+      "name": "Accept Header",
+      "desc": "Klien memberitahu server tipe konten yang diinginkan (application/json, text/html).",
+      "example": "Accept: application/json, text/html;q=0.9",
+      "output": "JSON diprioritaskan"
+    },
+    {
+      "name": "Accept-Language",
+      "desc": "Klien memberitahu server bahasa yang diinginkan.",
+      "example": "Accept-Language: id-ID, en;q=0.8",
+      "output": "Bahasa Indonesia diprioritaskan"
+    },
+    {
+      "name": "Accept-Encoding",
+      "desc": "Klien memberitahu server encoding konten yang didukung (gzip, deflate, br).",
+      "example": "Accept-Encoding: gzip, deflate, br",
+      "output": "Brotli dipilih jika didukung"
+    }
+  ],
+  "http-versions": [
+    {
+      "name": "HTTP/1.0",
+      "desc": "Setiap request membuka koneksi baru. Header Host tidak wajib.",
+      "example": "GET /page.html HTTP/1.0",
+      "output": "Koneksi langsung ditutup"
+    },
+    {
+      "name": "HTTP/1.1",
+      "desc": "Koneksi persisten (keep-alive), header Host wajib, chunked transfer.",
+      "example": "GET /api HTTP/1.1\nHost: example.com\nConnection: keep-alive",
+      "output": "Koneksi tetap terbuka"
+    },
+    {
+      "name": "HTTP/2",
+      "desc": "Binary protocol, multiplexing (banyak request dalam satu koneksi), header compression, server push.",
+      "example": "Semua request ke satu domain menggunakan satu koneksi TCP.",
+      "output": "Lebih cepat, lebih efisien"
+    },
+    {
+      "name": "HTTP/3",
+      "desc": "Berbasis QUIC (UDP), tanpa head-of-line blocking, koneksi lebih cepat di jaringan lossy.",
+      "example": "Alt-Svc: h3=\":443\"",
+      "output": "Koneksi QUIC"
+    }
+  ],
+  "best-practices": [
+    {
+      "name": "Gunakan HTTPS",
+      "desc": "Enkripsi semua komunikasi HTTP dengan TLS.",
+      "example": "Server mendukung HTTPS dengan redirect HTTP ke HTTPS.",
+      "output": "Data aman"
+    },
+    {
+      "name": "Gunakan HTTP/2 atau HTTP/3",
+      "desc": "Manfaatkan multiplexing untuk loading halaman lebih cepat.",
+      "example": "Aktifkan HTTP/2 di web server (Nginx, Apache).",
+      "output": "Performa meningkat"
+    },
+    {
+      "name": "Gunakan metode HTTP dengan benar",
+      "desc": "GET untuk mengambil, POST untuk membuat, PUT untuk mengganti, DELETE untuk menghapus.",
+      "example": "Hindari GET untuk operasi yang mengubah data.",
+      "output": "RESTful API"
+    },
+    {
+      "name": "Rate Limiting dengan 429",
+      "desc": "Batasi jumlah permintaan untuk mencegah abuse.",
+      "example": "return 429 Too Many Requests dengan header Retry-After.",
+      "output": "Melindungi server"
+    }
+  ]
+}

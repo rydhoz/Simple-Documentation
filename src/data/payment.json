@@ -1,0 +1,216 @@
+{
+  "stripe-setup": [
+    {
+      "name": "Install Stripe",
+      "desc": "Instal library Stripe untuk Node.js.",
+      "example": "pnpm add stripe",
+      "output": "Package terinstal"
+    },
+    {
+      "name": "Initialize Stripe",
+      "desc": "Buat instance Stripe dengan secret key dari environment.",
+      "example": "import Stripe from 'stripe'\n\nexport const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {\n  apiVersion: '2025-03-31',\n  typescript: true,\n})",
+      "output": "Stripe client siap"
+    },
+    {
+      "name": "Stripe API Version",
+      "desc": "Tentukan versi API Stripe yang digunakan (wajib).",
+      "example": "apiVersion: '2025-03-31'",
+      "output": "Versi API dikunci"
+    },
+    {
+      "name": "Environment Variables",
+      "desc": "Simpan secret key dan webhook secret di .env.",
+      "example": "STRIPE_SECRET_KEY=sk_live_xxx\nNEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_xxx\nSTRIPE_WEBHOOK_SECRET=whsec_xxx",
+      "output": "Variable aman"
+    }
+  ],
+  "stripe-checkout": [
+    {
+      "name": "Create Checkout Session",
+      "desc": "Membuat session Stripe Checkout untuk pembayaran sekali jalan.",
+      "example": "const session = await stripe.checkout.sessions.create({\n  mode: 'payment',\n  line_items: [{ price_data: { currency: 'usd', product_data: { name: 'Kaos' }, unit_amount: 2000 }, quantity: 1 }],\n  success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,\n  cancel_url: `${origin}/cancel`,\n})",
+      "output": "URL checkout Stripe"
+    },
+    {
+      "name": "Redirect to Checkout",
+      "desc": "Arahkan pengguna ke URL Stripe Checkout.",
+      "example": "return NextResponse.redirect(session.url!, 303)",
+      "output": "Pengguna diarahkan"
+    },
+    {
+      "name": "Checkout Session Mode",
+      "desc": "Mode checkout: payment, subscription, setup.",
+      "example": "mode: 'subscription', // untuk langganan",
+      "output": "Sesuai kebutuhan"
+    },
+    {
+      "name": "Customer Email",
+      "desc": "Otomatis mengisi email pelanggan di Stripe Checkout.",
+      "example": "customer_email: user.email,",
+      "output": "Email terisi"
+    },
+    {
+      "name": "Metadata Checkout",
+      "desc": "Menyematkan data tambahan di sesi checkout.",
+      "example": "metadata: { orderId: '123' },",
+      "output": "Data orderId tercatat"
+    }
+  ],
+  "stripe-payment-intents": [
+    {
+      "name": "Create PaymentIntent",
+      "desc": "Membuat PaymentIntent untuk pembayaran terprogram (custom UI).",
+      "example": "const paymentIntent = await stripe.paymentIntents.create({\n  amount: 2000,\n  currency: 'usd',\n  payment_method_types: ['card'],\n})",
+      "output": "Client secret"
+    },
+    {
+      "name": "Client Secret",
+      "desc": "Client secret digunakan di frontend untuk konfirmasi pembayaran.",
+      "example": "const clientSecret = paymentIntent.client_secret",
+      "output": "pi_xxx_secret_xxx"
+    },
+    {
+      "name": "Update PaymentIntent",
+      "desc": "Mengubah amount atau metadata sebelum konfirmasi.",
+      "example": "await stripe.paymentIntents.update('pi_xxx', { amount: 3000 })",
+      "output": "PaymentIntent terupdate"
+    },
+    {
+      "name": "Confirm PaymentIntent",
+      "desc": "Konfirmasi PaymentIntent (biasanya dari frontend dengan Stripe Elements).",
+      "example": "await stripe.confirmCardPayment(clientSecret, { payment_method: { card } })",
+      "output": "Pembayaran terkonfirmasi"
+    }
+  ],
+  "stripe-webhook": [
+    {
+      "name": "Webhook Endpoint",
+      "desc": "Route handler untuk menerima event dari Stripe.",
+      "example": "export async function POST(req: Request) { ... }",
+      "output": "/api/stripe/webhook"
+    },
+    {
+      "name": "Verify Signature",
+      "desc": "Memverifikasi bahwa request berasal dari Stripe.",
+      "example": "const sig = req.headers.get('stripe-signature')!\nconst event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)",
+      "output": "Event terverifikasi"
+    },
+    {
+      "name": "Handle Events",
+      "desc": "Menangani event seperti checkout.session.completed, payment_intent.succeeded.",
+      "example": "switch (event.type) {\n  case 'checkout.session.completed':\n    const session = event.data.object\n    // fulfill order\n    break\n  // ...\n}",
+      "output": "Aksi terpicu"
+    },
+    {
+      "name": "Return 200 Quickly",
+      "desc": "Webhook harus merespons 200 dengan cepat, pekerjaan berat bisa async.",
+      "example": "return new Response(null, { status: 200 })",
+      "output": "Stripe terima respons"
+    }
+  ],
+  "stripe-subscription": [
+    {
+      "name": "Create Subscription",
+      "desc": "Membuat langganan periodik untuk pelanggan.",
+      "example": "const subscription = await stripe.subscriptions.create({\n  customer: 'cus_xxx',\n  items: [{ price: 'price_xxx' }],\n  payment_behavior: 'default_incomplete',\n  expand: ['latest_invoice.payment_intent'],\n})",
+      "output": "Status langganan"
+    },
+    {
+      "name": "Price Object",
+      "desc": "Objek harga (price) untuk produk/langganan.",
+      "example": "const price = await stripe.prices.create({\n  unit_amount: 2000,\n  currency: 'usd',\n  recurring: { interval: 'month' },\n  product: 'prod_xxx',\n})",
+      "output": "price_xxx"
+    },
+    {
+      "name": "Trial Period",
+      "desc": "Menawarkan masa percobaan sebelum penagihan.",
+      "example": "trial_period_days: 14",
+      "output": "14 hari gratis"
+    },
+    {
+      "name": "Cancel Subscription",
+      "desc": "Membatalkan langganan (bisa langsung atau di akhir periode).",
+      "example": "await stripe.subscriptions.cancel('sub_xxx')",
+      "output": "Status canceled"
+    },
+    {
+      "name": "Customer Portal",
+      "desc": "Mengarahkan pelanggan ke Stripe Customer Portal untuk kelola langganan.",
+      "example": "const portalSession = await stripe.billingPortal.sessions.create({\n  customer: 'cus_xxx',\n  return_url: origin,\n})\nreturn NextResponse.redirect(portalSession.url, 303)",
+      "output": "URL portal"
+    }
+  ],
+  "midtrans": [
+    {
+      "name": "Install Midtrans",
+      "desc": "Install library Midtrans untuk Node.js.",
+      "example": "pnpm add midtrans-client",
+      "output": "Package terinstal"
+    },
+    {
+      "name": "Initialize Midtrans",
+      "desc": "Buat instance Midtrans Snap dan Core API.",
+      "example": "import midtransClient from 'midtrans-client'\n\nconst snap = new midtransClient.Snap({\n  isProduction: false,\n  serverKey: process.env.MIDTRANS_SERVER_KEY,\n  clientKey: process.env.MIDTRANS_CLIENT_KEY,\n})",
+      "output": "Snap instance siap"
+    },
+    {
+      "name": "Snap Transaction",
+      "desc": "Membuat transaksi Snap untuk mendapatkan token pembayaran.",
+      "example": "const transaction = await snap.createTransaction({\n  transaction_details: { order_id: 'ORDER-123', gross_amount: 200000 },\n  customer_details: { first_name: 'Ridho', email: 'ridho@mail.com' },\n})",
+      "output": "Token snap"
+    },
+    {
+      "name": "Snap Redirect URL",
+      "desc": "URL pembayaran Midtrans yang bisa di-redirect atau di-embed.",
+      "example": "const redirectUrl = transaction.redirect_url",
+      "output": "https://app.sandbox.midtrans.com/snap/..."
+    },
+    {
+      "name": "Midtrans Webhook",
+      "desc": "Terima notifikasi pembayaran dari Midtrans.",
+      "example": "export async function POST(req: Request) {\n  const body = await req.json()\n  // verifikasi signature key\n}",
+      "output": "Status transaksi"
+    }
+  ],
+  "xendit": [
+    {
+      "name": "Install Xendit",
+      "desc": "Install library Xendit untuk Node.js.",
+      "example": "pnpm add xendit-node",
+      "output": "Package terinstal"
+    },
+    {
+      "name": "Initialize Xendit",
+      "desc": "Buat instance Xendit API.",
+      "example": "import { Xendit } from 'xendit-node'\n\nconst xendit = new Xendit({ secretKey: process.env.XENDIT_SECRET_KEY })",
+      "output": "Xendit instance"
+    },
+    {
+      "name": "Create Invoice",
+      "desc": "Membuat invoice pembayaran yang bisa dibayar via berbagai metode.",
+      "example": "const invoice = await xendit.Invoice.createInvoice({\n  externalId: 'INV-123',\n  amount: 200000,\n  currency: 'IDR',\n  customer: { givenNames: 'Ridho', email: 'ridho@mail.com' },\n  successRedirectUrl: 'https://example.com/success',\n})",
+      "output": "Invoice URL & ID"
+    },
+    {
+      "name": "Invoice Webhook",
+      "desc": "Menerima notifikasi status invoice.",
+      "example": "export async function POST(req: Request) {\n  const body = await req.json()\n  // verifikasi callback token\n}",
+      "output": "Status invoice"
+    }
+  ],
+  "paypal": [
+    {
+      "name": "PayPal JavaScript SDK",
+      "desc": "Muat PayPal SDK di frontend untuk menampilkan tombol.",
+      "example": "import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'\n\n<PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID, currency: 'USD' }}>\n  <PayPalButtons createOrder={(data, actions) => { return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] }) }} />\n</PayPalScriptProvider>",
+      "output": "Tombol PayPal"
+    },
+    {
+      "name": "Capture Order (Server)",
+      "desc": "Tangkap pembayaran setelah disetujui di frontend.",
+      "example": "const response = await fetch(`https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderID}/capture`, {\n  method: 'POST',\n  headers: { Authorization: `Bearer ${accessToken}` },\n})",
+      "output": "Status completed"
+    }
+  ]
+}
