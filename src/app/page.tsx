@@ -9,7 +9,7 @@ export default function HomePage() {
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
             Dokumentasi Lengkap{" "}
-            <span className="text-indigo-600 dark:text-indigo-400 ayam-poke">
+            <span className="text-indigo-600 dark:text-indigo-400">
               Fullstack Developer
             </span>
           </h1>
