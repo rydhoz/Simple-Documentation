@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <section className="min-h-screen bg-white dark:bg-gray-950">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* Main Header */}
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
             Dokumentasi Lengkap{" "}
