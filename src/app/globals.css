@@ -2,15 +2,12 @@
 
 /* ========== Dark Mode ========== */
 @variant dark (&:where(.dark, .dark *));
-.ayam-poke {
-  background-color: red;
-}
 
 /* ========== Custom Scrollbar ========== */
 /* WebKit (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
+  height: 6px;  
 }
 
 ::-webkit-scrollbar-track {
@@ -26,6 +23,7 @@
   background: #c8cfd8;
   border-radius: 10px;
   box-shadow: inset 2px 2px 4px #a3b1c6, inset -2px -2px 4px #ffffff;
+  cursor: pointer;
 }
 
 .dark ::-webkit-scrollbar-thumb {
@@ -39,14 +37,4 @@
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
-}
-
-/* Firefox */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #c8cfd8 #e0e5ec;
-}
-
-.dark html {
-  scrollbar-color: #4b5563 #1f2937;
 }
