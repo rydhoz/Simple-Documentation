@@ -9,7 +9,7 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const [activeTheme, setActiveTheme] = useState<"light" | "dark">("light");
 
-  // Hindari mismatch SSR
+  // Setelah mount, kita tahu tema yang sebenarnya
   useEffect(() => setMounted(true), []);
 
   // Sinkronkan resolvedTheme ke state lokal
@@ -22,10 +22,8 @@ export default function ThemeToggle() {
   const toggleTheme = () => {
     const newTheme = activeTheme === "dark" ? "light" : "dark";
     setActiveTheme(newTheme);
-    setTheme(newTheme);           // paksa ke light/dark, bukan "system"
+    setTheme(newTheme);
   };
-
-  if (!mounted) return null;
 
   return (
     <button
@@ -33,10 +31,15 @@ export default function ThemeToggle() {
       className="hover:cursor-pointer flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-200 dark:text-gray-400 dark:hover:text-indigo-400 dark:hover:bg-gray-800 transition-colors"
       aria-label="Toggle dark mode"
     >
-      {activeTheme === "dark" ? (
-        <Sun className="h-5 w-5" />
+      {mounted ? (
+        activeTheme === "dark" ? (
+          <Sun className="h-5 w-5" />
+        ) : (
+          <Moon className="h-5 w-5" />
+        )
       ) : (
-        <Moon className="h-5 w-5" />
+        // Placeholder transparan dengan ukuran sama → layout tidak berubah
+        <span className="h-5 w-5 opacity-0" />
       )}
     </button>
   );
