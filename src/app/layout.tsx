@@ -4,11 +4,15 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Navbar from "./components/layout/navbar";
 import Footer from "./components/layout/footer";
+import GoogleAnalytics from "./analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Simple Documentation — Dokumentasi Fullstack Developer Modern",
+  verification: {
+    google: "pkZA5CR3NpiiGCAlKd2Ww4zRzf6URu_3Fp7IMKch4q8",
+  },
   description:
     "Kumpulan dokumentasi simpel untuk fullstack developer. Mencakup HTML, CSS, JavaScript, TypeScript, React, Next.js, Node.js, Git, Tailwind CSS, Prisma, database, testing, deployment, dan 50+ topik teknologi lainnya. Referensi cepat dengan pencarian instan, mode gelap, dan contoh kode yang bisa disalin.",
   keywords: [
@@ -75,13 +79,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://simple-documentation.vercel.app",
   },
+  
+
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+         <GoogleAnalytics />
+         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col bg-white dark:bg-gray-950">
             <Navbar />
             <main className="ml-14 flex-1">{children}</main>
