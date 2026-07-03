@@ -37,6 +37,7 @@ Gunakan format seperti di bawah ini. Nama file akan otomatis menjadi slug halama
     }
   ]
 }
+```
 
 ## 📝 Aturan Penting
 
