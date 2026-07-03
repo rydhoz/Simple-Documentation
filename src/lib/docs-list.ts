@@ -1,45 +1,90 @@
+import fs from "fs";
+import path from "path";
+
 export interface DocItem {
   title: string;
   url: string;
-  icon: string; 
+  icon: string;
 }
 
-export const docs: DocItem[] = [
-  { title: "Accessibility", url: "/accessibility", icon: "Accessibility" },
-  { title: "Authentication", url: "/authentication", icon: "Lock" },
-  { title: "Best Practices", url: "/best-practices", icon: "Lightbulb" },
-  { title: "C#", url: "/csharp", icon: "Code2" },
-  { title: "CSS3", url: "/css3", icon: "Palette" },
-  { title: "Database & ORM", url: "/database-orm", icon: "Database" },
-  { title: "Design for Dev", url: "/design-for-developer", icon: "Pen" },
-  { title: "DevOps & Deploy", url: "/devops-deployment", icon: "Server" },
-  { title: "Email & Notif", url: "/email-notification", icon: "Mail" },
-  { title: "Excel", url: "/excel", icon: "Sheet" },
-  { title: "Git", url: "/git", icon: "GitBranch" },
-  { title: "HTML5", url: "/html5", icon: "Globe" },
-  { title: "HTTP", url: "/http", icon: "Link2" },
-  { title: "JavaScript", url: "/js", icon: "FileCode" },
-  { title: "MathML", url: "/mathml", icon: "Calculator" },
-  { title: "Media", url: "/media", icon: "Play" },
-  { title: "Next.js App", url: "/nextjs-app-router", icon: "LayoutDashboard" },
-  { title: "Next.js Pages", url: "/nextjs-pages-router", icon: "FileText" },
-  { title: "Node.js", url: "/nodejs", icon: "Terminal" },
-  { title: "Payment", url: "/payment", icon: "CreditCard" },
-  { title: "Performance", url: "/performance", icon: "Gauge" },
-  { title: "PHP", url: "/php", icon: "Hash" },
-  { title: "Privacy", url: "/privacy", icon: "Shield" },
-  { title: "PWA", url: "/pwa", icon: "Smartphone" },
-  { title: "React.js", url: "/reactjs", icon: "Atom" },
-  { title: "Security", url: "/security", icon: "ShieldCheck" },
-  { title: "State Management", url: "/state-management", icon: "Layers" },
-  { title: "SVG", url: "/svg", icon: "Image" },
-  { title: "Tailwind CSS", url: "/tailwind-css", icon: "Wind" },
-  { title: "Testing", url: "/testing", icon: "FlaskConical" },
-  { title: "TypeScript", url: "/ts", icon: "Braces" },
-  { title: "URIs", url: "/uris", icon: "Link2" },
-  { title: "Version Control", url: "/version-control", icon: "GitPullRequest" },
-  { title: "Web APIs", url: "/web-apis", icon: "Webhook" },
-  { title: "WebDriver", url: "/webdriver", icon: "Car" },
-  { title: "Word", url: "/word", icon: "FileText" },
-  { title: "XML", url: "/xml", icon: "Code2" },
-];
+// Map slug → [title, icon] untuk kustomisasi
+const SLUG_MAP: Record<string, [string, string]> = {
+  "accessibility":             ["Accessibility", "Accessibility"],
+  "authentication":            ["Authentication", "Lock"],
+  "best-practices":            ["Best Practices", "Lightbulb"],
+  "csharp":                    ["C#", "Code2"],
+  "css3":                      ["CSS3", "Palette"],
+  "database-orm":              ["Database & ORM", "Database"],
+  "design-for-developer":      ["Design for Dev", "Pen"],
+  "devops-deployment":         ["DevOps & Deploy", "Server"],
+  "email-notification":        ["Email & Notif", "Mail"],
+  "excel":                     ["Excel", "Sheet"],
+  "git":                       ["Git", "GitBranch"],
+  "html5":                     ["HTML5", "Globe"],
+  "http":                      ["HTTP", "Link2"],
+  "js":                        ["JavaScript", "FileCode"],
+  "mathml":                    ["MathML", "Calculator"],
+  "media":                     ["Media", "Play"],
+  "nextjs-app-router":         ["Next.js App", "LayoutDashboard"],
+  "nextjs-pages-router":       ["Next.js Pages", "FileText"],
+  "nodejs":                    ["Node.js", "Terminal"],
+  "payment":                   ["Payment", "CreditCard"],
+  "performance":               ["Performance", "Gauge"],
+  "php":                       ["PHP", "Hash"],
+  "privacy":                   ["Privacy", "Shield"],
+  "pwa":                       ["PWA", "Smartphone"],
+  "reactjs":                   ["React.js", "Atom"],
+  "security":                  ["Security", "ShieldCheck"],
+  "state-management":          ["State Management", "Layers"],
+  "svg":                       ["SVG", "Image"],
+  "tailwind-css":              ["Tailwind CSS", "Wind"],
+  "testing":                   ["Testing", "FlaskConical"],
+  "ts":                        ["TypeScript", "Braces"],
+  "uris":                      ["URIs", "Link2"],
+  "version-control":           ["Version Control", "GitPullRequest"],
+  "web-apis":                  ["Web APIs", "Webhook"],
+  "webdriver":                 ["WebDriver", "Car"],
+  "word":                      ["Word", "FileText"],
+  "xml":                       ["XML", "Code2"],
+};
+
+// Icon default untuk materi yang belum ditentukan
+const DEFAULT_ICON = "HelpCircle";
+
+// Fungsi untuk mengubah slug menjadi title (fallback jika tidak ada di SLUG_MAP)
+function slugToTitle(slug: string): string {
+  // Ganti strip/hyphen dengan spasi, lalu kapitalkan setiap kata
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+// Membaca semua file JSON di folder data/, lalu menghasilkan array DocItem
+function getDocs(): DocItem[] {
+  const dataDir = path.join(process.cwd(), "src", "data");
+  let slugs: string[] = [];
+
+  try {
+    const files = fs.readdirSync(dataDir);
+    slugs = files
+      .filter((file) => file.endsWith(".json") && !file.startsWith("_"))
+      .map((file) => file.replace(".json", ""));
+  } catch {
+    // Jika folder tidak bisa dibaca, kembalikan array kosong
+    return [];
+  }
+
+  return slugs.map((slug) => {
+    const custom = SLUG_MAP[slug];
+    const title = custom ? custom[0] : slugToTitle(slug);
+    const icon = custom ? custom[1] : DEFAULT_ICON;
+    return {
+      title,
+      url: `/${slug}`,
+      icon,
+    };
+  });
+}
+
+export const docs: DocItem[] = getDocs();
