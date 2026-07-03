@@ -5,7 +5,7 @@ import { Code2 } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 mt-auto">
-      <div className="flex items-center justify-center gap-1.5 px-4 py-4 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 px-4 py-3 sm:py-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center">
         <span>Created by</span>
         <Link
           href="https://github.com/ridhoakbar"
@@ -16,7 +16,7 @@ export default function Footer() {
           <GithubIcon />
           Rydhoz
         </Link>
-        <span className="text-gray-300 dark:text-gray-600 mx-0.5">·</span>
+        <span className="hidden sm:inline text-gray-300 dark:text-gray-600 mx-0.5">·</span>
         <Link
           href="https://github.com/rydhoz/Simple-Documentation"
           target="_blank"
@@ -26,6 +26,7 @@ export default function Footer() {
           <Code2 className="h-4 w-4" />
           Source
         </Link>
+        <span>for Contribution</span>
       </div>
     </footer>
   );
