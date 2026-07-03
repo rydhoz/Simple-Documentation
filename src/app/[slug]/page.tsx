@@ -4,7 +4,7 @@ import DocsTable from "./../components/docs-table";
 import fs from "fs";
 import path from "path";
 
-// Tipe data sama seperti sebelumnya
+// Tipe data
 interface DocsProps {
   name: string;
   desc: string;
@@ -19,7 +19,7 @@ interface DocsJson {
   [category: string]: CategoryData;
 }
 
-// Fungsi normalisasi kategori (sama seperti sebelumnya)
+// Fungsi normalisasi kategori
 function normalizeCategory(category: string, data: CategoryData) {
   if (Array.isArray(data)) return [{ title: category.toUpperCase(), items: data }];
   return Object.entries(data).map(([sub, items]) => ({
@@ -28,32 +28,39 @@ function normalizeCategory(category: string, data: CategoryData) {
   }));
 }
 
-// Daftar slug yang valid (bisa juga diambil dari folder data/*.json)
-const validSlugs = [
-  "html5", "css3", "js", "ts", "reactjs", "nextjs-app-router",
-  "nextjs-pages-router", "nodejs", "git", "tailwind-css", "php",
-  "excel", "word", "csharp", "http", "accessibility", "authentication",
-  "best-practices", "database-orm", "design-for-developer",
-  "devops-deployment", "email-notification", "media", "payment",
-  "performance", "privacy", "pwa", "security", "state-management",
-  "svg", "testing", "uris", "version-control", "web-apis",
-  "webdriver", "xml", "mathml"
-];
-
-// Static generation (SSG) – halaman dibuat saat build
-export async function generateStaticParams() {
-  return validSlugs.map((slug) => ({ slug }));
+// Baca semua slug dari folder data/ secara dinamis
+function getSlugs(): string[] {
+  const dataDir = path.join(process.cwd(), "src", "data");
+  try {
+    const files = fs.readdirSync(dataDir);
+    return files
+      .filter((file) => file.endsWith(".json") && !file.startsWith("_")) // abaikan file draft
+      .map((file) => file.replace(".json", ""));
+  } catch {
+    return [];
+  }
 }
 
-export default async function DocsPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; 
+// Static generation (SSG) – semua halaman dibuat saat build
+export async function generateStaticParams() {
+  const slugs = getSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
-  // Cek apakah slug valid
-  if (!validSlugs.includes(slug)) {
+export default async function DocsPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const slugs = getSlugs();
+
+  // Cek apakah slug valid (ada file JSON-nya)
+  if (!slugs.includes(slug)) {
     notFound();
   }
 
-  // Baca file JSON yang sesuai (pastikan file ada di folder data/)
+  // Baca file JSON yang sesuai
   const filePath = path.join(process.cwd(), "src", "data", `${slug}.json`);
   if (!fs.existsSync(filePath)) {
     notFound();
@@ -67,7 +74,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
     normalizeCategory(category, data)
   );
 
-  // Judul halaman (bisa diambil dari metadata atau di-hardcode per slug)
+  // Judul halaman
   const title = slug.toUpperCase() + " DOCS";
 
   return (
@@ -79,7 +86,6 @@ export default async function DocsPage({ params }: { params: Promise<{ slug: str
       <DocsTable
         sections={allSections}
         placeholder={`Cari ${slug}...`}
-        // Header bisa disesuaikan per slug atau pakai default
         headers={["Name", "Description", "Example", "Output"]}
       />
     </div>

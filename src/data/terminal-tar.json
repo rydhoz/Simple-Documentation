@@ -1,0 +1,170 @@
+{
+  "tar-dasar": [
+    {
+      "name": "tar -czf (create gzip archive)",
+      "desc": "Membungkus folder menjadi file arsip terkompresi gzip.",
+      "example": "tar -czf backup.tar.gz ./myfolder",
+      "output": "File backup.tar.gz terbuat"
+    },
+    {
+      "name": "tar -xzf (extract gzip archive)",
+      "desc": "Mengekstrak file arsip gzip ke direktori saat ini.",
+      "example": "tar -xzf backup.tar.gz",
+      "output": "Isi arsip diekstrak ke folder saat ini"
+    },
+    {
+      "name": "tar -tzf (list gzip archive)",
+      "desc": "Melihat isi arsip gzip tanpa mengekstrak.",
+      "example": "tar -tzf backup.tar.gz",
+      "output": "Menampilkan daftar file di dalam arsip"
+    }
+  ],
+  "flag-tar": [
+    {
+      "name": "-c (create)",
+      "desc": "Flag untuk membuat arsip baru.",
+      "example": "tar -cf archive.tar ./folder",
+      "output": "Arsip dibuat tanpa kompresi"
+    },
+    {
+      "name": "-x (extract)",
+      "desc": "Flag untuk mengekstrak arsip.",
+      "example": "tar -xf archive.tar",
+      "output": "Arsip diekstrak"
+    },
+    {
+      "name": "-t (list)",
+      "desc": "Flag untuk melihat isi arsip.",
+      "example": "tar -tf archive.tar",
+      "output": "Daftar file di arsip"
+    },
+    {
+      "name": "-z (gzip)",
+      "desc": "Flag untuk kompresi gzip.",
+      "example": "tar -czf archive.tar.gz folder",
+      "output": "Arsip dikompres dengan gzip"
+    },
+    {
+      "name": "-j (bzip2)",
+      "desc": "Flag untuk kompresi bzip2.",
+      "example": "tar -cjf archive.tar.bz2 folder",
+      "output": "Arsip dikompres dengan bzip2"
+    },
+    {
+      "name": "-J (xz)",
+      "desc": "Flag untuk kompresi xz.",
+      "example": "tar -cJf archive.tar.xz folder",
+      "output": "Arsip dikompres dengan xz"
+    },
+    {
+      "name": "-f (file)",
+      "desc": "Flag untuk menentukan nama file arsip (wajib).",
+      "example": "tar -czf mybackup.tar.gz folder",
+      "output": "Arsip disimpan sebagai mybackup.tar.gz"
+    },
+    {
+      "name": "-v (verbose)",
+      "desc": "Flag untuk menampilkan file yang diproses.",
+      "example": "tar -czvf backup.tar.gz folder",
+      "output": "Menampilkan setiap file yang ditambahkan"
+    },
+    {
+      "name": "-C (change directory)",
+      "desc": "Ekstrak ke direktori tertentu.",
+      "example": "tar -xzf backup.tar.gz -C /tmp/restore",
+      "output": "Isi arsip diekstrak ke /tmp/restore"
+    }
+  ],
+  "exclude-include": [
+    {
+      "name": "--exclude",
+      "desc": "Mengecualikan file/pola tertentu dari arsip.",
+      "example": "tar -czf src.tar.gz --exclude='*.log' --exclude='node_modules' ./src",
+      "output": "Arsip tanpa file .log dan folder node_modules"
+    },
+    {
+      "name": "--include (dengan -czf)",
+      "desc": "Hanya menyertakan file dengan pola tertentu (pakai dengan --include).",
+      "example": "tar -czf docs.tar.gz --include='*.md' ./project",
+      "output": "Hanya file .md yang masuk arsip"
+    }
+  ],
+  "kompresi-gzip-bzip2-xz": [
+    {
+      "name": "gzip (-z)",
+      "desc": "Kompresi cepat, ukuran sedang. Biasa untuk backup harian.",
+      "example": "tar -czf archive.tar.gz folder",
+      "output": "Ukuran sekitar 30MB dari 100MB source, 2 detik"
+    },
+    {
+      "name": "bzip2 (-j)",
+      "desc": "Kompresi lebih lambat, ukuran lebih kecil dari gzip.",
+      "example": "tar -cjf archive.tar.bz2 folder",
+      "output": "Ukuran sekitar 25MB dari 100MB source, 8 detik"
+    },
+    {
+      "name": "xz (-J)",
+      "desc": "Kompresi paling lambat, ukuran paling kecil. Cocok untuk distribusi/arsip jangka panjang.",
+      "example": "tar -cJf archive.tar.xz folder",
+      "output": "Ukuran sekitar 20MB dari 100MB source, 30 detik"
+    }
+  ],
+  "zip-unzip": [
+    {
+      "name": "zip (create zip)",
+      "desc": "Membuat arsip zip (cross-platform dengan Windows).",
+      "example": "zip -r archive.zip ./myfolder",
+      "output": "File archive.zip terbuat"
+    },
+    {
+      "name": "unzip (extract zip)",
+      "desc": "Mengekstrak arsip zip.",
+      "example": "unzip archive.zip -d /tmp/output",
+      "output": "Isi zip diekstrak ke /tmp/output"
+    },
+    {
+      "name": "unzip -l (list zip)",
+      "desc": "Melihat isi arsip zip tanpa ekstrak.",
+      "example": "unzip -l archive.zip",
+      "output": "Daftar file di dalam zip"
+    }
+  ],
+  "tips": [
+    {
+      "name": "Gunakan ./ saat create",
+      "desc": "Menghindari path absolut saat ekstrak yang dapat menimpa file sistem.",
+      "example": "tar -czf backup.tar.gz ./folder",
+      "output": "Semua file di bawah folder relatif"
+    },
+    {
+      "name": "Periksa isi arsip sebelum ekstrak",
+      "desc": "Gunakan -t untuk melihat isi, terutama dari sumber tidak tepercaya.",
+      "example": "tar -tzf unknown.tar.gz",
+      "output": "Menampilkan daftar file"
+    },
+    {
+      "name": "Preserve permissions (-p)",
+      "desc": "Penting untuk backup sistem agar izin file tetap.",
+      "example": "tar -czpf backup.tar.gz /etc",
+      "output": "Izin file dipertahankan"
+    },
+    {
+      "name": "Follow symlinks (-h)",
+      "desc": "Ikuti symbolic link dan arsipkan file aslinya.",
+      "example": "tar -czhf backup.tar.gz folder",
+      "output": "Symlink diikuti"
+    },
+    {
+      "name": "Progress indicator (pv)",
+      "desc": "Menampilkan progress bar saat membuat arsip.",
+      "example": "tar -czf - ./myfolder | pv > backup.tar.gz",
+      "output": "Progress bar muncul"
+    },
+    {
+      "name": "Auto-detect kompresi (GNU tar)",
+      "desc": "Saat ekstrak, GNU tar mendeteksi otomatis format kompresi.",
+      "example": "tar -xf unknown.tar.gz  # tanpa -z",
+      "output": "Berhasil diekstrak"
+    }
+  ]
+}
