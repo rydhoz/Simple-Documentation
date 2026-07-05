@@ -1,0 +1,72 @@
+{
+  "Perintah-Dasar": [
+    {
+      "name": "%temp%",
+      "desc": "Folder file sementara untuk aplikasi pengguna saat ini (bisa dihapus semua)",
+      "example": "Win + R → ketik %temp% → Enter → Ctrl+A → Delete",
+      "output": "Folder Temp terbuka, hapus semua file (skip yang sedang dipakai)"
+    },
+    {
+      "name": "temp",
+      "desc": "Folder file sementara sistem (alternatif dari %temp%, sama saja)",
+      "example": "Win + R → ketik temp → Enter → Ctrl+A → Delete",
+      "output": "Folder Temp terbuka, hapus semua file (skip yang sedang dipakai)"
+    },
+    {
+      "name": "%TMP%",
+      "desc": "Folder file sementara untuk aplikasi pengguna saat ini (alternatif dari %temp%)",
+      "example": "Win + R → ketik %TMP% → Enter → Ctrl+A → Delete",
+      "output": "Folder TMP terbuka, hapus semua file (skip yang sedang dipakai)"
+    },
+    {
+      "name": "%WinDir%\\Temp",
+      "desc": "Folder file sementara sistem Windows (alternatif dari temp)",
+      "example": "Win + R → ketik %WinDir%\\Temp → Enter → Ctrl+A → Delete",
+      "output": "Folder Temp sistem terbuka, hapus semua file (skip yang sedang dipakai)"
+    },
+    {
+      "name": "prefetch",
+      "desc": "Folder cache untuk mempercepat loading aplikasi (aman dihapus)",
+      "example": "Win + R → ketik prefetch → Enter → Ctrl+A → Delete",
+      "output": "Folder Prefetch terbuka, hapus semua file (skip yang sedang dipakai)"
+    },
+    {
+      "name": "recent",
+      "desc": "Daftar file dan folder yang baru diakses (riwayat aktivitas)",
+      "example": "Win + R → ketik recent → Enter → Ctrl+A → Delete",
+      "output": "Folder Recent terbuka, hapus semua file untuk membersihkan riwayat"
+    },
+    {
+      "name": "%AppData%\\Microsoft\\Windows\\Recent",
+      "desc": "Alternatif folder Recent (jika perintah 'recent' tidak berfungsi)",
+      "example": "Win + R → ketik %AppData%\\Microsoft\\Windows\\Recent → Enter → Ctrl+A → Delete",
+      "output": "Folder Recent terbuka, hapus semua file untuk membersihkan riwayat"
+    }
+  ],
+  "Perintah-Lanjutan": [
+    {
+      "name": "cleanmgr",
+      "desc": "Disk Cleanup bawaan Windows untuk membersihkan file sampah sistem",
+      "example": "Win + R → ketik cleanmgr → Enter → Pilih drive → Pilih file → OK",
+      "output": "Muncul jendela Disk Cleanup, pilih jenis file yang mau dihapus"
+    },
+    {
+      "name": "cleanmgr /sageset:1",
+      "desc": "Disk Cleanup dengan opsi lanjutan (bisa setting detail pembersihan)",
+      "example": "Win + R → ketik cleanmgr /sageset:1 → Enter → Pilih opsi → OK",
+      "output": "Muncul jendela pengaturan lanjutan, pilih file yang mau dibersihkan"
+    },
+    {
+      "name": "cleanmgr /sagerun:1",
+      "desc": "Menjalankan Disk Cleanup dengan pengaturan yang sudah disimpan sebelumnya",
+      "example": "Win + R → ketik cleanmgr /sagerun:1 → Enter",
+      "output": "Proses pembersihan otomatis berjalan tanpa interaksi"
+    },
+    {
+      "name": "appwiz.cpl",
+      "desc": "Membuka daftar program terinstal untuk uninstall aplikasi yang tidak terpakai",
+      "example": "Win + R → ketik appwiz.cpl → Enter",
+      "output": "Muncul daftar semua program. Pilih dan klik Uninstall untuk menghapus"
+    }
+  ]
+}
