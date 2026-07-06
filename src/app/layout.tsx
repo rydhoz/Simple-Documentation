@@ -9,7 +9,7 @@ import GoogleAnalytics from "./analytics";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Simple Documentation — Dokumentasi Fullstack Developer Modern",
+  title: "Simple Documentation — Dokumentasi Teknologi Modern",
   verification: {
     google: "pkZA5CR3NpiiGCAlKd2Ww4zRzf6URu_3Fp7IMKch4q8",
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   creator: "Ridho Akbar",
   publisher: "Ridho Akbar",
   openGraph: {
-    title: "Simple Documentation — Dokumentasi Fullstack Developer Modern",
+    title: "Simple Documentation — Dokumentasi Teknologi Modern",
     description:
       "Kumpulan dokumentasi simpel untuk fullstack developer. Mencakup 50+ topik teknologi. Referensi cepat dengan pencarian instan, mode gelap, dan contoh kode yang bisa disalin.",
     url: "https://simple-documentation.vercel.app",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Simple Documentation — Dokumentasi Fullstack Developer Modern",
+    title: "Simple Documentation — Dokumentasi Teknologi Modern",
     description:
       "Kumpulan dokumentasi simpel untuk fullstack developer. Mencakup 50+ topik teknologi.",
     images: ["https://simple-documentation.vercel.app/og-image.png"],
