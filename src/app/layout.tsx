@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "https://simple-documentation.vercel.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Simple Documentation — Dokumentasi Fullstack Developer Modern",
+        alt: "Simple Documentation — Dokumentasi Teknologi Modern",
       },
     ],
     locale: "id_ID",
